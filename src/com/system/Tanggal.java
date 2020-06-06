@@ -1,5 +1,12 @@
 package com.system;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.lang.InterruptedException;
+import java.util.StringTokenizer;
 import java.time.LocalDateTime;
 
 
@@ -9,8 +16,8 @@ import java.time.LocalDateTime;
  * Class ini mendapatkan informasi waktu/tanggal saat ini melalui class LocalDateTime 
  * 
  * Type class : Superclass 
- * Total method : 11
- * Total line : 192
+ * Total method : 16
+ * Total line : 462
  * 
  * @see LocalDateTime
  * 
@@ -25,6 +32,11 @@ public class Tanggal {
      */
     private static final LocalDateTime local = LocalDateTime.now();
     
+    /**
+     * Class attribute untuk mendapatkan data waktu atau tanggal
+     */
+    private static final int GET_DETIK = 1, GET_MENIT = 2, GET_JAM = 3, GET_TANGGAL = 4,
+                             GET_NAMAHARI = 5, GET_BULAN = 6, GET_NAMABULAN = 7, GET_TAHUN = 8;
     /**
      * Method ini digunakan untuk memasukan informasi tanngal saat user melakukan sebuah aktivitas ke database/system
      * Method ini mengambil method2 yang lain seperti getNamaHari(), getNamaBulan(), getHari(), getTahun(), getMenit(), getJam() dll 
@@ -57,6 +69,25 @@ public class Tanggal {
     }
     
     /**
+     * Digunakan untuk mendapatkan data waktu atau tanggal 
+     * Method ini mengambil data dari file com.database.date.haqi 
+     * Lalu memilah datanya sesuia code yang diinputkan
+     * 
+     * @param code parameter hanya dapat diisi oleh class attribute diatas
+     * @return data waktu atau tanggal
+     */
+    private static String getData(int code){
+        
+        StringTokenizer data = new StringTokenizer(Tanggal.getUpdateTime(), "#\n");
+        String buffer = "NULL";
+        
+            for(int i = 1; i <= code; i++){
+                buffer = data.nextToken();
+            }
+        return buffer;
+    }
+    
+    /**
      * Mengubah nilai dari varibel yang bertipe data int menjadi String
      * 
      * @see Integer
@@ -69,47 +100,39 @@ public class Tanggal {
     }
     
     /**
-     * Mendapatkan detik saat ini melalui method getSecond() pada class LocalDateTime
-     * 
-     * @see LocalDateTime
+     * Mendapatkan detik saat ini melalui method Tanggal.getData(); dengan code GET_DETIK
      * 
      * @return detik saat ini 
      */
     private static int getDetik(){
-        return Tanggal.local.getSecond();
+        return Integer.parseInt(Tanggal.getData(Tanggal.GET_DETIK));
     }
     
     /**
-     * Mendapatkan menit saat ini melalui method getMinute() pada class LocalDateTime
-     * 
-     * @see LocalDateTime
+     * Mendapatkan menit saat ini melalui method Tanggal.getData(); dengan code GET_MENIT
      * 
      * @return menit saat ini 
      */
     private static int getMenit(){
-        return Tanggal.local.getMinute();
+        return Integer.parseInt(Tanggal.getData(Tanggal.GET_MENIT));
     }
     
     /**
-     * Mendapatkan jam saat ini melalui method geHour() pada class LocalDateTime
-     * 
-     * @see LocalDateTime
+     * Mendapatkan jam saat ini melalui method Tanggal.getData(); dengan code GET_JAM
      * 
      * @return jam saat ini 
      */
     private static int getJam(){
-        return Tanggal.local.getHour();
+        return Integer.parseInt(Tanggal.getData(Tanggal.GET_JAM));
     }
     
     /**
-     * Mendapatkan tangal saat ini melalui method getDayOfMonth() pada class LocalDateTime
+     * Mendapatkan tanggal saat ini melalui method Tanggal.getData(); dengan code GET_TANGGAL
      * 
-     * @see LocalDateTime
-     * 
-     * @return tangal saat ini 
+     * @return tanggal saat ini 
      */
     private static int getHari(){
-        return Tanggal.local.getDayOfMonth();
+        return Integer.parseInt(Tanggal.getData(Tanggal.GET_TANGGAL));
     }
     
     /**
@@ -137,15 +160,12 @@ public class Tanggal {
     }
     
     /**
-     * Mendapatkan nilai bulan saat ini melalui method getMonthValue() pada class LocalDateTime
-     * Nilai bulan bekisar 1 - 12
+     * Mendapatkan bulan saat ini melalui method Tanggal.getData(); dengan code GET_BULAN
      * 
-     * @see LocalDateTime
-     * 
-     * @return nilai bulan bulan saat ini 
+     * @return bulan saat ini 
      */
     private static int getBulan(){
-       return Tanggal.local.getMonthValue();
+       return Integer.parseInt(Tanggal.getData(Tanggal.GET_BULAN));
     }
     
     /**
@@ -178,14 +198,264 @@ public class Tanggal {
     }
     
     /**
-     * Mendapatkan tahun saat ini melalui method getYear() pada class LocalDateTime
-     * 
-     * @see LocalDateTime
+     * Mendapatkan tahun saat ini melalui method Tanggal.getData(); dengan code GET_TAHUN
      * 
      * @return tahun saat ini 
      */
     private static int getTahun(){
-        return Tanggal.local.getYear();
+        return Integer.parseInt(Tanggal.getData(Tanggal.GET_TAHUN));
+    }
+    
+    /**
+     * Digunakan untuk mendapatkan jumlah hari dalam bulan tertentu
+     * class ini menggunakan method getBulan() untuk mendapatkan nilai dari bulan dan mereturn jumlah harinya
+     * 
+     * @return jumlah hari dalam sebulan
+     */
+    protected static int jumlahHari(){
+        
+        switch(getBulan()){
+            case 1: return 31; 
+            case 2: return 28;
+            case 3: return 31;
+            case 4: return 31;
+            case 5: return 31;
+            case 6: return 30;
+            case 7: return 31;
+            case 8: return 31;
+            case 9: return 30;
+            case 10: return 31;
+            case 11: return 30;
+            case 12: return 31;
+            default : return 1;
+                
+        }
+        
+    }
+    
+    /**
+     * Digunakan untuk menuliskan data default ke file date.haqi 
+     * Data default digunakan untuk menghindari kesalahan pada saat mendapatkan data dari waktu yaitu nullpointer exception
+     * Method ini digunakan untuk mendapatkan data dari waktu saat ini dan menyimpanya ke file date.haqi dengan memanfaatkan class LocalDateTime
+     * 
+     * @see LocalDateTime
+     * @see FileWriter
+     * @see BufferedWriter
+     * 
+     */
+    public static void setDefaultTime(){
+        
+        try{
+            FileWriter file = new FileWriter("src\\com\\database\\date.haqi");
+            BufferedWriter tulis = new BufferedWriter(file);  
+            
+            int detik = local.getSecond(),
+                menit = local.getMinute(),
+                jam = local.getHour(),
+                tanggal = local.getDayOfMonth(),
+                bulan = local.getMonthValue(),
+                tahun = local.getYear();
+            String data = Integer.toString(detik)+"#"+
+                          Integer.toString(menit)+"#"+
+                          Integer.toString(jam)+"#"+
+                          Integer.toString(tanggal)+"#NULL#"+
+                          Integer.toString(bulan)+"#NULL#"+
+                          Integer.toString(tahun);
+            tulis.write(data);
+            tulis.flush();         
+            
+        }catch(IOException ex){
+            javax.swing.JOptionPane.showMessageDialog(null, ex);
+            ex.printStackTrace();
+        }
+        
+    }
+    
+    /**
+     * Method ini digunakan untuk mengupdate data dari file date.haqi 
+     * Karena pada dasarnya waktu yang didapat dari class LocalDateTime tidaklah realtime
+     * Note : class LocalDateTime hanya mendapatkan waktu saat program dirun lalu nilainya akan statis (tidak berubah-rubah)
+     * Pada method ini kita akan mengupdatenya dan berikut cara kerjanya
+     * - method menuliskan data waktu default ke file date.haqi dengan method sefDefaultTime() untuk menghindari nullPointer
+     * - method mendapatkan data waktu dari method method diatas dan disimpan pada variabel bertipedata integer dan string
+     * - method akan melaksanakan perulangan while(true) dengan delay 1000 ms untuk mengupdate data waktu agar realtime dengan waktu yang sekarang
+     * - pengupate-tan data waktu dilakukan dengan cara menambahkan angka 1 pada variabel detik, jika variabel detik sudah mencapai 59 maka method akan menambahkan 1 pada vaeiabel menit dst
+     * - jika sudah maka method akan menuliskan data waktu yang telah diupdata ke file data.haqi
+     * 
+     * @see FileReader
+     * @see BufferedReader
+     * @see Thread
+     * 
+   */
+    public static void updateTime(){
+        
+        Tanggal.setDefaultTime();
+        Thread update = new Thread(new Runnable(){
+            
+            int detik = local.getSecond(),
+                menit = local.getMinute(),
+                jam = local.getHour(),
+                tanggal = local.getDayOfMonth(),
+                bulan = local.getMonthValue(),
+                tahun = local.getYear();
+            String namaHari = Tanggal.getNamaHari(), namaBulan = Tanggal.getNamaBulan(), data;
+        
+            
+            @Override
+            public void run(){
+                
+                try{
+
+                    FileWriter file = new FileWriter("src\\com\\database\\date.haqi");
+                    BufferedWriter tulis = new BufferedWriter(file);
+                    
+                    data = Integer.toString(detik)+"#"+
+                                  Integer.toString(menit)+"#"+
+                                  Integer.toString(jam)+"#"+
+                                  Integer.toString(tanggal)+"#NULL#"+
+                                  Integer.toString(bulan)+"#NULL#"+
+                                  Integer.toString(tahun);
+                    tulis.write(data);
+                    tulis.flush();      
+                    
+                        while(true){
+                            
+                            detik++;
+                            if(detik > 59){
+                                detik = 0;
+                                menit++;
+                            }else if(menit > 59){
+                                menit = 0;
+                                jam++;
+                            }else if(jam > 23){
+                                jam = 0;
+                                tanggal++;
+                                    switch(namaHari){
+                                        case "Senin": namaHari = "Selasa"; break;
+                                        case "Selasa": namaHari = "Rabu"; break;
+                                        case "Rabu": namaHari = "Kamis"; break;
+                                        case "Kamis": namaHari = "Jumat"; break;
+                                        case "Jumat": namaHari = "Sabtu"; break;
+                                        case "Sabtu": namaHari = "Minggu"; break;
+                                        case "Minggu": namaHari = "Senin"; break;
+                                        default : namaHari = "NULL"; break;
+                                    }
+                            }else if(tanggal > Tanggal.jumlahHari()){
+                                tanggal = 1;
+                                bulan++;
+                                    switch(namaBulan){
+                                        case "Januari": namaBulan = "Februari"; break;
+                                        case "Februari": namaBulan = "Maret"; break;
+                                        case "Maret": namaBulan = "April"; break;
+                                        case "April": namaBulan = "Mei"; break;
+                                        case "Mei": namaBulan = "Juni"; break;
+                                        case "Juni": namaBulan = "Juli"; break;
+                                        case "Juli": namaBulan = "Agustus"; break;
+                                        case "Agustus": namaBulan = "September"; break;
+                                        case "September": namaBulan = "Oktober"; break;
+                                        case "Oktober": namaBulan = "November"; break;
+                                        case "November": namaBulan = "Desember"; break;
+                                        case "Desember": namaBulan = "Januari"; break;
+                                        default: namaBulan = "NULL"; break;
+                                    }
+                            }else if(bulan > 12){
+                                bulan = 1;
+                                tahun++;
+                            }
+                            
+                            tulis.close();
+                            file = new FileWriter("src\\com\\database\\date.haqi");
+                            tulis = new BufferedWriter(file);
+                            data =  Integer.toString(detik)+"#"+
+                                    Integer.toString(menit)+"#"+
+                                    Integer.toString(jam)+"#"+
+                                    Integer.toString(tanggal)+"#"+namaHari+"#"+
+                                    Integer.toString(bulan)+"#"+namaBulan+"#"+
+                                    Integer.toString(tahun);
+                           tulis.write(data);
+                           tulis.flush();
+                           data = null;
+                            
+//                            System.out.println(Tanggal.getUpdateTime());
+                            Thread.sleep(1000);
+                        }
+                        
+
+                }catch(Exception ex){
+                    javax.swing.JOptionPane.showMessageDialog(null, ex);
+                    ex.printStackTrace();
+                }
+                
+            }
+            
+        });
+        
+        update.start();
+        
+        try{
+            update.join();
+        }catch(InterruptedException ex){
+            ex.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(null, ex);
+        }
+        
     }
  
+    /**
+     * Method ini digunakan untuk mendapatkan data waktu dari file date.haqi
+     * 
+     * @return data waktu pada file date.haqi 
+     */
+    private static String getUpdateTime(){
+        
+        try{
+            FileReader file = new FileReader("src\\com\\database\\date.haqi");
+            BufferedReader baca = new BufferedReader(file);
+            return baca.readLine();
+            
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    
+    public static void main(String[] args){
+        
+//        System.out.println(Tanggal.getData(GET_DETIK));
+//        System.out.println(Tanggal.getData(GET_MENIT));
+//        System.out.println(Tanggal.getData(GET_JAM));
+//        System.out.println(Tanggal.getData(GET_TANGGAL));
+//        System.out.println(Tanggal.getData(GET_NAMAHARI));
+//        System.out.println(Tanggal.getData(GET_BULAN));
+//        System.out.println(Tanggal.getData(GET_NAMABULAN));
+//        System.out.println(Tanggal.getData(GET_TAHUN));
+//        System.out.println(Tanggal.get);
+//
+//        Thread t = new Thread(new Runnable(){
+//        
+//            @Override
+//            public void run(){
+//                try{
+//                    while(true){
+//                        System.out.println(Tanggal.getTanggal_Activity());
+//                        Thread.sleep(1000);
+//                    }
+//                }catch(Exception ex){
+//
+//                }
+//                
+//            }
+//        });
+//        
+//        t.start();
+//        
+//        try{
+//            t.join();
+//        }catch(InterruptedException ex){
+//            ex.printStackTrace();
+//        }
+//        
+//                        Tanggal.updateTime();
+    }
+    
 }
