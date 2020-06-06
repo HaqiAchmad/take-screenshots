@@ -1,5 +1,9 @@
 package com.system;
 
+import java.io.File;
+import java.awt.KeyEventDispatcher;
+
+
 /**
  * Class ini adalah class yang pertama kali dijalankan saat aplikasi dibuka
  * Class ini hanya memiliki satu method yaitu main
@@ -24,41 +28,30 @@ public class Start {
      * 
      * @param args 
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         
-        // sementara di disable
-//        if(Aktivitas.isOpen_aplikasi()){
-//            JOptionPane.showMessageDialog(null, "Aplikasi sudah terbuka");
-//        }else{
-//            
-//            java.awt.EventQueue.invokeLater(new Runnable(){
-//            
-//                @Override 
-//                public void run(){
-//                    new com.window.Root().setVisible(true);
-//                }
-//            
-//            });
-//        }
-        
+//        Thread.sleep(100000);
         // membuka aplikasi
-        Thread t = new Thread(new Runnable(){
+        Thread app = new Thread(new Runnable(){
         
             @Override
             public void run(){
+                Tanggal.setDefaultTime();
+//                Thread.sleep();
                 Aktivitas.addAktivitas("\nActivity " + Apps.getUsername() + " pada " + Tanggal.getTanggal_Activity()); 
                 Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " membuka aplikasi."); 
                 new com.window.Root().setVisible(true);
+                Tanggal.updateTime();
             }
         });
         
         
-        t.start();
+        app.start();
         
         
         try{
             
-            t.join();
+            app.join();
             
         }catch(java.lang.InterruptedException iex){
             iex.printStackTrace();
