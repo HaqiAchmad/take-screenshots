@@ -27,7 +27,6 @@ public class Rename extends javax.swing.JFrame {
         
         this.setIconImage(Apps.getWindowIcon());
         this.setLocationRelativeTo(null);
-        
         this.inpNama.setText(gambar.getName().substring(0, gambar.getName().lastIndexOf(".")));
     }
 
@@ -279,7 +278,9 @@ public class Rename extends javax.swing.JFrame {
             
             @Override
             public void run(){
-                new SimpanGambar().setVisible(true);
+                SimpanGambar simpanGambar = new SimpanGambar();
+                simpanGambar.setLocation(getX(), getY());
+                simpanGambar.setVisible(true);
             }
         
         });
@@ -296,7 +297,9 @@ public class Rename extends javax.swing.JFrame {
         
             @Override
             public void run(){
-                new com.window.SimpanGambar().setVisible(true);
+                SimpanGambar simpanGambar = new SimpanGambar();
+                simpanGambar.setLocation(getX(), getY());
+                simpanGambar.setVisible(true);
             }
         });
     }
