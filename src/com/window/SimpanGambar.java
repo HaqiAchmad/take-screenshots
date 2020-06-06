@@ -78,7 +78,9 @@ public class SimpanGambar extends javax.swing.JFrame {
             
             @Override
             public void run(){
-                new Root().setVisible(true);
+                Root root = new Root();
+                root.setLocation(getX(), getY());
+                root.setVisible(true);
             }
         });
     }
@@ -437,6 +439,7 @@ public class SimpanGambar extends javax.swing.JFrame {
 
     private void btnRenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenameActionPerformed
         Rename r = new Rename();
+        r.setLocation(getX(), getY());
         r.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRenameActionPerformed
