@@ -126,7 +126,6 @@ public class Root extends javax.swing.JFrame {
         lblCopyright.setText("Copyright@ achmad baihaqi 2020.");
 
         opsAutosave.setBackground(new java.awt.Color(234, 238, 241));
-        opsAutosave.setForeground(new java.awt.Color(0, 0, 0));
         opsAutosave.setText("autosave");
         opsAutosave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -279,7 +278,8 @@ public class Root extends javax.swing.JFrame {
             this.lblTotalSS.setText(Aktivitas.getTotalSS() + " screenshot diambil."); // mengupdate text di label lblTotalSs
             Aktivitas.addScreenshot("\nScreenshot pada -> " + Tanggal.getTanggal_Activity());
             Aktivitas.addScreenshot(this.txtDirektori.getText() + filename + ".png");
-            
+//            this.getLocation().
+
         java.awt.EventQueue.invokeLater(new Runnable(){
         
             @Override 
@@ -287,13 +287,12 @@ public class Root extends javax.swing.JFrame {
                 
                 if(opsAutosave.isSelected()){
                     Aktivitas.setAutoSave("actived");
-//                    new SimpanGambar().setVisible(true);
                     setVisible(true);
                 }else{
                     Aktivitas.setAutoSave("deactived");
-
-                    new SimpanGambar().setVisible(true);
-//                    java.net.URLClassLoader;
+                    SimpanGambar simpanGambar = new SimpanGambar();
+                    simpanGambar.setLocation(getX(), getY());
+                    simpanGambar.setVisible(true);
                 }
                 
             }
