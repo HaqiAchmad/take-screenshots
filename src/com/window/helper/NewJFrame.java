@@ -36,13 +36,13 @@ public class NewJFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+            public void keyPressed(KeyEvent evt) {
                 formKeyPressed(evt);
             }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+            public void keyReleased(KeyEvent evt) {
                 formKeyReleased(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            public void keyTyped(KeyEvent evt) {
                 formKeyTyped(evt);
             }
         });
@@ -83,7 +83,7 @@ public class NewJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+    private void formKeyPressed(KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         System.out.println(evt.getKeyCode());
         System.out.println(evt.getKeyChar());
         if(evt.getKeyCode() == KeyEvent.CTRL_DOWN_MASK){
@@ -93,12 +93,12 @@ public class NewJFrame extends javax.swing.JFrame {
       
     }//GEN-LAST:event_formKeyPressed
 
-    private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
+    private void formKeyReleased(KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
         System.out.println("released : " + evt.getKeyCode());
 //        if(evt.get)
     }//GEN-LAST:event_formKeyReleased
 
-    private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
+    private void formKeyTyped(KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_formKeyTyped
 
