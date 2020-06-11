@@ -1,5 +1,6 @@
 package com.system;
 
+import javax.swing.*;
 import java.io.File;
 import java.awt.KeyEventDispatcher;
 
@@ -19,45 +20,56 @@ import java.awt.KeyEventDispatcher;
  * @since 14 05 2020
  */
 public class Start {
-    
+
+
+
     
     /**
      * Method main ini digunakan untuk membuka aplikasi
      * Aplikasi akan dibuka mengunakan class Thread untuk meminimalisir terjadinya error
-     * Sebelum aplikasi dibuka maka method ini akan meginformasikan pada system bahwa aplikasi dibuka (melalui method Aktivits.addAktivitas()
-     * 
+     * Method akan meginformasikan pada system bahwa aplikasi dibuka (melalui method Aktivits.addAktivitas()
+     * Sebelum membuka aplikasi method akan mengecek apakah database exist atau tidak, jika tidak maka method akan membuat database baru
+     *
      * @param args 
      */
     public static void main(String[] args) throws Exception{
-        
-//        Thread.sleep(100000);
-        // membuka aplikasi
-        Thread app = new Thread(new Runnable(){
-        
-            @Override
-            public void run(){
-                Tanggal.setDefaultTime();
-//                Thread.sleep();
-                Aktivitas.addAktivitas("\nActivity " + Apps.getUsername() + " pada " + Tanggal.getTanggal_Activity()); 
-                Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " membuka aplikasi."); 
-                new com.window.Root().setVisible(true);
-                Tanggal.updateTime();
+
+        //membuat database/file yang terhapus
+        Database.createNotExistDb();
+
+        if(Aktivitas.isOpen_aplikasi()){
+            JOptionPane.showMessageDialog(null, "Aplikasi sudah terbuka");
+        }else{
+
+            // membuka aplikasi
+            Thread app = new Thread(new Runnable(){
+
+                @Override
+                public void run(){
+                    Tanggal.setDefaultTime();
+                    Aktivitas.addAktivitas("\nActivity " + Apps.getUsername() + " pada " + Tanggal.getTanggal_Activity());
+                    Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " membuka aplikasi.");
+                    new com.window.Root().setVisible(true);
+                    Tanggal.updateTime();
+                }
+            });
+
+
+            app.start();
+
+
+            try{
+
+                app.join();
+
+            }catch(InterruptedException iex){
+                iex.printStackTrace();
+                javax.swing.JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat membuka aplikasi -> (Start.java)\n" + iex);
             }
-        });
-        
-        
-        app.start();
-        
-        
-        try{
-            
-            app.join();
-            
-        }catch(java.lang.InterruptedException iex){
-            iex.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat membuka aplikasi -> (Start.java)\n" + iex);
+
         }
-        
+
+
     }
     
     
