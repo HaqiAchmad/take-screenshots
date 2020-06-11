@@ -107,7 +107,7 @@ public class Apps {
     private static String getProperty(String key){
 
         try {
-            FileReader f = new FileReader("src\\com\\database\\about.haqi");
+            FileReader f = new FileReader("database\\about.haqi");
             BufferedReader baca = new BufferedReader(f);
             StringTokenizer token;
             
@@ -201,7 +201,7 @@ public class Apps {
         
         try{
             t.join();
-        }catch(java.lang.InterruptedException iex){
+        }catch(InterruptedException iex){
         
         
         }
