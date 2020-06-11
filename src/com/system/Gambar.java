@@ -37,65 +37,6 @@ public class Gambar {
     public static final int FORMAT_PNG = 2;
     public static final int FORMAT_BMP = 3;
 
-    
-    /**
-     * Method ini digunakan untuk mendapatkan direktori yang diatur user untuk menyimpan hasil screenshot
-     * Dengan membaca file SaveTo.haqi di package com.database
-     * Lalu method akan mereturn data yang ada difile SaveTo.haqi 
-     * Jika file SaveTo.haqi kosong atau terjadi error maka method akan mereturn direktori userhome\\downloads sebagai default Example : "C:\\Users\\YOU\\Downloads\\
-     * 
-     * @see FileReader
-     * @see BufferedReader
-     * 
-     * @return direktori untuk menyimpan file hasil screenshot
-     */
-    public static String getDefaultSave() {
-        
-        try{
-            
-            FileReader file = new FileReader("src\\com\\database\\saveto.haqi");
-            BufferedReader baca = new BufferedReader(file);
-            String buffer = baca.readLine();
-            
-                // jika file database\\saveto.haqi (kosong) maka scr default file tersimpan ke userhome\\download
-                if(buffer == null){
-                    Gambar.setDefaultSave("C:\\Users\\" + System.getProperty("user.name") + "\\Downloads\\");
-                    return "C:\\Users\\" + com.system.Apps.getUsername() + "\\Downloads\\";
-                }else{
-                    return buffer;
-                }
-           
-            
-        }catch(java.io.IOException ex){
-            ex.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(null, "Terjadi kesalahan!\n" + ex); 
-        }
-        return "C:\\Users\\" + com.system.Apps.getUsername() + "\\Downloads\\"; // default direktori jika terjadi error
-    }
-
-    /**
-     * Method ini digunakan untuk menyimpan direktori peyimpanan screenshot yang diatur user
-     * Direktori akan disimpan kefile SaveTo.haqi pada package com.database
-     * User dapat menguabah setelan direktori di window com.window.Root.java
-     * 
-     * @see FileWriter 
-     * @see BufferedWriter
-     * 
-     * @param simpanKe input direktori yang diatur user
-     */
-    public static void setDefaultSave(String simpanKe) {
-        try{
-            
-            FileWriter file = new FileWriter("src\\com\\database\\saveto.haqi");
-            BufferedWriter tulis = new BufferedWriter(file);
-            
-            tulis.write(simpanKe); tulis.newLine(); tulis.flush();
-            
-        }catch(java.io.IOException ex){
-            ex.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(null, "Terjadi kesalahan!\n" + ex);
-        }
-    }
 
     /**
      * Method ini digunakan untuk mengambil screenshot
@@ -122,13 +63,13 @@ public class Gambar {
             // menyimpan filenya sesuai format yg dinputkan user ke direktori defalult
             switch (format){
                 case FORMAT_JPG:
-                    ImageIO.write(capture, "jpg", new File(Gambar.getDefaultSave()+filename+".jpg"));
+                    ImageIO.write(capture, "jpg", new File(Aktivitas.getPenyimpanan()+filename+".jpg"));
                     break;
                 case FORMAT_PNG:
-                    ImageIO.write(capture, "png", new File(Gambar.getDefaultSave()+filename+".png"));
+                    ImageIO.write(capture, "png", new File(Aktivitas.getPenyimpanan()+filename+".png"));
                     break;
                 case FORMAT_BMP:
-                    ImageIO.write(capture, "bmp", new File(Gambar.getDefaultSave()+filename+".bmp"));
+                    ImageIO.write(capture, "bmp", new File(Aktivitas.getPenyimpanan()+filename+".bmp"));
                     break;
                 default:
                     JOptionPane.showMessageDialog(null,"Format tidak tersedia");
