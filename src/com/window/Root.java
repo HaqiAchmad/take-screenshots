@@ -19,11 +19,11 @@ public class Root extends javax.swing.JFrame {
      
         
         this.btnScreenshot.setMnemonic(KeyEvent.VK_ENTER);
-        this.txtDirektori.setText(Gambar.getDefaultSave());
+        this.txtDirektori.setText(Aktivitas.getPenyimpanan());
         this.txtDirektori.setEditable(false);
         this.btnScreenshot.setUI(new javax.swing.plaf.basic.BasicButtonUI());
         this.btnSaveTo.setUI(new javax.swing.plaf.basic.BasicButtonUI());
-        this.lblTotalSS.setText(Integer.toString(com.system.Aktivitas.getTotalSS()) + " screenshot diambil.");
+        this.lblTotalSS.setText(Integer.toString(Aktivitas.getTotalSS()) + " screenshot diambil.");
         this.lblCopyright.setText("Copyright@ " + Apps.getAuthor()+" "+Apps.getReleased()+".");
         if(Aktivitas.isAutoSave()){
             this.opsAutosave.setSelected(true);
@@ -65,14 +65,14 @@ public class Root extends javax.swing.JFrame {
             }
         });
         addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+            public void keyPressed(KeyEvent evt) {
                 formKeyPressed(evt);
             }
         });
 
         panelMain.setBackground(new java.awt.Color(234, 238, 241));
         panelMain.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+            public void keyPressed(KeyEvent evt) {
                 panelMainKeyPressed(evt);
             }
         });
@@ -213,13 +213,14 @@ public class Root extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         Aktivitas.setOpen("close");
         Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " menutup aplikasi." );
+        Database.backupDatabase();
     }//GEN-LAST:event_formWindowClosing
 
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+    private void formKeyPressed(KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_formKeyPressed
 
-    private void panelMainKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_panelMainKeyPressed
+    private void panelMainKeyPressed(KeyEvent evt) {//GEN-FIRST:event_panelMainKeyPressed
 //        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
 //            this.aksiBtnScreenshot();
 //        }
@@ -234,7 +235,7 @@ public class Root extends javax.swing.JFrame {
             Thread.sleep(200);
             this.lblCamera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-window-root-camera-entered.png")));
 
-        }catch(java.lang.InterruptedException iex){
+        }catch(InterruptedException iex){
             iex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan!\n"+iex);
 
@@ -250,7 +251,7 @@ public class Root extends javax.swing.JFrame {
             Thread.sleep(200);
             this.lblCamera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-window-root-camera.png")));
 
-        }catch(java.lang.InterruptedException iex){
+        }catch(InterruptedException iex){
             iex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan!\n"+iex);
 
@@ -265,11 +266,11 @@ public class Root extends javax.swing.JFrame {
         
         try{
             
-            this.setCursor(new java.awt.Cursor(Cursor.WAIT_CURSOR));
+            this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
             this.setVisible(false);
             Thread.sleep(300);                 
-            Gambar.ambilGambarLayar(filename, com.system.Gambar.FORMAT_PNG); // mengscreenshot layar
-            Aktivitas.setAktif(Gambar.getDefaultSave()+filename+".png");
+            Gambar.ambilGambarLayar(filename, Gambar.FORMAT_PNG); // mengscreenshot layar
+            Aktivitas.setAktif(Aktivitas.getPenyimpanan()+filename+".png");
             Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " melakukan screenshot."); // menambahkan ke aktivitas bahwa user melakukan screenshot
             Aktivitas.setTotalSS(totalSS+=1); // mengupdate total screenshot
             Thread.sleep(100);
@@ -298,14 +299,14 @@ public class Root extends javax.swing.JFrame {
             }
         });
             
-        }catch(java.lang.InterruptedException iex){
+        }catch(InterruptedException iex){
             iex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan!\n" + iex);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, ex);
         }
         
-        this.setCursor(new java.awt.Cursor(Cursor.DEFAULT_CURSOR));
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }
     
     private void btnScreenshotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScreenshotActionPerformed
@@ -314,7 +315,7 @@ public class Root extends javax.swing.JFrame {
 
     private void btnSaveToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveToActionPerformed
         
-        this.setCursor(new java.awt.Cursor(Cursor.WAIT_CURSOR));
+        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         javax.swing.JFileChooser jfc = new javax.swing.JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         jfc.setDialogTitle("Simpan ke");
         jfc.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
@@ -324,12 +325,12 @@ public class Root extends javax.swing.JFrame {
             if(returnNilai == javax.swing.JFileChooser.APPROVE_OPTION){
                 if(jfc.getSelectedFile().isDirectory()){
                     this.txtDirektori.setText(jfc.getSelectedFile().getPath());
-                    Gambar.setDefaultSave(jfc.getSelectedFile().getPath() + "\\");
+                    Aktivitas.setPeyimpanan(jfc.getSelectedFile().getPath() + "\\");
                     Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " mengubah direktori penyimpanan ke " + jfc.getSelectedFile().getPath());
                     System.out.println("Screenshots akan disimpan ke -> " + jfc.getSelectedFile().getPath());
                 }
             }
-        this.setCursor(new java.awt.Cursor(Cursor.DEFAULT_CURSOR));
+        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_btnSaveToActionPerformed
 
 
