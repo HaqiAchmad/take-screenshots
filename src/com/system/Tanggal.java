@@ -246,7 +246,7 @@ public class Tanggal {
     public static void setDefaultTime(){
         
         try{
-            FileWriter file = new FileWriter("src\\com\\database\\date.haqi");
+            FileWriter file = new FileWriter("database\\date.haqi");
             BufferedWriter tulis = new BufferedWriter(file);  
             
             int detik = local.getSecond(),
@@ -261,8 +261,9 @@ public class Tanggal {
                           Integer.toString(tanggal)+"#NULL#"+
                           Integer.toString(bulan)+"#NULL#"+
                           Integer.toString(tahun);
-            tulis.write(data);
-            tulis.flush();         
+//            tulis.write(data);
+//            tulis.flush();
+              Files.writeFile("database\\date.haqi", data, false);
             
         }catch(IOException ex){
             javax.swing.JOptionPane.showMessageDialog(null, ex);
@@ -306,7 +307,7 @@ public class Tanggal {
                 
                 try{
 
-                    FileWriter file = new FileWriter("src\\com\\database\\date.haqi");
+                    FileWriter file = new FileWriter("database\\date.haqi");
                     BufferedWriter tulis = new BufferedWriter(file);
                     
                     data = Integer.toString(detik)+"#"+
@@ -364,7 +365,7 @@ public class Tanggal {
                             }
                             
                             tulis.close();
-                            file = new FileWriter("src\\com\\database\\date.haqi");
+                            file = new FileWriter("database\\date.haqi");
                             tulis = new BufferedWriter(file);
                             data =  Integer.toString(detik)+"#"+
                                     Integer.toString(menit)+"#"+
@@ -409,7 +410,7 @@ public class Tanggal {
     private static String getUpdateTime(){
         
         try{
-            FileReader file = new FileReader("src\\com\\database\\date.haqi");
+            FileReader file = new FileReader("database\\date.haqi");
             BufferedReader baca = new BufferedReader(file);
             return baca.readLine();
             
