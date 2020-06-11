@@ -60,7 +60,7 @@ public class Rename extends javax.swing.JFrame {
             }
         });
         addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+            public void keyPressed(KeyEvent evt) {
                 formKeyPressed(evt);
             }
         });
@@ -168,7 +168,7 @@ public class Rename extends javax.swing.JFrame {
 
         inpNama.setText("new name");
         inpNama.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+            public void keyPressed(KeyEvent evt) {
                 inpNamaKeyPressed(evt);
             }
         });
@@ -228,9 +228,10 @@ public class Rename extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         Aktivitas.setOpen("close");
         Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menutup aplikasi"); 
+        Database.backupDatabase();
     }//GEN-LAST:event_formWindowClosing
 
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+    private void formKeyPressed(KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
        // batal
     }//GEN-LAST:event_formKeyPressed
 
@@ -308,7 +309,7 @@ public class Rename extends javax.swing.JFrame {
         this.aksiBtnBatal();
     }//GEN-LAST:event_btnBatalActionPerformed
 
-    private void inpNamaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inpNamaKeyPressed
+    private void inpNamaKeyPressed(KeyEvent evt) {//GEN-FIRST:event_inpNamaKeyPressed
        
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             this.aksiBtnSimpan();
