@@ -8,7 +8,7 @@ import com.system.*;
 import com.window.helper.*;
 import java.awt.Frame;
 
-public class SimpanGambar extends javax.swing.JFrame {
+public class SimpanGambar extends JFrame {
 
     private File screenshot;
     private String gambar;
@@ -89,30 +89,30 @@ public class SimpanGambar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        pnlMain = new javax.swing.JPanel();
-        lblUkuran = new javax.swing.JLabel();
-        lblFilename = new javax.swing.JLabel();
-        lblFormat = new javax.swing.JLabel();
-        lblhelpFilename = new javax.swing.JLabel();
-        lblhelpFormat = new javax.swing.JLabel();
-        lblhelpUkuran = new javax.swing.JLabel();
-        txtFilename = new javax.swing.JLabel();
-        txtFormat = new javax.swing.JLabel();
-        txtUkuran = new javax.swing.JLabel();
-        pnlBottom = new javax.swing.JPanel();
-        btnSave = new javax.swing.JButton();
-        btnRename = new javax.swing.JButton();
-        btnShow = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
-        btnFolder = new javax.swing.JButton();
-        pnlTop = new javax.swing.JPanel();
-        lblTop = new javax.swing.JLabel();
-        lblMinimize = new javax.swing.JLabel();
+        jLabel1 = new JLabel();
+        pnlMain = new JPanel();
+        lblUkuran = new JLabel();
+        lblFilename = new JLabel();
+        lblFormat = new JLabel();
+        lblhelpFilename = new JLabel();
+        lblhelpFormat = new JLabel();
+        lblhelpUkuran = new JLabel();
+        txtFilename = new JLabel();
+        txtFormat = new JLabel();
+        txtUkuran = new JLabel();
+        pnlBottom = new JPanel();
+        btnSave = new JButton();
+        btnRename = new JButton();
+        btnShow = new JButton();
+        btnDelete = new JButton();
+        btnFolder = new JButton();
+        pnlTop = new JPanel();
+        lblTop = new JLabel();
+        lblMinimize = new JLabel();
 
         jLabel1.setText("jLabel1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -128,12 +128,12 @@ public class SimpanGambar extends javax.swing.JFrame {
 
         pnlMain.setBackground(new java.awt.Color(255, 255, 255));
         pnlMain.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
+            public void mouseDragged(MouseEvent evt) {
                 pnlMainMouseDragged(evt);
             }
         });
         pnlMain.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mousePressed(MouseEvent evt) {
                 pnlMainMousePressed(evt);
             }
         });
@@ -152,15 +152,15 @@ public class SimpanGambar extends javax.swing.JFrame {
         lblFormat.setText("Format");
 
         lblhelpFilename.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblhelpFilename.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblhelpFilename.setHorizontalAlignment(SwingConstants.CENTER);
         lblhelpFilename.setText(":");
 
         lblhelpFormat.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblhelpFormat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblhelpFormat.setHorizontalAlignment(SwingConstants.CENTER);
         lblhelpFormat.setText(":");
 
         lblhelpUkuran.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        lblhelpUkuran.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblhelpUkuran.setHorizontalAlignment(SwingConstants.CENTER);
         lblhelpUkuran.setText(":");
 
         txtFilename.setBackground(new java.awt.Color(19, 0, 11));
@@ -175,48 +175,48 @@ public class SimpanGambar extends javax.swing.JFrame {
         txtUkuran.setForeground(new java.awt.Color(14, 12, 12));
         txtUkuran.setText("100 kb");
 
-        javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
+        GroupLayout pnlMainLayout = new GroupLayout(pnlMain);
         pnlMain.setLayout(pnlMainLayout);
         pnlMainLayout.setHorizontalGroup(
-            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            pnlMainLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pnlMainLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlMainLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(pnlMainLayout.createSequentialGroup()
-                        .addComponent(lblFilename, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblhelpFilename, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFilename, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
+                        .addComponent(lblFilename, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblhelpFilename, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFilename, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
                     .addGroup(pnlMainLayout.createSequentialGroup()
-                        .addComponent(lblFormat, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblhelpFormat, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFormat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblFormat, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblhelpFormat, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFormat, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(pnlMainLayout.createSequentialGroup()
-                        .addComponent(lblUkuran, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblhelpUkuran, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtUkuran, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(lblUkuran, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblhelpUkuran, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtUkuran, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlMainLayout.setVerticalGroup(
-            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            pnlMainLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pnlMainLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlMainLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFilename)
                     .addComponent(lblhelpFilename)
                     .addComponent(txtFilename))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlMainLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFormat)
                     .addComponent(lblhelpFormat)
                     .addComponent(txtFormat))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlMainLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUkuran)
                     .addComponent(lblhelpUkuran)
                     .addComponent(txtUkuran))
@@ -225,12 +225,12 @@ public class SimpanGambar extends javax.swing.JFrame {
 
         pnlBottom.setBackground(new java.awt.Color(203, 206, 208));
         pnlBottom.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
+            public void mouseDragged(MouseEvent evt) {
                 pnlBottomMouseDragged(evt);
             }
         });
         pnlBottom.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mousePressed(MouseEvent evt) {
                 pnlBottomMousePressed(evt);
             }
         });
@@ -280,28 +280,28 @@ public class SimpanGambar extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout pnlBottomLayout = new javax.swing.GroupLayout(pnlBottom);
+        GroupLayout pnlBottomLayout = new GroupLayout(pnlBottom);
         pnlBottom.setLayout(pnlBottomLayout);
         pnlBottomLayout.setHorizontalGroup(
-            pnlBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            pnlBottomLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pnlBottomLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSave)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRename)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnShow, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnShow, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnFolder)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDelete)
                 .addGap(97, 97, 97))
         );
         pnlBottomLayout.setVerticalGroup(
-            pnlBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            pnlBottomLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pnlBottomLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlBottomLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(btnShow)
                     .addComponent(btnDelete)
                     .addComponent(btnRename)
@@ -312,12 +312,12 @@ public class SimpanGambar extends javax.swing.JFrame {
 
         pnlTop.setBackground(new java.awt.Color(203, 206, 208));
         pnlTop.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
+            public void mouseDragged(MouseEvent evt) {
                 pnlTopMouseDragged(evt);
             }
         });
         pnlTop.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mousePressed(MouseEvent evt) {
                 pnlTopMousePressed(evt);
             }
         });
@@ -328,53 +328,53 @@ public class SimpanGambar extends javax.swing.JFrame {
 
         lblMinimize.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblMinimize.setForeground(new java.awt.Color(0, 6, 1));
-        lblMinimize.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblMinimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-minimize.png"))); // NOI18N
+        lblMinimize.setHorizontalAlignment(SwingConstants.RIGHT);
+        lblMinimize.setIcon(new ImageIcon(getClass().getResource("/com/media/app-minimize.png"))); // NOI18N
         lblMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(MouseEvent evt) {
                 lblMinimizeMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout pnlTopLayout = new javax.swing.GroupLayout(pnlTop);
+        GroupLayout pnlTopLayout = new GroupLayout(pnlTop);
         pnlTop.setLayout(pnlTopLayout);
         pnlTopLayout.setHorizontalGroup(
-            pnlTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            pnlTopLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pnlTopLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTop, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
-                .addComponent(lblMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTop, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                .addComponent(lblMinimize, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         pnlTopLayout.setVerticalGroup(
-            pnlTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            pnlTopLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(pnlTopLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlTopLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTop, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlTopLayout.createSequentialGroup()
-                        .addComponent(lblMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblMinimize, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(pnlMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(pnlBottom, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(pnlTop, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlMain, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlBottom, GroupLayout.PREFERRED_SIZE, 420, GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlTop, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlTop, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(pnlMain, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlMain, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(pnlBottom, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlBottom, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -394,37 +394,37 @@ public class SimpanGambar extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         Aktivitas.setOpen("close");
         Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menutup aplikasi."); 
-
+        Database.backupDatabase();
     }//GEN-LAST:event_formWindowClosing
 
-    private void pnlTopMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTopMousePressed
+    private void pnlTopMousePressed(MouseEvent evt) {//GEN-FIRST:event_pnlTopMousePressed
         xx = evt.getX();
         yy = evt.getY();
     }//GEN-LAST:event_pnlTopMousePressed
 
-    private void pnlTopMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTopMouseDragged
+    private void pnlTopMouseDragged(MouseEvent evt) {//GEN-FIRST:event_pnlTopMouseDragged
         int x = evt.getXOnScreen(),
             y = evt.getYOnScreen();
         this.setLocation(x-xx, y-yy);
     }//GEN-LAST:event_pnlTopMouseDragged
 
-    private void pnlMainMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlMainMousePressed
+    private void pnlMainMousePressed(MouseEvent evt) {//GEN-FIRST:event_pnlMainMousePressed
         xx = evt.getX();
         yy = evt.getY();
     }//GEN-LAST:event_pnlMainMousePressed
 
-    private void pnlMainMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlMainMouseDragged
+    private void pnlMainMouseDragged(MouseEvent evt) {//GEN-FIRST:event_pnlMainMouseDragged
         int x = evt.getXOnScreen(),
             y = evt.getYOnScreen();
         this.setLocation(x-xx, y-yy);
     }//GEN-LAST:event_pnlMainMouseDragged
 
-    private void pnlBottomMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlBottomMousePressed
+    private void pnlBottomMousePressed(MouseEvent evt) {//GEN-FIRST:event_pnlBottomMousePressed
         xx = evt.getX();
         yy = evt.getY();
     }//GEN-LAST:event_pnlBottomMousePressed
 
-    private void pnlBottomMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlBottomMouseDragged
+    private void pnlBottomMouseDragged(MouseEvent evt) {//GEN-FIRST:event_pnlBottomMouseDragged
         int x = evt.getXOnScreen(),
             y = evt.getYOnScreen();
         this.setLocation(x-xx, y-yy);
@@ -479,7 +479,7 @@ public class SimpanGambar extends javax.swing.JFrame {
         this.back();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void lblMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseClicked
+    private void lblMinimizeMouseClicked(MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseClicked
         this.setState(Frame.ICONIFIED);
     }//GEN-LAST:event_lblMinimizeMouseClicked
 
@@ -501,25 +501,25 @@ public class SimpanGambar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnFolder;
-    private javax.swing.JButton btnRename;
-    private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnShow;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel lblFilename;
-    private javax.swing.JLabel lblFormat;
-    private javax.swing.JLabel lblMinimize;
-    private javax.swing.JLabel lblTop;
-    private javax.swing.JLabel lblUkuran;
-    private javax.swing.JLabel lblhelpFilename;
-    private javax.swing.JLabel lblhelpFormat;
-    private javax.swing.JLabel lblhelpUkuran;
-    private javax.swing.JPanel pnlBottom;
-    private javax.swing.JPanel pnlMain;
-    private javax.swing.JPanel pnlTop;
-    private javax.swing.JLabel txtFilename;
-    private javax.swing.JLabel txtFormat;
-    private javax.swing.JLabel txtUkuran;
+    private JButton btnDelete;
+    private JButton btnFolder;
+    private JButton btnRename;
+    private JButton btnSave;
+    private JButton btnShow;
+    private JLabel jLabel1;
+    private JLabel lblFilename;
+    private JLabel lblFormat;
+    private JLabel lblMinimize;
+    private JLabel lblTop;
+    private JLabel lblUkuran;
+    private JLabel lblhelpFilename;
+    private JLabel lblhelpFormat;
+    private JLabel lblhelpUkuran;
+    private JPanel pnlBottom;
+    private JPanel pnlMain;
+    private JPanel pnlTop;
+    private JLabel txtFilename;
+    private JLabel txtFormat;
+    private JLabel txtUkuran;
     // End of variables declaration//GEN-END:variables
 }
