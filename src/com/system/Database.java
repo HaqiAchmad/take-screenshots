@@ -12,6 +12,7 @@ public class Database {
     private static File fileAbout = new File("database\\about.haqi"),
             fileAktivitas = new File("database\\aktivitas.haqi"),
             fileDate = new File("database\\date.haqi"),
+            fileFormat = new File("database\\format.haqi"),
             fileIsActive = new File ("database\\isActive.haqi"),
             fileIsAutoSave = new File("database\\isAutoSave.haqi"),
             fileIsOpen = new File("database\\isOpen.haqi"),
@@ -63,6 +64,9 @@ public class Database {
             }else if(!Files.isExistFile(fileTheme.toString())){
                 JOptionPane.showMessageDialog(null, fileTheme.toString() + " tidak ada di database!!");
                 Files.createFile("database\\", "Theme.haqi");
+            }else if(!Files.isExistFile(fileFormat.toString())){
+                JOptionPane.showMessageDialog(null, fileFormat.toString() + " tidak ada di database!!");
+                Files.createFile("database\\", "format.haqi");
             }
 
         }
@@ -110,6 +114,9 @@ public class Database {
             }else if(!Files.isExistFile(directoryBackup+"Theme.haqi")){
                 JOptionPane.showMessageDialog(null, directoryBackup+"Theme.haqi" + " tidak ada di database!!");
                 Files.createFile(directoryBackup, "Theme.haqi");
+            }else if(!Files.isExistFile(directoryBackup+"format.haqi")){
+                JOptionPane.showMessageDialog(null, directoryBackup+"format.haqi" + " tidak ada di database!!");
+                Files.createFile(directoryBackup, "format.haqi");
             }
 
         }
@@ -125,6 +132,7 @@ public class Database {
         Files.copyDataFile(fileAbout.toString(), backup+"about.haqi");
         Files.copyDataFile(fileAktivitas.toString(), backup+"aktivitas.haqi");
         Files.copyDataFile(fileDate.toString(), backup+"date.haqi");
+        Files.copyDataFile(fileFormat.toString(), backup+"format.haqi");
         Files.copyDataFile(fileIsActive.toString(), backup+"IsActive.haqi");
         Files.copyDataFile(fileIsAutoSave.toString(), backup+"IsAutoSave.haqi");
         Files.copyDataFile(fileIsOpen.toString(), backup+"IsOpen.haqi");
