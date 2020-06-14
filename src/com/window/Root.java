@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileSystemView;
 
 public class Root extends javax.swing.JFrame {
-
     
     public Root() {
         initComponents();
@@ -17,24 +16,29 @@ public class Root extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setIconImage(Apps.getWindowIcon());
      
-        
         this.btnScreenshot.setMnemonic(KeyEvent.VK_ENTER);
-        this.txtDirektori.setText(Aktivitas.getPenyimpanan());
+        this.txtDirektori.setText(Settings.getPenyimpanan());
         this.txtDirektori.setEditable(false);
         this.btnScreenshot.setUI(new javax.swing.plaf.basic.BasicButtonUI());
         this.btnSaveTo.setUI(new javax.swing.plaf.basic.BasicButtonUI());
         this.lblTotalSS.setText(Integer.toString(Aktivitas.getTotalSS()) + " screenshot diambil.");
         this.lblCopyright.setText("Copyright@ " + Apps.getAuthor()+" "+Apps.getReleased()+".");
-        if(Aktivitas.isAutoSave()){
-            this.opsAutosave.setSelected(true);
-        }else if(!Aktivitas.isAutoSave()){
-            this.opsAutosave.setSelected(false);
-        }else{
-            this.opsAutosave.setSelected(false);
-        }
+
     
-   
+        this.setLanguage();
         
+    }
+
+    public void setLanguage(){
+        this.btnScreenshot.setText(Settings.languageSetString(
+                "Take Screenshot","Ambil Screenshot","スクリーンショット","Sukurīnshotto","스크린 샷","seukeulin syas"
+        ));
+        this.lblSimpan.setText(Settings.languageSetString(
+                "Save to :","Simpan ke :","に保存","Ni hozon","에 저장","e jeojang"
+        ));
+        this.lblTotalSS.setText(Aktivitas.getTotalSS()+" "+ Settings.languageSetString(
+                "screenshot taken...","screenshot diambil...","取りました...","Torimashita...","촬영...","chwal-yeong..."
+        ));
     }
 
 
@@ -50,7 +54,7 @@ public class Root extends javax.swing.JFrame {
         lblTotalSS = new javax.swing.JLabel();
         btnSaveTo = new javax.swing.JButton();
         lblCopyright = new javax.swing.JLabel();
-        opsAutosave = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -65,18 +69,19 @@ public class Root extends javax.swing.JFrame {
             }
         });
         addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
             }
         });
 
         panelMain.setBackground(new java.awt.Color(234, 238, 241));
         panelMain.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
                 panelMainKeyPressed(evt);
             }
         });
 
+        lblCamera.setBackground(new java.awt.Color(234, 238, 241));
         lblCamera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCamera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-window-root-camera.png"))); // NOI18N
 
@@ -99,6 +104,7 @@ public class Root extends javax.swing.JFrame {
             }
         });
 
+        lblSimpan.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblSimpan.setForeground(new java.awt.Color(16, 17, 24));
         lblSimpan.setText("Simpan ke :");
         lblSimpan.setPreferredSize(new java.awt.Dimension(41, 26));
@@ -114,6 +120,7 @@ public class Root extends javax.swing.JFrame {
         lblTotalSS.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotalSS.setText("2 screenshot diambil.");
 
+        btnSaveTo.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         btnSaveTo.setText("...");
         btnSaveTo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,19 +129,14 @@ public class Root extends javax.swing.JFrame {
         });
 
         lblCopyright.setBackground(new java.awt.Color(0, 1, 30));
+        lblCopyright.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         lblCopyright.setForeground(new java.awt.Color(89, 89, 89));
-        lblCopyright.setText("Copyright@ achmad baihaqi 2020.");
+        lblCopyright.setText(" Copyright@ achmad baihaqi 2020.");
 
-        opsAutosave.setBackground(new java.awt.Color(234, 238, 241));
-        opsAutosave.setText("autosave");
-        opsAutosave.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-window-setting.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                opsAutosaveMouseClicked(evt);
-            }
-        });
-        opsAutosave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opsAutosaveActionPerformed(evt);
+                jLabel1MouseClicked(evt);
             }
         });
 
@@ -142,42 +144,41 @@ public class Root extends javax.swing.JFrame {
         panelMain.setLayout(panelMainLayout);
         panelMainLayout.setHorizontalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblCamera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelMainLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtDirektori, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSaveTo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(opsAutosave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnScreenshot, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(112, 112, 112))
+                .addComponent(lblCopyright, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTotalSS))
+            .addGroup(panelMainLayout.createSequentialGroup()
+                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelMainLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDirektori, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSaveTo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelMainLayout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(btnScreenshot, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(52, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(lblCamera, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelMainLayout.createSequentialGroup()
-                        .addComponent(lblCopyright, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblTotalSS, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addComponent(jLabel1))
         );
         panelMainLayout.setVerticalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMainLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(lblCamera, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnScreenshot, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(lblCamera, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnScreenshot, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDirektori, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSaveTo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(opsAutosave))
+                    .addComponent(txtDirektori, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSaveTo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTotalSS, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -192,7 +193,9 @@ public class Root extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -266,31 +269,26 @@ public class Root extends javax.swing.JFrame {
         
         try{
             
+            this.lblTotalSS.setText(Aktivitas.getTotalSS() + " screenshot diambil."); // mengupdate text di label lblTotalSs
             this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
             this.setVisible(false);
             Thread.sleep(300);                 
             Gambar.ambilGambarLayar(filename, Gambar.FORMAT_PNG); // mengscreenshot layar
-            Aktivitas.setAktif(Aktivitas.getPenyimpanan()+filename+".png");
+            Aktivitas.setAktif(Settings.getPenyimpanan()+filename+Settings.getFormatSelected());
             Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " melakukan screenshot."); // menambahkan ke aktivitas bahwa user melakukan screenshot
             Aktivitas.setTotalSS(totalSS+=1); // mengupdate total screenshot
             Thread.sleep(100);
             this.dispose();
-            
-            this.lblTotalSS.setText(Aktivitas.getTotalSS() + " screenshot diambil."); // mengupdate text di label lblTotalSs
-            Aktivitas.addScreenshot("\nScreenshot pada -> " + Tanggal.getTanggal_Activity());
-            Aktivitas.addScreenshot(this.txtDirektori.getText() + filename + ".png");
-//            this.getLocation().
+
 
         java.awt.EventQueue.invokeLater(new Runnable(){
         
             @Override 
             public void run(){
                 
-                if(opsAutosave.isSelected()){
-                    Aktivitas.setAutoSave("actived");
+                if(Settings.isAutoSave()){
                     setVisible(true);
                 }else{
-                    Aktivitas.setAutoSave("deactived");
                     SimpanGambar simpanGambar = new SimpanGambar();
                     simpanGambar.setLocation(getX(), getY());
                     simpanGambar.setVisible(true);
@@ -317,7 +315,7 @@ public class Root extends javax.swing.JFrame {
         
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         javax.swing.JFileChooser jfc = new javax.swing.JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        jfc.setDialogTitle("Simpan ke");
+        jfc.setDialogTitle(Settings.languageSetString("Save to","Simpan ke","に保存","Ni hozon","에 저장","e jeojang"));
         jfc.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
         jfc.setAcceptAllFileFilterUsed(false);
         int returnNilai = jfc.showSaveDialog(null);
@@ -325,7 +323,7 @@ public class Root extends javax.swing.JFrame {
             if(returnNilai == javax.swing.JFileChooser.APPROVE_OPTION){
                 if(jfc.getSelectedFile().isDirectory()){
                     this.txtDirektori.setText(jfc.getSelectedFile().getPath());
-                    Aktivitas.setPeyimpanan(jfc.getSelectedFile().getPath() + "\\");
+                    Settings.setPeyimpanan(jfc.getSelectedFile().getPath() + "\\");
                     Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " mengubah direktori penyimpanan ke " + jfc.getSelectedFile().getPath());
                     System.out.println("Screenshots akan disimpan ke -> " + jfc.getSelectedFile().getPath());
                 }
@@ -333,15 +331,22 @@ public class Root extends javax.swing.JFrame {
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_btnSaveToActionPerformed
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        this.setCursor(new java.awt.Cursor(Cursor.WAIT_CURSOR));
+        java.awt.EventQueue.invokeLater(new Runnable(){
+            
+            @Override
+            public void run(){
+                dispose();
+                WindowSetting win = new WindowSetting();
+                win.setLocation(getX(), getY());
+                win.setVisible(true);
+            }
+        
+        });
+    }//GEN-LAST:event_jLabel1MouseClicked
 
 
-    private void opsAutosaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opsAutosaveMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_opsAutosaveMouseClicked
-
-    private void opsAutosaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opsAutosaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_opsAutosaveActionPerformed
 
 
 
@@ -357,11 +362,11 @@ public class Root extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSaveTo;
     private javax.swing.JButton btnScreenshot;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCamera;
     private javax.swing.JLabel lblCopyright;
     private javax.swing.JLabel lblSimpan;
     private javax.swing.JLabel lblTotalSS;
-    private javax.swing.JRadioButton opsAutosave;
     private javax.swing.JPanel panelMain;
     private javax.swing.JTextField txtDirektori;
     // End of variables declaration//GEN-END:variables
