@@ -2,7 +2,8 @@ package com.window.helper;
 
 import com.system.*;
 import com.window.*;
-import java.awt.Frame;
+
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
@@ -28,8 +29,27 @@ public class Rename extends javax.swing.JFrame {
         this.setIconImage(Apps.getWindowIcon());
         this.setLocationRelativeTo(null);
         this.inpNama.setText(gambar.getName().substring(0, gambar.getName().lastIndexOf(".")));
+
+        this.setLanguage();
     }
 
+
+    public void setLanguage(){
+
+        this.lblTop.setText(Settings.languageSetString(
+                "Rename image!","Ubah nama gambar!","画像の名前を変更","Gazō no namae o henkō","이미지 이름 바꾸기","imiji ileum bakkugi"
+        ));
+        this.lblNama.setText(Settings.languageSetString(
+                "New name","Nama baru","新しい名前","Atarashī namae","새로운 이름","saeloun ileum"
+        ));
+        this.btnSave.setText(Settings.languageSetString(
+                "Save","Simpan","セーブ","Sēbu","저장","jeojang"
+        ));
+        this.btnBatal.setText(Settings.languageSetString(
+                "Cancel","Batal","キャンセル","Kyanseru","취소","chwiso"
+        ));
+
+    }
 
     @SuppressWarnings("unchecked")
 
@@ -40,8 +60,8 @@ public class Rename extends javax.swing.JFrame {
         lblTop = new javax.swing.JLabel();
         lblMinimize = new javax.swing.JLabel();
         pnlBottom = new javax.swing.JPanel();
+        btnSave = new javax.swing.JButton();
         btnBatal = new javax.swing.JButton();
-        btnSimpan = new javax.swing.JButton();
         pnlMain = new javax.swing.JPanel();
         lblNama = new javax.swing.JLabel();
         inpNama = new javax.swing.JTextField();
@@ -60,7 +80,7 @@ public class Rename extends javax.swing.JFrame {
             }
         });
         addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
             }
         });
@@ -77,6 +97,7 @@ public class Rename extends javax.swing.JFrame {
             }
         });
 
+        lblTop.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lblTop.setText(" Ubah nama gambar!");
 
         lblMinimize.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -94,13 +115,13 @@ public class Rename extends javax.swing.JFrame {
             .addGroup(pnlTopLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTop, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblMinimize)
                 .addGap(15, 15, 15))
         );
         pnlTopLayout.setVerticalGroup(
             pnlTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblMinimize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblMinimize, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
             .addComponent(lblTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -116,17 +137,39 @@ public class Rename extends javax.swing.JFrame {
             }
         });
 
-        btnBatal.setText("Batal");
-        btnBatal.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setBackground(new java.awt.Color(223, 224, 224));
+        btnSave.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnSave.setForeground(new java.awt.Color(21, 18, 18));
+        btnSave.setText("Simpan");
+        btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSaveMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSaveMouseExited(evt);
+            }
+        });
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBatalActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
 
-        btnSimpan.setText("Simpan");
-        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+        btnBatal.setBackground(new java.awt.Color(223, 224, 224));
+        btnBatal.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnBatal.setForeground(new java.awt.Color(21, 18, 18));
+        btnBatal.setText("batal");
+        btnBatal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBatalMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBatalMouseExited(evt);
+            }
+        });
+        btnBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSimpanActionPerformed(evt);
+                btnBatalActionPerformed(evt);
             }
         });
 
@@ -135,20 +178,20 @@ public class Rename extends javax.swing.JFrame {
         pnlBottomLayout.setHorizontalGroup(
             pnlBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBottomLayout.createSequentialGroup()
-                .addContainerGap(215, Short.MAX_VALUE)
-                .addComponent(btnSimpan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSave)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnBatal)
+                .addContainerGap())
         );
         pnlBottomLayout.setVerticalGroup(
             pnlBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBottomLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pnlBottomLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(pnlBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBatal)
-                    .addComponent(btnSimpan))
-                .addContainerGap())
+                    .addComponent(btnSave)
+                    .addComponent(btnBatal))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnlMain.setBackground(new java.awt.Color(239, 240, 240));
@@ -163,12 +206,16 @@ public class Rename extends javax.swing.JFrame {
             }
         });
 
+        lblNama.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblNama.setForeground(new java.awt.Color(16, 0, 11));
-        lblNama.setText("Nama baru :");
+        lblNama.setText("Nama baru ");
 
+        inpNama.setBackground(new java.awt.Color(239, 240, 240));
+        inpNama.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         inpNama.setText("new name");
+        inpNama.setPreferredSize(new java.awt.Dimension(55, 26));
         inpNama.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(KeyEvent evt) {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
                 inpNamaKeyPressed(evt);
             }
         });
@@ -179,9 +226,9 @@ public class Rename extends javax.swing.JFrame {
             pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMainLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblNama, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                .addComponent(lblNama, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(inpNama, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(inpNama, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
         pnlMainLayout.setVerticalGroup(
@@ -190,7 +237,7 @@ public class Rename extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNama, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inpNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inpNama, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -198,18 +245,18 @@ public class Rename extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(pnlMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(pnlBottom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlBottom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addGap(6, 6, 6)
                 .addComponent(pnlMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pnlBottom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlBottom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -270,9 +317,9 @@ public class Rename extends javax.swing.JFrame {
 
     public void aksiBtnSimpan(){
         
-        Gambar.ubahNamaGambar(gambar, inpNama.getText());
+        Files.renameFile(gambar.toString(), inpNama.getText());
         Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " mengubah nama gambar dari ("+ gambar.getName() +") menjadi > " + inpNama.getText()+"."); 
-        Aktivitas.setAktif(this.gambar.getParent() +"\\"+ inpNama.getText() + ".png");
+        Aktivitas.setAktif(this.gambar.getParent() +"\\"+ inpNama.getText() + Settings.getFormatSelected());
         dispose();
         
         java.awt.EventQueue.invokeLater(new Runnable(){
@@ -286,10 +333,6 @@ public class Rename extends javax.swing.JFrame {
         
         });
     }
-
-    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
-        this.aksiBtnSimpan();
-    }//GEN-LAST:event_btnSimpanActionPerformed
 
     public void aksiBtnBatal(){
         
@@ -305,10 +348,6 @@ public class Rename extends javax.swing.JFrame {
         });
     }
     
-    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
-        this.aksiBtnBatal();
-    }//GEN-LAST:event_btnBatalActionPerformed
-
     private void inpNamaKeyPressed(KeyEvent evt) {//GEN-FIRST:event_inpNamaKeyPressed
        
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
@@ -320,6 +359,34 @@ public class Rename extends javax.swing.JFrame {
     private void lblMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseClicked
         this.setState(Frame.ICONIFIED);
     }//GEN-LAST:event_lblMinimizeMouseClicked
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        this.aksiBtnSimpan();
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
+        this.aksiBtnBatal();
+    }//GEN-LAST:event_btnBatalActionPerformed
+
+    private void btnSaveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseEntered
+        this.btnSave.setBackground(new java.awt.Color(87,117,181));
+        this.btnSave.setForeground(new java.awt.Color(255,255,255));
+    }//GEN-LAST:event_btnSaveMouseEntered
+
+    private void btnSaveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseExited
+        this.btnSave.setBackground(new java.awt.Color(223,224,224));
+        this.btnSave.setForeground(new java.awt.Color(21,18,18)); 
+    }//GEN-LAST:event_btnSaveMouseExited
+
+    private void btnBatalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseEntered
+        this.btnBatal.setBackground(new java.awt.Color(87,117,181));
+        this.btnBatal.setForeground(new java.awt.Color(255,255,255));
+    }//GEN-LAST:event_btnBatalMouseEntered
+
+    private void btnBatalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseExited
+        this.btnBatal.setBackground(new java.awt.Color(223,224,224));
+        this.btnBatal.setForeground(new java.awt.Color(21,18,18)); 
+    }//GEN-LAST:event_btnBatalMouseExited
 
 
     public static void main(String args[]) {
@@ -334,7 +401,7 @@ public class Rename extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
-    private javax.swing.JButton btnSimpan;
+    private javax.swing.JButton btnSave;
     private javax.swing.JTextField inpNama;
     private javax.swing.JLabel lblMinimize;
     private javax.swing.JLabel lblNama;
