@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  * Total line : 274
  * 
  * @author Achmad Baihaqi
- * @version 1.2
+ * @version 1.3
  * @since 15-05-2020
  */
 public class Aktivitas {
@@ -163,74 +163,6 @@ public class Aktivitas {
         }
     }
     
-    /**
-     * Method akan menuliskan autosave(input) ke file isautosave.haqi
-     * Input yang dituliskan hanya memiliki dua nilai yaitu:
-     *  actived : user mengaktifkan setelan untuk autosave
-     *  deactived : user menonaktifkan setelan untuk autosave
-     * 
-     * Note : jika input selain actived atau deactived maka method akan secara default akan menuliskan deactived
-     * 
-     * @see FileWriter
-     * @see BufferedWriter
-     * @param autosave input hanya dpt bernilai actived atau deactived
-     */
-    public static void setAutoSave(String autosave){
-        Files.writeFile(fileIsAutoSave.toString(), autosave, false);
-    }
-    
-    /**
-     * Berfungsi untuk mengetaui apakan user mensetting untuk autosave atau tidak
-     * 
-     * @see FileReader
-     * @see BufferedReader
-     * @return jika ya maka mereturn true, jika tidak maka mereturn false
-     */
-    public static boolean isAutoSave(){
-        String data = Files.getDataFile(fileIsAutoSave.toString());
-
-        if(data == null){
-            return false;
-        }else if(data.equalsIgnoreCase("actived")){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    /**
-     * Method ini digunakan untuk mendapatkan direktori yang diatur user untuk menyimpan hasil screenshot
-     * Dengan membaca file SaveTo.haqi
-     * Lalu method akan mereturn data yang ada difile SaveTo.haqi
-     * Jika file SaveTo.haqi kosong maka method akan mereturn direktori userhome\\downloads sebagai default Example : "C:\\Users\\YOU\\Downloads\\
-     *
-     * @see FileReader
-     * @see BufferedReader
-     *
-     * @return direktori untuk menyimpan file hasil screenshot
-     */
-    public static String getPenyimpanan() {
-        String storage = Files.getDataFile(fileSaveTo.toString());
-        if (storage == null) {
-            return "C:\\Users\\" + Apps.getUsername() + "\\Downloads\\";
-        } else {
-            return storage;
-        }
-    }
-
-    /**
-     * Method ini digunakan untuk menyimpan direktori peyimpanan screenshot yang diatur user
-     * Direktori akan disimpan kefile SaveTo.haqi
-     * User dapat menguabah setelan direktori di window com.window.Root.java
-     *
-     * @see FileWriter
-     * @see BufferedWriter
-     *
-     * @param simpanKe input direktori yang diatur user
-     */
-    public static void setPeyimpanan(String simpanKe) {
-        Files.writeFile(fileSaveTo.toString(), simpanKe, false);
-    }
 
     /**
      * Untuk menuliskan direktori file yang akan diproes ke file isactive.haqi
