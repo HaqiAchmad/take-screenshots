@@ -37,9 +37,9 @@ public class Start {
         //membuat database/file yang terhapus
         Database.createNotExistDb();
 
-        if(Aktivitas.isOpen_aplikasi()){
-            JOptionPane.showMessageDialog(null, "Aplikasi sudah terbuka");
-        }else{
+//        if(Aktivitas.isOpen_aplikasi()){
+//            JOptionPane.showMessageDialog(null, "Aplikasi sudah terbuka");
+//        }else{
 
             // membuka aplikasi
             Thread app = new Thread(new Runnable(){
@@ -73,4 +73,4 @@ public class Start {
     }
     
     
-}
+//}
