@@ -25,7 +25,7 @@ import java.io.BufferedWriter;
  * Total line : 287
  * 
  * @author Achmad Baihaqi
- * @version 1.4
+ * @version 1.5
  * @since 01 03 2020
  */
 public class Gambar {
@@ -56,80 +56,30 @@ public class Gambar {
     public static void ambilGambarLayar(String filename, final int format){ // mengambil ss dari layar
 
         try{
-
+            String formatType = Settings.getFormatSelected().substring(1); // example : png
             Rectangle rectangle = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
             BufferedImage capture = new Robot().createScreenCapture(rectangle); // menangkap ss layar
 
-            // menyimpan filenya sesuai format yg dinputkan user ke direktori defalult
-            switch (format){
-                case FORMAT_JPG:
-                    ImageIO.write(capture, "jpg", new File(Aktivitas.getPenyimpanan()+filename+".jpg"));
-                    break;
-                case FORMAT_PNG:
-                    ImageIO.write(capture, "png", new File(Aktivitas.getPenyimpanan()+filename+".png"));
-                    break;
-                case FORMAT_BMP:
-                    ImageIO.write(capture, "bmp", new File(Aktivitas.getPenyimpanan()+filename+".bmp"));
-                    break;
-                default:
-                    JOptionPane.showMessageDialog(null,"Format tidak tersedia");
-            }
+            ImageIO.write(capture, formatType, new File(Settings.getPenyimpanan()+filename+Settings.getFormatSelected()));
+//            switch (format){
+//                case FORMAT_JPG:
+//                    ImageIO.write(capture, "jpg", new File(Aktivitas.getPenyimpanan()+filename+".jpg"));
+//                    break;
+//                case FORMAT_PNG:
+//                    ImageIO.write(capture, "png", new File(Aktivitas.getPenyimpanan()+filename+".png"));
+//                    break;
+//                case FORMAT_BMP:
+//                    ImageIO.write(capture, "bmp", new File(Aktivitas.getPenyimpanan()+filename+".bmp"));
+//                    break;
+//                default:
+//                    JOptionPane.showMessageDialog(null,"Format tidak tersedia");
+//            }
+//
 
 
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-    }
-
-    /**
-     * Digunakan untuk mendapatkan nama dari gambar
-     * Method akan mengambil kata ditengah" string dengan menggunakan method substring
-     * Yang di mulai dari var i sampai var j
-     *  var i : adalah index terakhir dari char '\', 
-     *  var j : adalah index terakthir dari char '.'
-     * 
-     *  Example : C:\\user\\YOU\\Downloads\\gambar.jpg maka outpunya adalah "gambar"
-     * 
-     * @param direkoriGambar input direktori gambar
-     * @return nama dari gambar
-     */
-    public static String getNamaGambar(String direkoriGambar){
-        int i = direkoriGambar.lastIndexOf("\\"), j = direkoriGambar.lastIndexOf(".");
-        return direkoriGambar.substring(i+1,j); 
-    }
-    
-    /**
-     * Digunakan untuk mengubah nama gambar sesuai input yang dimasukan user 
-     * Dengan memanfaatkan method renameTo pada class File 
-     * String ubah digunakan untuk tidak menduplicate file yang lama
-     * 
-     * @param inputGambar direktori gambar yang akan diubah
-     * @param namaBaru input nama baru
-     */
-    public static void ubahNamaGambar(File inputGambar, String namaBaru){ 
-        File file = new File(inputGambar.toString());
-        String ubah = file.getParentFile() +"\\"+ namaBaru +".png"; // agar tidak membuat filebaru
-            if (file.renameTo(new File(ubah))){
-                System.out.println("Nama berhasil diubah");
-            }else {
-                System.out.println("Gagal mengubah nama");
-            }
-    }
-
-     /**
-     * Digunakan untuk mendapatkan format dari gambar
-     * Cara kerja method hampir sama seperti method getNamaGambar
-     * Method akan mengambil kata ditengah" string dengan menggunakan method substring yang di mulai dari var i sampai index terakthir
-     *  var i : adalah index terakhir dari char '.', 
-     * 
-     *  Example : C:\\user\\YOU\\Downloads\\gambar.jpg maka outpunya adalah ".jpg"
-     * 
-     * @param direkoriGambar input direktori gambar
-     * @return format dari gambar
-     */
-    public static String getFormatGbr(String direkoriGambar){ 
-        int i = direkoriGambar.lastIndexOf(".");
-        return direkoriGambar.substring(i);
     }
 
     /**
@@ -172,55 +122,8 @@ public class Gambar {
         return -1;
     }
 
-    /**
-     * Method ini digunakan untuk menghapus gambar
-     * Method ini menggunakan class File untuk menghapus gambar
-     * 
-     * Note : jika gagal dalam mengapus file kemungkinan direktori gambar salah
-     * 
-     * @see File
-     * 
-     * @param inputGambar input direktori gambar 
-     */
-    public static void hapusGambar(File inputGambar){ // menghapus gambar
-        File file = new File(inputGambar.toString());
-        if (file.delete()){
-            System.out.println(inputGambar.toString() + " -> berhasil di delete");
-        }else {
-            System.out.println(inputGambar.toString() + " -> Gagal menghapus gambar");
-        }
-    }
-         
-    /**
-     * Digunakan untuk mendapatkan ukuran/size dari gambar
-     * Dengan memanfaatkan method length() pada class File untuk mendapatkan size dari gambar
-     * Output dari method length() tersebut akan diproses pada method ini
-     * Cara pemrosesanya sebagai berikut:
-     *  - jika sizenya berkisar antara 0 hingga 999 maka hasilnya adalah bytes, contoh output : 40 bytes
-     *  - jika sizenya berkisar antara 1000 hingga 9999999 maka hasilnya adalah kilobytes, contoh output: 40 Kb
-     *  - jika sizenya lebih besar dari 1000000 maka akan hasilnya megabytes, contoh output: 40 Mb
-     *  Note : jika size gambar adalah gigabytes maka akan dianggap sebagai megabytes
-     *         jika terjadi error maka akan mereturn -1
-     * 
-     * @see File
-     * 
-     * @param gambar input direktori gambar
-     * @return size dari gambar
-     */
-    public static String getSize(String gambar){
-        File file = new File(gambar);
 
-       double size = file.length();
-          if(size > 0 && size <= 999){
-              return Double.toString((int) size) + " bytes";
-          }else if(size >= 1000 && size <= 999999){
-              return Double.toString((int) size/1024) + " kb";
-          }else if(size >= 1000000){
-              return Double.toString((int)size/(1024*1024)) + " Mb";
-          }
-          
-          return "-1";
-    }
+
 
 
 
