@@ -1,0 +1,911 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Take Screenshot:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/com/system/Database.java" line="31" mnemonic="1" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="10ab2fe3-3c9a-4fc1-8125-10f265768f65" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Take Screenshot" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/system/Start.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/system/Settings.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="217" column="14" lean-forward="true" selection-start-line="217" selection-start-column="14" selection-end-line="217" selection-end-column="14" />
+              <folding>
+                <element signature="docComment;method#getLanguage#0;class#Setting#0" />
+                <element signature="method#getLanguage#0;class#Setting#0" />
+                <element signature="docComment;method#setLanguage#0;class#Setting#0" />
+                <element signature="method#setLanguage#0;class#Setting#0" />
+                <element signature="docComment;method#isEnglish#0;class#Setting#0" />
+                <element signature="method#isEnglish#0;class#Setting#0" />
+                <element signature="docComment;method#isIndonesian#0;class#Setting#0" />
+                <element signature="method#isIndonesian#0;class#Setting#0" />
+                <element signature="docComment;method#isJapanese#0;class#Setting#0" />
+                <element signature="method#isJapanese#0;class#Setting#0" />
+                <element signature="docComment;method#isRomaji#0;class#Setting#0" />
+                <element signature="method#isRomaji#0;class#Setting#0" />
+                <element signature="docComment;method#isKorean#0;class#Setting#0" />
+                <element signature="method#isKorean#0;class#Setting#0" />
+                <element signature="e#4024#4060#1" />
+                <element signature="docComment;method#isRomanization#0;class#Setting#0" />
+                <element signature="method#isRomanization#0;class#Setting#0" />
+                <element signature="docComment;method#setString#0;class#Setting#0" />
+                <element signature="method#setString#0;class#Setting#0" />
+                <element signature="docComment;method#setString#1;class#Setting#0" />
+                <element signature="method#setString#1;class#Setting#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/window/Root.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="761">
+              <caret line="283" column="82" selection-start-line="283" selection-start-column="82" selection-end-line="283" selection-end-column="82" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/window/WindowSetting.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="77" column="5" lean-forward="true" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#WindowSetting#0;class#WindowSetting#0" />
+                <element signature="e#2113#2143#0" expanded="true" />
+                <element signature="e#2148#2237#0" expanded="true" />
+                <element signature="e#3425#3426#0" expanded="true" />
+                <element signature="e#3478#3479#0" expanded="true" />
+                <element signature="e#3550#3551#0" expanded="true" />
+                <element signature="e#3604#3605#0" expanded="true" />
+                <element signature="e#3675#3676#0" expanded="true" />
+                <element signature="e#3728#3729#0" expanded="true" />
+                <element signature="e#4255#4427#0" expanded="true" />
+                <element signature="e#4426#4427#0" expanded="true" />
+                <element signature="e#8301#8302#0" expanded="true" />
+                <element signature="e#8369#8370#0" expanded="true" />
+                <element signature="e#8818#8819#0" expanded="true" />
+                <element signature="e#8876#8877#0" expanded="true" />
+                <element signature="e#8945#8946#0" expanded="true" />
+                <element signature="e#9002#9003#0" expanded="true" />
+                <element signature="e#9162#9163#0" expanded="true" />
+                <element signature="e#9223#9224#0" expanded="true" />
+                <element signature="e#9665#9666#0" expanded="true" />
+                <element signature="e#9722#9723#0" expanded="true" />
+                <element signature="e#9791#9792#0" expanded="true" />
+                <element signature="e#9847#9848#0" expanded="true" />
+                <element signature="e#10006#10007#0" expanded="true" />
+                <element signature="e#10066#10067#0" expanded="true" />
+                <element signature="e#24296#24383#0" expanded="true" />
+                <element signature="e#25790#25791#0" expanded="true" />
+                <element signature="e#25858#25859#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/system/Gambar.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="388">
+              <caret line="73" column="26" lean-forward="true" selection-start-line="73" selection-start-column="26" selection-end-line="73" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/window/SimpanGambar.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="38" column="33" lean-forward="true" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/format.haqi">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="4" lean-forward="true" selection-start-column="4" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/Theme.haqi">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/IsAutoSave.haqi">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/system/Files.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1007">
+              <caret line="342" column="5" selection-start-line="342" selection-start-column="5" selection-end-line="342" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;method#createFile#0;class#Files#0" />
+                <element signature="method#createFile#0;class#Files#0" />
+                <element signature="docComment;method#createFile#1;class#Files#0" />
+                <element signature="method#createFile#1;class#Files#0" />
+                <element signature="docComment;method#createFolder#0;class#Files#0" />
+                <element signature="method#createFolder#0;class#Files#0" />
+                <element signature="docComment;method#createFolders#0;class#Files#0" />
+                <element signature="method#createFolders#0;class#Files#0" />
+                <element signature="docComment;method#isExistFile#0;class#Files#0" />
+                <element signature="method#isExistFile#0;class#Files#0" />
+                <element signature="docComment;method#isExistFolder#0;class#Files#0" />
+                <element signature="method#isExistFolder#0;class#Files#0" />
+                <element signature="docComment;method#showFile#0;class#Files#0" />
+                <element signature="method#showFile#0;class#Files#0" />
+                <element signature="docComment;method#getDataFile#0;class#Files#0" />
+                <element signature="method#getDataFile#0;class#Files#0" />
+                <element signature="docComment;method#getDataFile#1;class#Files#0" />
+                <element signature="method#getDataFile#1;class#Files#0" />
+                <element signature="docComment;method#getDataFile#2;class#Files#0" />
+                <element signature="method#getDataFile#2;class#Files#0" />
+                <element signature="docComment;method#writeFile#0;class#Files#0" />
+                <element signature="method#writeFile#0;class#Files#0" />
+                <element signature="docComment;method#copyDataFile#0;class#Files#0" />
+                <element signature="method#copyDataFile#0;class#Files#0" />
+                <element signature="docComment;method#getNamaFile#0;class#Files#0" />
+                <element signature="method#getNamaFile#0;class#Files#0" />
+                <element signature="docComment;method#countLineFile#0;class#Files#0" />
+                <element signature="method#countLineFile#0;class#Files#0" />
+                <element signature="docComment;method#getFormatFile#0;class#Files#0" />
+                <element signature="method#getFormatFile#0;class#Files#0" />
+                <element signature="docComment;method#renameFile#0;class#Files#0" />
+                <element signature="method#renameFile#0;class#Files#0" />
+                <element signature="docComment;method#setEmptyFile#0;class#Files#0" />
+                <element signature="method#setEmptyFile#0;class#Files#0" />
+                <element signature="docComment;method#getSizeFile#0;class#Files#0" />
+                <element signature="method#getSizeFile#0;class#Files#0" />
+                <element signature="docComment;method#getSizeFile_Int#0;class#Files#0" />
+                <element signature="method#getSizeFile_Int#0;class#Files#0" />
+                <element signature="docComment;method#deleteFile#0;class#Files#0" />
+                <element signature="method#deleteFile#0;class#Files#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>direkoriGambar</find>
+      <find>dbNotExist++;</find>
+      <find>Writer</find>
+      <find>Files.getDataFile(file.toString())</find>
+      <find>Gambar</find>
+      <find>settingan</find>
+      <find>Language.setString</find>
+      <find>Language</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>filename</replace>
+      <replace>Aktivitas</replace>
+      <replace />
+      <replace>getLanguage()</replace>
+      <replace>setelan</replace>
+      <replace>Settings.languageSetString</replace>
+      <replace>Settings</replace>
+    </replaceStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/com/settings/Themes.java" />
+        <option value="$PROJECT_DIR$/src/com/database/screenshots.haqi" />
+        <option value="$PROJECT_DIR$/src/com/database/language.haqi" />
+        <option value="$PROJECT_DIR$/src/tester/Language.java" />
+        <option value="$PROJECT_DIR$/database/IsAutoSave.haqi" />
+        <option value="$PROJECT_DIR$/src/com/system/Apps.java" />
+        <option value="$PROJECT_DIR$/database BACKUP/language.haqi" />
+        <option value="$PROJECT_DIR$/src/com/system/Files.java" />
+        <option value="$PROJECT_DIR$/src/com/system/Tanggal.java" />
+        <option value="$PROJECT_DIR$/database/IsOpen.haqi" />
+        <option value="$PROJECT_DIR$/database/about.haqi" />
+        <option value="$PROJECT_DIR$/database/aktivitas.haqi" />
+        <option value="$PROJECT_DIR$/database/screenshots.haqi" />
+        <option value="$PROJECT_DIR$/src/com/system/Start.java" />
+        <option value="$PROJECT_DIR$/database/language.haqi" />
+        <option value="$PROJECT_DIR$/src/com/settings/Language.java" />
+        <option value="$PROJECT_DIR$/src/com/system/Database.java" />
+        <option value="$PROJECT_DIR$/src/com/system/Aktivitas.java" />
+        <option value="$PROJECT_DIR$/src/com/settings/Setting.java" />
+        <option value="$PROJECT_DIR$/src/com/system/Setting.java" />
+        <option value="$PROJECT_DIR$/src/com/window/helper/Rename.java" />
+        <option value="$PROJECT_DIR$/src/com/window/SimpanGambar.java" />
+        <option value="$PROJECT_DIR$/database/Theme.haqi" />
+        <option value="$PROJECT_DIR$/src/com/system/Settings.java" />
+        <option value="$PROJECT_DIR$/src/com/system/Gambar.java" />
+        <option value="$PROJECT_DIR$/src/com/window/Root.java" />
+        <option value="$PROJECT_DIR$/src/com/window/WindowSetting.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="27" />
+    <option name="width" value="1400" />
+    <option name="height" value="820" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Take Screenshot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Take Screenshot" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Take Screenshot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Take Screenshot" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Take Screenshot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Take Screenshot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Take Screenshot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Take Screenshot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Take Screenshot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Take Screenshot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Take Screenshot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Take Screenshot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="window" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Take Screenshot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Take Screenshot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="window" type="462c0819:PsiDirectoryNode" />
+              <item name="helper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Take Screenshot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Take Screenshot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="Take Screenshot BETA" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1592278654160" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="S:\Source Code\Java Programming\Java Project\Take Screenshot" />
+      <recent name="S:\Source Code\Java Programming\Java Project\Take Screenshot\src" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Start">
+    <configuration name="Database" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.system.Database" />
+      <module name="Take Screenshot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.system.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Language" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.settings.Language" />
+      <module name="Take Screenshot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.system.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Root" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.window.Root" />
+      <module name="Take Screenshot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.window.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Settings" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.system.Settings" />
+      <module name="Take Screenshot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.system.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.system.Start" />
+      <module name="Take Screenshot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.system.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Start" />
+        <item itemvalue="Application.Settings" />
+        <item itemvalue="Application.Root" />
+        <item itemvalue="Application.Language (1)" />
+        <item itemvalue="Application.Database" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="10ab2fe3-3c9a-4fc1-8125-10f265768f65" name="Default Changelist" comment="" />
+      <created>1591757797520</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1591757797520</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49375868" visible="true" weight="0.16117479" />
+      <window_info id="Structure" order="1" sideWeight="0.5062413" side_tool="true" visible="true" weight="0.16117479" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" sideWeight="0.5013441" side_tool="true" weight="0.15401146" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3293011" />
+      <window_info anchor="bottom" id="Debug" order="2" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="5" />
+      <window_info anchor="bottom" id="Terminal" order="6" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.3293011" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.32871014" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Run" order="4" weight="0.24355301" />
+      <window_info anchor="right" id="Maven" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+    </layout>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/com/window/WindowSetting.java</url>
+          <line>75</line>
+          <properties class="com.window.WindowSetting" method="setLangugage">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/com/window/Root.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/settings/Themes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tester/Language.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/database/date.haqi" />
+    <entry file="file://$PROJECT_DIR$/src/com/database/aktivitas.haqi" />
+    <entry file="file://$PROJECT_DIR$/src/com/database/screenshots.haqi" />
+    <entry file="file://$PROJECT_DIR$/database/IsActive.haqi">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/SaveTo.haqi">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/TotalSS.haqi">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/system/Databases.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/database/language.haqi" />
+    <entry file="file://$PROJECT_DIR$/database - Copy/about.haqi" />
+    <entry file="file://$PROJECT_DIR$/database BACKUP/language.haqi" />
+    <entry file="file://$PROJECT_DIR$/src/com/system/Tanggal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="296" column="42" lean-forward="true" selection-start-line="296" selection-start-column="42" selection-end-line="296" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/backup/aktivitas.haqi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="5942" column="13" lean-forward="true" selection-start-line="5942" selection-start-column="13" selection-end-line="5942" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database BACKUP/aktivitas.haqi" />
+    <entry file="file://$PROJECT_DIR$/database BACKUP/date.haqi" />
+    <entry file="file://$PROJECT_DIR$/database/about.haqi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="13" lean-forward="true" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/IsOpen.haqi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="4" selection-start-column="4" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/date.haqi">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/system/Apps.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="115" column="38" selection-start-line="115" selection-start-column="38" selection-end-line="115" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/aktivitas.haqi">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/screenshots.haqi">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/system/Files.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1007">
+          <caret line="342" column="5" selection-start-line="342" selection-start-column="5" selection-end-line="342" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#createFile#0;class#Files#0" />
+            <element signature="method#createFile#0;class#Files#0" />
+            <element signature="docComment;method#createFile#1;class#Files#0" />
+            <element signature="method#createFile#1;class#Files#0" />
+            <element signature="docComment;method#createFolder#0;class#Files#0" />
+            <element signature="method#createFolder#0;class#Files#0" />
+            <element signature="docComment;method#createFolders#0;class#Files#0" />
+            <element signature="method#createFolders#0;class#Files#0" />
+            <element signature="docComment;method#isExistFile#0;class#Files#0" />
+            <element signature="method#isExistFile#0;class#Files#0" />
+            <element signature="docComment;method#isExistFolder#0;class#Files#0" />
+            <element signature="method#isExistFolder#0;class#Files#0" />
+            <element signature="docComment;method#showFile#0;class#Files#0" />
+            <element signature="method#showFile#0;class#Files#0" />
+            <element signature="docComment;method#getDataFile#0;class#Files#0" />
+            <element signature="method#getDataFile#0;class#Files#0" />
+            <element signature="docComment;method#getDataFile#1;class#Files#0" />
+            <element signature="method#getDataFile#1;class#Files#0" />
+            <element signature="docComment;method#getDataFile#2;class#Files#0" />
+            <element signature="method#getDataFile#2;class#Files#0" />
+            <element signature="docComment;method#writeFile#0;class#Files#0" />
+            <element signature="method#writeFile#0;class#Files#0" />
+            <element signature="docComment;method#copyDataFile#0;class#Files#0" />
+            <element signature="method#copyDataFile#0;class#Files#0" />
+            <element signature="docComment;method#getNamaFile#0;class#Files#0" />
+            <element signature="method#getNamaFile#0;class#Files#0" />
+            <element signature="docComment;method#countLineFile#0;class#Files#0" />
+            <element signature="method#countLineFile#0;class#Files#0" />
+            <element signature="docComment;method#getFormatFile#0;class#Files#0" />
+            <element signature="method#getFormatFile#0;class#Files#0" />
+            <element signature="docComment;method#renameFile#0;class#Files#0" />
+            <element signature="method#renameFile#0;class#Files#0" />
+            <element signature="docComment;method#setEmptyFile#0;class#Files#0" />
+            <element signature="method#setEmptyFile#0;class#Files#0" />
+            <element signature="docComment;method#getSizeFile#0;class#Files#0" />
+            <element signature="method#getSizeFile#0;class#Files#0" />
+            <element signature="docComment;method#getSizeFile_Int#0;class#Files#0" />
+            <element signature="method#getSizeFile_Int#0;class#Files#0" />
+            <element signature="docComment;method#deleteFile#0;class#Files#0" />
+            <element signature="method#deleteFile#0;class#Files#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/language.haqi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="6" selection-start-column="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/system/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="564">
+          <caret line="129" column="31" lean-forward="true" selection-start-line="129" selection-start-column="31" selection-end-line="129" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/system/Aktivitas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;field#fileAbout#0;class#Aktivitas#0" />
+            <element signature="docComment;method#addAktivitas#0;class#Aktivitas#0" />
+            <element signature="docComment;method#showAktivitas#0;class#Aktivitas#0" />
+            <element signature="docComment;method#getTotalSS#0;class#Aktivitas#0" />
+            <element signature="method#getTotalSS#0;class#Aktivitas#0" />
+            <element signature="docComment;method#setTotalSS#0;class#Aktivitas#0" />
+            <element signature="method#setTotalSS#0;class#Aktivitas#0" />
+            <element signature="docComment;method#showScreenshots#0;class#Aktivitas#0" />
+            <element signature="docComment;method#addScreenshot#0;class#Aktivitas#0" />
+            <element signature="method#addScreenshot#0;class#Aktivitas#0" />
+            <element signature="docComment;method#setOpen#0;class#Aktivitas#0" />
+            <element signature="docComment;method#isOpen_aplikasi#0;class#Aktivitas#0" />
+            <element signature="method#getPenyimpanan#0;class#Aktivitas#0" />
+            <element signature="docComment;method#setAktif#0;class#Aktivitas#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/settings/Language.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/system/Start.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/window/helper/Rename.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="851">
+          <caret line="51" column="5" lean-forward="true" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/Theme.haqi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/IsAutoSave.haqi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/format.haqi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="4" lean-forward="true" selection-start-column="4" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/system/Settings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="217" column="14" lean-forward="true" selection-start-line="217" selection-start-column="14" selection-end-line="217" selection-end-column="14" />
+          <folding>
+            <element signature="docComment;method#getLanguage#0;class#Setting#0" />
+            <element signature="method#getLanguage#0;class#Setting#0" />
+            <element signature="docComment;method#setLanguage#0;class#Setting#0" />
+            <element signature="method#setLanguage#0;class#Setting#0" />
+            <element signature="docComment;method#isEnglish#0;class#Setting#0" />
+            <element signature="method#isEnglish#0;class#Setting#0" />
+            <element signature="docComment;method#isIndonesian#0;class#Setting#0" />
+            <element signature="method#isIndonesian#0;class#Setting#0" />
+            <element signature="docComment;method#isJapanese#0;class#Setting#0" />
+            <element signature="method#isJapanese#0;class#Setting#0" />
+            <element signature="docComment;method#isRomaji#0;class#Setting#0" />
+            <element signature="method#isRomaji#0;class#Setting#0" />
+            <element signature="docComment;method#isKorean#0;class#Setting#0" />
+            <element signature="method#isKorean#0;class#Setting#0" />
+            <element signature="e#4024#4060#1" />
+            <element signature="docComment;method#isRomanization#0;class#Setting#0" />
+            <element signature="method#isRomanization#0;class#Setting#0" />
+            <element signature="docComment;method#setString#0;class#Setting#0" />
+            <element signature="method#setString#0;class#Setting#0" />
+            <element signature="docComment;method#setString#1;class#Setting#0" />
+            <element signature="method#setString#1;class#Setting#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/system/Gambar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="73" column="26" lean-forward="true" selection-start-line="73" selection-start-column="26" selection-end-line="73" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/window/SimpanGambar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="38" column="33" lean-forward="true" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/window/Root.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="761">
+          <caret line="283" column="82" selection-start-line="283" selection-start-column="82" selection-end-line="283" selection-end-column="82" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/window/WindowSetting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="77" column="5" lean-forward="true" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#WindowSetting#0;class#WindowSetting#0" />
+            <element signature="e#2113#2143#0" expanded="true" />
+            <element signature="e#2148#2237#0" expanded="true" />
+            <element signature="e#3425#3426#0" expanded="true" />
+            <element signature="e#3478#3479#0" expanded="true" />
+            <element signature="e#3550#3551#0" expanded="true" />
+            <element signature="e#3604#3605#0" expanded="true" />
+            <element signature="e#3675#3676#0" expanded="true" />
+            <element signature="e#3728#3729#0" expanded="true" />
+            <element signature="e#4255#4427#0" expanded="true" />
+            <element signature="e#4426#4427#0" expanded="true" />
+            <element signature="e#8301#8302#0" expanded="true" />
+            <element signature="e#8369#8370#0" expanded="true" />
+            <element signature="e#8818#8819#0" expanded="true" />
+            <element signature="e#8876#8877#0" expanded="true" />
+            <element signature="e#8945#8946#0" expanded="true" />
+            <element signature="e#9002#9003#0" expanded="true" />
+            <element signature="e#9162#9163#0" expanded="true" />
+            <element signature="e#9223#9224#0" expanded="true" />
+            <element signature="e#9665#9666#0" expanded="true" />
+            <element signature="e#9722#9723#0" expanded="true" />
+            <element signature="e#9791#9792#0" expanded="true" />
+            <element signature="e#9847#9848#0" expanded="true" />
+            <element signature="e#10006#10007#0" expanded="true" />
+            <element signature="e#10066#10067#0" expanded="true" />
+            <element signature="e#24296#24383#0" expanded="true" />
+            <element signature="e#25790#25791#0" expanded="true" />
+            <element signature="e#25858#25859#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>Take Screenshot:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Take Screenshot</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
