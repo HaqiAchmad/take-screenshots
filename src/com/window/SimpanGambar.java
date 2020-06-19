@@ -7,6 +7,7 @@ import javax.swing.*;
 
 import com.system.*;
 import com.window.helper.*;
+import java.awt.Color;
 import java.awt.Frame;
 
 public class SimpanGambar extends JFrame {
@@ -21,7 +22,7 @@ public class SimpanGambar extends JFrame {
         this.gambar = Aktivitas.getAktif();
         this.widthGbr = Gambar.lebarGambar(this.screenshot);
         this.heightGbr = Gambar.tinggiGambar(this.screenshot);
-        
+ 
         initComponents();
         this.setSize(457, 180);
         this.setLocationRelativeTo(null);
@@ -33,9 +34,9 @@ public class SimpanGambar extends JFrame {
         this.txtUkuran.setText(Files.getSizeFile(this.gambar) +"  ("+ Integer.toString(this.widthGbr)+"x"+Integer.toString(this.heightGbr) + ")");
 
         this.setLanguage();
+        this.setThemes();
 
         JButton[] btns = new JButton[]{this.btnSave, this.btnRename, this.btnShow, btnFolder ,this.btnDelete};
-        
         for (JButton btn : btns){
             btn.setUI(new javax.swing.plaf.basic.BasicButtonUI());
             btn.addMouseListener(new java.awt.event.MouseListener() {
@@ -57,14 +58,14 @@ public class SimpanGambar extends JFrame {
 
                 @Override
                 public void mouseEntered(MouseEvent e) {
-                    btn.setBackground(new java.awt.Color(87,117,181));
-                    btn.setForeground(new java.awt.Color(255,255,255));
+                    btn.setBackground(Settings.getThemeColors(new Color(87,117,181), new Color(31,83,130)));
+                    btn.setForeground(Settings.getThemeColors(new Color(255,255,255), new Color(255,255,255)));
                 }
 
                 @Override
                 public void mouseExited(MouseEvent e) {
-                    btn.setBackground(new java.awt.Color(223,224,224));
-                    btn.setForeground(new java.awt.Color(21,18,18)); 
+                    btn.setBackground(Settings.getThemeColors(new Color(223,224,224), new Color(57,60,64)));
+                    btn.setForeground(Settings.getThemeColors(new Color(21,18,18), new Color(248,244,244))); 
                 }
             });
            
@@ -74,6 +75,30 @@ public class SimpanGambar extends JFrame {
          
     }
     
+    public void setThemes(){
+        JButton[] btns = new JButton[]{this.btnSave, this.btnRename, this.btnShow, btnFolder ,this.btnDelete};
+        
+        this.pnlTop.setBackground(Settings.getThemeColors(new Color(203,206,208), new Color(57, 60, 64)));
+        this.pnlBottom.setBackground(Settings.getThemeColors(new Color(203,206,208), new Color(57, 60, 64)));
+        this.pnlMain.setBackground(Settings.getThemeColors(new Color(255,255,255), new Color(35, 35, 37)));
+        for(int i = 0; i < btns.length; i++){
+            JButton btn = btns[i];
+            btn.setUI(new javax.swing.plaf.basic.BasicButtonUI());
+            btn.setBackground(Settings.getThemeColors(new Color(223,224,224), new Color(57, 60, 64)));
+            btn.setForeground(Settings.getThemeColors(new Color(21,18,18), new Color(248,244,244)));
+        }
+        
+        this.lblTop.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(255, 255, 255)));
+        this.lblFilename.setForeground(Settings.getThemeColors(new Color(20,16,18), new Color(237, 237, 237)));
+        this.lblFormat.setForeground(Settings.getThemeColors(new Color(20,16,18), new Color(237, 237, 237)));
+        this.lblUkuran.setForeground(Settings.getThemeColors(new Color(20,16,18), new Color(237, 237, 237)));
+        this.lblhelpFilename.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(242, 242, 242)));
+        this.lblhelpFormat.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(242, 242, 242)));
+        this.lblhelpUkuran.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(242, 242, 242)));
+        this.txtFilename.setForeground(Settings.getThemeColors(new Color(14,12,12), new Color(242, 242, 242)));
+        this.txtFormat.setForeground(Settings.getThemeColors(new Color(14,12,12), new Color(242, 242, 242)));
+        this.txtUkuran.setForeground(Settings.getThemeColors(new Color(14,12,12), new Color(242, 242, 242)));
+    }   
 
     public void setLanguage(){
         this.lblTop.setText(Settings.languageSetString(
@@ -171,7 +196,6 @@ public class SimpanGambar extends JFrame {
             }
         });
 
-        lblUkuran.setBackground(new java.awt.Color(22, 23, 29));
         lblUkuran.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblUkuran.setForeground(new java.awt.Color(20, 16, 18));
         lblUkuran.setText("Ukuran");
@@ -370,8 +394,7 @@ public class SimpanGambar extends JFrame {
             }
         });
 
-        lblTop.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        lblTop.setText("正常にスクリーンショット");
+        lblTop.setText("Screenshot sukses");
 
         javax.swing.GroupLayout pnlTopLayout = new javax.swing.GroupLayout(pnlTop);
         pnlTop.setLayout(pnlTopLayout);
@@ -379,8 +402,8 @@ public class SimpanGambar extends JFrame {
             pnlTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTopLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(lblTop, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -399,9 +422,7 @@ public class SimpanGambar extends JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlBottom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -468,10 +489,22 @@ public class SimpanGambar extends JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         this.btnSave.setSelected(true);
-        dispose();
-        this.back();
-        Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menyimpan hasil screenshot."); 
-        Aktivitas.addScreenshot(screenshot.getPath()+"|"+Tanggal.getTanggal_Activity());
+        String filenameSebelumnya = txtFilename.getText();
+        if(Files.isExistFile(screenshot.getParent()+"\\"+txtFilename.getText()+Settings.getFormatSelected())){
+            if(txtFilename.getText().equalsIgnoreCase(filenameSebelumnya)){
+                dispose();
+                this.back();
+                Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menyimpan hasil screenshot."); 
+                Aktivitas.addScreenshot(screenshot.getPath()+"|"+Tanggal.getTanggal_Activity());  
+            }else{
+                javax.swing.JOptionPane.showMessageDialog(null, txtFilename.getText() + " sudah ada di direktori "+ screenshot.getParent());
+            }
+        }else{
+            dispose();
+            this.back();
+            Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menyimpan hasil screenshot."); 
+            Aktivitas.addScreenshot(screenshot.getPath()+"|"+Tanggal.getTanggal_Activity());  
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnRenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenameActionPerformed
@@ -519,12 +552,6 @@ public class SimpanGambar extends JFrame {
     private void lblMinimizeMouseClicked(MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseClicked
         this.setState(Frame.ICONIFIED);
     }//GEN-LAST:event_lblMinimizeMouseClicked
-
-
-
-
-
-
 
 
 
