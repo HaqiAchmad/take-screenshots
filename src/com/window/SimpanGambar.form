@@ -41,10 +41,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="pnlBottom" alignment="0" max="32767" attributes="0"/>
           <Component id="pnlTop" alignment="0" max="32767" attributes="0"/>
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="pnlMain" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
+          <Component id="pnlMain" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -130,9 +127,6 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblUkuran">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="1d" green="17" red="16" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="12" style="0"/>
             </Property>
@@ -384,8 +378,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblTop" max="32767" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="lblTop" min="-2" pref="367" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="lblMinimize" min="-2" pref="21" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -422,10 +416,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblTop">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="&#x6b63;&#x5e38;&#x306b;&#x30b9;&#x30af;&#x30ea;&#x30fc;&#x30f3;&#x30b7;&#x30e7;&#x30c3;&#x30c8;"/>
+            <Property name="text" type="java.lang.String" value="Screenshot sukses"/>
           </Properties>
         </Component>
       </SubComponents>
