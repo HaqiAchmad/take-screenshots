@@ -6,6 +6,9 @@ import java.awt.Toolkit;
 import java.io.*;
 import java.util.StringTokenizer;
 
+import com.system.Settings;
+import com.system.Files;
+
 /**
 * Class ini digunakan untuk mendapatkan informasi dari aplikasi dan info dari device user
 * Contoh informasi : nama dari aplikasi, versi dari aplikasi, tahun rilis aplikasi dan pembuat aplikasi
@@ -20,7 +23,7 @@ import java.util.StringTokenizer;
 * @see Toolkit
 * 
 * @author Achmad Baihaqi
-* @version 1.0
+* @version 1.1
 * @since 13 05 2020
 */
 
@@ -29,7 +32,8 @@ public class Apps {
     /**
      * Digunakan untuk mendapatkan gambar yang akan dipakai untuk icon aplikasi
      */
-    private static final ImageIcon icon = new ImageIcon("src/com/media/app-icon.png");
+    private static final ImageIcon iconDaymode = new ImageIcon("src/com/media/app-icon-daymode.png"),
+                                   iconDarkmode = new ImageIcon("src/com/media/app-icon-darkmode.png");
     /**
      * Digunakan untuk mengetahui lebar dan tinggi layar dari user
      */
@@ -54,7 +58,13 @@ public class Apps {
      * @return direktori icon aplikasi 
      */
     public static Image getWindowIcon(){
-        return icon.getImage();
+        if(Settings.isDaymode()){
+            return iconDaymode.getImage();
+        }else if(Settings.isDarkmode()){
+            return iconDarkmode.getImage();
+        }else{
+            return iconDaymode.getImage();
+        }
     }
     
     /**
@@ -105,11 +115,23 @@ public class Apps {
      * @return info tentang aplikasi sesuai dengan input key
      */
     private static String getProperty(String key){
-
+        
+        
         try {
-            FileReader f = new FileReader("database\\about.haqi");
-            BufferedReader baca = new BufferedReader(f);
+            File file = new File("database\\about.haqi");
+            FileReader fileDb = new FileReader(file);
+            BufferedReader baca = new BufferedReader(fileDb);
             StringTokenizer token;
+            String data = "name:Take Screenshot\n"
+                          + "version:1.4\n"
+                          + "author:achmad baihaqi\n"
+                          +"released:2020";
+                
+                // mengecek apakah file about.haqi pada database kosong atau tidak
+                if(Files.countLineFile(file.toString()) != 4){
+                    Files.writeFile(file.toString(), data, false);
+                }
+            
             
                 if(key.equalsIgnoreCase("name")){
                     token = new StringTokenizer(baca.readLine(),":\n");
@@ -184,28 +206,6 @@ public class Apps {
     public static String getReleased(){
         return getProperty("released");
     }
-    
-    public static void openWindow(){
-    
-        Thread t = new Thread(new Runnable(){
-        
-            @Override 
-            public void run(){
-                new com.window.SimpanGambar().setVisible(true);
-            }
-        
-        });
-    
-        
-        t.start();
-        
-        try{
-            t.join();
-        }catch(InterruptedException iex){
-        
-        
-        }
-        
-    }
+
     
 }
