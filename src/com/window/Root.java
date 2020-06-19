@@ -1,12 +1,17 @@
 package com.window;
 
 import com.system.*;
+import com.window.*;
+
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileSystemView;
+import javax.swing.ImageIcon;
 
 public class Root extends javax.swing.JFrame {
+
     
     public Root() {
         initComponents();
@@ -16,6 +21,7 @@ public class Root extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setIconImage(Apps.getWindowIcon());
      
+        
         this.btnScreenshot.setMnemonic(KeyEvent.VK_ENTER);
         this.txtDirektori.setText(Settings.getPenyimpanan());
         this.txtDirektori.setEditable(false);
@@ -23,15 +29,49 @@ public class Root extends javax.swing.JFrame {
         this.btnSaveTo.setUI(new javax.swing.plaf.basic.BasicButtonUI());
         this.lblTotalSS.setText(Integer.toString(Aktivitas.getTotalSS()) + " screenshot diambil.");
         this.lblCopyright.setText("Copyright@ " + Apps.getAuthor()+" "+Apps.getReleased()+".");
-
-    
+        if(Settings.isAutoSave()){
+            this.opsAutosave.setSelected(true);
+        }else{
+            this.opsAutosave.setSelected(false);
+        }
+        
+        this.setThemes();
         this.setLanguage();
+        
+        
+    }
+    
+    public void setThemes(){
+        this.panelMain.setBackground(Settings.getThemeColors(new Color(234,238,241), new Color(35,35,37)));
+        this.btnScreenshot.setBackground(Settings.getThemeColors(new Color(40,87,186), new Color(61,113,219)));
+        this.btnSaveTo.setBackground(Settings.getThemeColors(new Color(255,255,255), new Color(28,25,25)));
+        this.opsAutosave.setBackground(Settings.getThemeColors(new Color(234,238,241), new Color(35,35,37)));
+        this.txtDirektori.setBackground(Settings.getThemeColors(new Color(215,221,223), new Color(45,48,49)));
+        
+        this.btnScreenshot.setForeground(Settings.getThemeColors(new Color(255,255,255), new Color(34,31,31)));
+        this.btnSaveTo.setForeground(Settings.getThemeColors(new Color(20,20,20), new Color(255,255,255)));
+        this.txtDirektori.setForeground(Settings.getThemeColors(new Color(21,24,30), new Color(231,232,233)));
+        this.opsAutosave.setForeground(Settings.getThemeColors(new Color(13,13,13), new Color(248,248,248)));
+        this.lblSimpan.setForeground(Settings.getThemeColors(new Color(16,17,24), new Color(248,248,248)));
+        this.lblCopyright.setForeground(Settings.getThemeColors(new Color(89,89,89), new Color(142,137,137)));
+        this.lblTotalSS.setForeground(Settings.getThemeColors(new Color(16,15,15), new Color(248,248,248)));
+        
+        
+        this.lblCamera.setIcon(Settings.getThemeIcons(new ImageIcon(getClass().getResource("/com/media/app-window-root-camera-daymode.png")), 
+                                                      new ImageIcon(getClass().getResource("/com/media/app-window-root-camera-darkmode.png"))));
+        this.btnScreenshot.setIcon(Settings.getThemeIcons(new ImageIcon(getClass().getResource("/com/media/app-window-root-btnScreenshot-daymode.png")), 
+                                                         new ImageIcon(getClass().getResource("/com/media/app-window-root-btnScreenshot-darkmode.png"))));
+        this.btnSetting.setIcon(Settings.getThemeIcons(new ImageIcon(getClass().getResource("/com/media/app-window-root-setting-daymode.png")), 
+                                                      new ImageIcon(getClass().getResource("/com/media/app-window-root-setting-darkmode.png"))));
         
     }
 
     public void setLanguage(){
         this.btnScreenshot.setText(Settings.languageSetString(
                 "Take Screenshot","Ambil Screenshot","スクリーンショット","Sukurīnshotto","스크린 샷","seukeulin syas"
+        ));
+        this.opsAutosave.setText(Settings.languageSetString(
+                "autosave","autosave","自動保存","Jidō hozon","자동 저장","jadongjeog"
         ));
         this.lblSimpan.setText(Settings.languageSetString(
                 "Save to :","Simpan ke :","に保存","Ni hozon","에 저장","e jeojang"
@@ -40,7 +80,7 @@ public class Root extends javax.swing.JFrame {
                 "screenshot taken...","screenshot diambil...","取りました...","Torimashita...","촬영...","chwal-yeong..."
         ));
     }
-
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -54,7 +94,8 @@ public class Root extends javax.swing.JFrame {
         lblTotalSS = new javax.swing.JLabel();
         btnSaveTo = new javax.swing.JButton();
         lblCopyright = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        opsAutosave = new javax.swing.JRadioButton();
+        btnSetting = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -81,14 +122,13 @@ public class Root extends javax.swing.JFrame {
             }
         });
 
-        lblCamera.setBackground(new java.awt.Color(234, 238, 241));
         lblCamera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCamera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-window-root-camera.png"))); // NOI18N
+        lblCamera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-window-root-camera-daymode.png"))); // NOI18N
 
         btnScreenshot.setBackground(new java.awt.Color(40, 87, 186));
         btnScreenshot.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         btnScreenshot.setForeground(new java.awt.Color(255, 255, 255));
-        btnScreenshot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-window-root-btnScreenshot.png"))); // NOI18N
+        btnScreenshot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-window-root-btnScreenshot-daymode.png"))); // NOI18N
         btnScreenshot.setText("Ambil Screenshot");
         btnScreenshot.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -104,7 +144,6 @@ public class Root extends javax.swing.JFrame {
             }
         });
 
-        lblSimpan.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblSimpan.setForeground(new java.awt.Color(16, 17, 24));
         lblSimpan.setText("Simpan ke :");
         lblSimpan.setPreferredSize(new java.awt.Dimension(41, 26));
@@ -120,7 +159,8 @@ public class Root extends javax.swing.JFrame {
         lblTotalSS.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotalSS.setText("2 screenshot diambil.");
 
-        btnSaveTo.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        btnSaveTo.setBackground(new java.awt.Color(255, 255, 255));
+        btnSaveTo.setForeground(new java.awt.Color(20, 20, 20));
         btnSaveTo.setText("...");
         btnSaveTo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,14 +169,27 @@ public class Root extends javax.swing.JFrame {
         });
 
         lblCopyright.setBackground(new java.awt.Color(0, 1, 30));
-        lblCopyright.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         lblCopyright.setForeground(new java.awt.Color(89, 89, 89));
-        lblCopyright.setText(" Copyright@ achmad baihaqi 2020.");
+        lblCopyright.setText("Copyright@ achmad baihaqi 2020.");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-window-setting.png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        opsAutosave.setBackground(new java.awt.Color(234, 238, 241));
+        opsAutosave.setForeground(new java.awt.Color(13, 13, 13));
+        opsAutosave.setText("autosave");
+        opsAutosave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                opsAutosaveMouseClicked(evt);
+            }
+        });
+        opsAutosave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opsAutosaveActionPerformed(evt);
+            }
+        });
+
+        btnSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-window-root-setting-daymode.png"))); // NOI18N
+        btnSetting.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSettingMouseClicked(evt);
             }
         });
 
@@ -144,41 +197,45 @@ public class Root extends javax.swing.JFrame {
         panelMain.setLayout(panelMainLayout);
         panelMainLayout.setHorizontalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblCamera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelMainLayout.createSequentialGroup()
-                .addComponent(lblCopyright, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTotalSS))
-            .addGroup(panelMainLayout.createSequentialGroup()
-                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelMainLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDirektori, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSaveTo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelMainLayout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(btnScreenshot, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(lblSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtDirektori, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSaveTo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(opsAutosave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnScreenshot, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(112, 112, 112))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1))
+                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(lblCamera, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelMainLayout.createSequentialGroup()
+                            .addComponent(lblCopyright, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblTotalSS, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnSetting, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
         panelMainLayout.setVerticalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMainLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(lblCamera, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblCamera, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnScreenshot, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(btnScreenshot, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDirektori, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSaveTo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSaveTo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(opsAutosave))
                 .addGap(18, 18, 18)
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTotalSS, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,9 +250,7 @@ public class Root extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -232,11 +287,12 @@ public class Root extends javax.swing.JFrame {
 
     private void btnScreenshotMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScreenshotMouseEntered
     
-        this.btnScreenshot.setBackground(new java.awt.Color(34,71,147));
-        this.btnScreenshot.setForeground(new java.awt.Color(176,176,178));
+        this.btnScreenshot.setBackground(Settings.getThemeColors(new Color(34,71,147), new Color(28,99,246)));
+        this.btnScreenshot.setForeground(Settings.getThemeColors(new Color(176,176,178), new Color(34,31,31)));
         try{
             Thread.sleep(200);
-            this.lblCamera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-window-root-camera-entered.png")));
+            this.lblCamera.setIcon(Settings.getThemeIcons(new ImageIcon(getClass().getResource("/com/media/app-window-root-camera-daymode-entered.png")), 
+                                                      new ImageIcon(getClass().getResource("/com/media/app-window-root-camera-darkmode-entered.png"))));
 
         }catch(InterruptedException iex){
             iex.printStackTrace();
@@ -247,12 +303,13 @@ public class Root extends javax.swing.JFrame {
 
     private void btnScreenshotMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScreenshotMouseExited
      
-        this.btnScreenshot.setBackground(new java.awt.Color(40,87,186));
-        this.btnScreenshot.setForeground(new java.awt.Color(255,255,255));
+        this.btnScreenshot.setBackground(Settings.getThemeColors(new Color(40,87,186), new Color(61,113,219)));
+        this.btnScreenshot.setForeground(Settings.getThemeColors(new Color(255,255,255), new Color(34,31,31)));
         
             try{
             Thread.sleep(200);
-            this.lblCamera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-window-root-camera.png")));
+            this.lblCamera.setIcon(Settings.getThemeIcons(new ImageIcon(getClass().getResource("/com/media/app-window-root-camera-daymode.png")), 
+                                                      new ImageIcon(getClass().getResource("/com/media/app-window-root-camera-darkmode.png"))));
 
         }catch(InterruptedException iex){
             iex.printStackTrace();
@@ -286,9 +343,11 @@ public class Root extends javax.swing.JFrame {
             @Override 
             public void run(){
                 
-                if(Settings.isAutoSave()){
+                if(opsAutosave.isSelected()){
+                    Settings.setAutoSave(Settings.AUTOSAVE_ACTIVATED);
                     setVisible(true);
                 }else{
+                    Settings.setAutoSave(Settings.AUTOSAVE_DEACTIVATED);
                     SimpanGambar simpanGambar = new SimpanGambar();
                     simpanGambar.setLocation(getX(), getY());
                     simpanGambar.setVisible(true);
@@ -331,22 +390,30 @@ public class Root extends javax.swing.JFrame {
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_btnSaveToActionPerformed
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+
+
+    private void opsAutosaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opsAutosaveMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_opsAutosaveMouseClicked
+
+    private void opsAutosaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opsAutosaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_opsAutosaveActionPerformed
+
+    private void btnSettingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSettingMouseClicked
         this.setCursor(new java.awt.Cursor(Cursor.WAIT_CURSOR));
         java.awt.EventQueue.invokeLater(new Runnable(){
-            
+
             @Override
             public void run(){
                 dispose();
-                WindowSetting win = new WindowSetting();
+                com.window.WindowSetting win = new com.window.WindowSetting();
                 win.setLocation(getX(), getY());
                 win.setVisible(true);
             }
-        
+
         });
-    }//GEN-LAST:event_jLabel1MouseClicked
-
-
+    }//GEN-LAST:event_btnSettingMouseClicked
 
 
 
@@ -362,11 +429,12 @@ public class Root extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSaveTo;
     private javax.swing.JButton btnScreenshot;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel btnSetting;
     private javax.swing.JLabel lblCamera;
     private javax.swing.JLabel lblCopyright;
     private javax.swing.JLabel lblSimpan;
     private javax.swing.JLabel lblTotalSS;
+    private javax.swing.JRadioButton opsAutosave;
     private javax.swing.JPanel panelMain;
     private javax.swing.JTextField txtDirektori;
     // End of variables declaration//GEN-END:variables
