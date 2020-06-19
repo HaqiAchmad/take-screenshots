@@ -29,10 +29,27 @@ public class Rename extends javax.swing.JFrame {
         this.setIconImage(Apps.getWindowIcon());
         this.setLocationRelativeTo(null);
         this.inpNama.setText(gambar.getName().substring(0, gambar.getName().lastIndexOf(".")));
-
+        this.btnSave.setUI(new javax.swing.plaf.basic.BasicButtonUI());
+        this.btnBatal.setUI(new javax.swing.plaf.basic.BasicButtonUI());
+        this.setThemes();
         this.setLanguage();
     }
 
+    public void setThemes(){
+        this.pnlTop.setBackground(Settings.getThemeColors(new Color(203,206,208), new Color(57, 60, 64)));
+        this.pnlBottom.setBackground(Settings.getThemeColors(new Color(203,206,208), new Color(57, 60, 64)));
+        this.pnlMain.setBackground(Settings.getThemeColors(new Color(239,240,240), new Color(35, 35, 37)));
+        this.btnSave.setBackground(Settings.getThemeColors(new Color(223,224,224), new Color(57, 60, 64)));
+        this.btnBatal.setBackground(Settings.getThemeColors(new Color(223,224,224), new Color(57, 60, 64)));
+        this.inpNama.setBackground(Settings.getThemeColors(new Color(239,240,240), new Color(43,43,43)));
+        
+        this.btnSave.setForeground(Settings.getThemeColors(new Color(21,18,18), new Color(248,244,244)));
+        this.btnBatal.setForeground(Settings.getThemeColors(new Color(21,18,18), new Color(248,244,244)));
+        this.inpNama.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(237,236,236)));
+        this.inpNama.setCaretColor(Settings.getThemeColors(new Color(0,0,0), new Color(255,255,255)));
+        this.lblTop.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(255,255,255)));
+        this.lblNama.setForeground(Settings.getThemeColors(new Color(16,0,11), new Color(237,237,237)));
+    }
 
     public void setLanguage(){
 
@@ -238,25 +255,26 @@ public class Rename extends javax.swing.JFrame {
                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNama, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inpNama, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlBottom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnlBottom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(pnlMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(108, 108, 108)
                 .addComponent(pnlBottom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(pnlTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(pnlMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -361,7 +379,13 @@ public class Rename extends javax.swing.JFrame {
     }//GEN-LAST:event_lblMinimizeMouseClicked
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        this.aksiBtnSimpan();
+        Files.isExistFile(gambar.getParent()+"\\"+inpNama.getText()+Settings.getFormatSelected()); // biar g error :)
+        if(Files.isExistFile(gambar.getParent()+"\\"+inpNama.getText()+Settings.getFormatSelected())){
+            javax.swing.JOptionPane.showMessageDialog(null, inpNama.getText() + " sudah ada di direktori "+ gambar.getParent());
+            this.setVisible(true);
+        }else{
+            this.aksiBtnSimpan();
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
@@ -369,23 +393,23 @@ public class Rename extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBatalActionPerformed
 
     private void btnSaveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseEntered
-        this.btnSave.setBackground(new java.awt.Color(87,117,181));
-        this.btnSave.setForeground(new java.awt.Color(255,255,255));
+        this.btnSave.setBackground(Settings.getThemeColors(new Color(87,117,181), new Color(31,83,130)));
+        this.btnSave.setForeground(Settings.getThemeColors(new Color(255,255,255), new Color(255,255,255)));      
     }//GEN-LAST:event_btnSaveMouseEntered
 
     private void btnSaveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseExited
-        this.btnSave.setBackground(new java.awt.Color(223,224,224));
-        this.btnSave.setForeground(new java.awt.Color(21,18,18)); 
+        this.btnSave.setBackground(Settings.getThemeColors(new Color(223,224,224), new Color(57,60,64)));
+        this.btnSave.setForeground(Settings.getThemeColors(new Color(21,18,18), new Color(248,244,244)));           
     }//GEN-LAST:event_btnSaveMouseExited
 
     private void btnBatalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseEntered
-        this.btnBatal.setBackground(new java.awt.Color(87,117,181));
-        this.btnBatal.setForeground(new java.awt.Color(255,255,255));
+        this.btnBatal.setBackground(Settings.getThemeColors(new Color(87,117,181), new Color(31,83,130)));
+        this.btnBatal.setForeground(Settings.getThemeColors(new Color(255,255,255), new Color(255,255,255)));
     }//GEN-LAST:event_btnBatalMouseEntered
 
     private void btnBatalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseExited
-        this.btnBatal.setBackground(new java.awt.Color(223,224,224));
-        this.btnBatal.setForeground(new java.awt.Color(21,18,18)); 
+        this.btnBatal.setBackground(Settings.getThemeColors(new Color(223,224,224), new Color(57,60,64)));
+        this.btnBatal.setForeground(Settings.getThemeColors(new Color(21,18,18), new Color(248,244,244))); 
     }//GEN-LAST:event_btnBatalMouseExited
 
 
