@@ -211,6 +211,7 @@ public class Files {
                 for(int i = 0; i <= end; i++){
                     buffer+=show.readLine()+"\n";
                 }
+
                 return buffer;
 
         }catch (IOException ex){
