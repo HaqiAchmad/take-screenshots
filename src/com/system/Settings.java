@@ -1,6 +1,8 @@
 package com.system;
 
 import java.io.*;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class Settings {
 
@@ -270,6 +272,26 @@ public class Settings {
             case THEME_DAYMODE: Files.writeFile(fileTheme.toString(), "daymode", false); break;
             case THEME_DARKMODE: Files.writeFile(fileTheme.toString(), "darkmode", false); break;
             default: Files.writeFile(fileTheme.toString(), "daymode", false); break;
+        }
+    }
+    
+    public static Color getThemeColors(Color daymode, Color darkmode){
+        if(isDaymode()){
+            return daymode;
+        }else if(isDarkmode()){
+            return darkmode;
+        }else{
+            return daymode;
+        }
+    }
+    
+    public static ImageIcon getThemeIcons(ImageIcon directoryDaymode, ImageIcon directoryDarkmode){
+        if(isDaymode()){
+            return directoryDaymode;
+        }else if(isDarkmode()){
+            return directoryDarkmode;
+        }else{
+            return directoryDaymode;
         }
     }
     
