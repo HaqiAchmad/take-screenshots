@@ -5,8 +5,11 @@ import com.system.Aktivitas;
 import com.system.Apps;
 import com.system.Database;
 import com.system.Tanggal;
+import java.awt.Color;
 import java.awt.Cursor;
 import javax.swing.filechooser.FileSystemView;
+import javax.swing.JLabel;
+import javax.swing.JComboBox;
 
 
 public class WindowSetting extends javax.swing.JFrame {
@@ -34,36 +37,38 @@ public class WindowSetting extends javax.swing.JFrame {
         this.autosaveBefore = inputFormat.getSelectedItem().toString();
         storageBefore = txtPeyimpanan.getText();
 
-        setLangugage();
+        this.setLangugage();
+        this.setThemes();
+        
         
 
             if(Settings.isEnglishLanguage()){
                 this.inputLanguage.setSelectedIndex(0);
-//                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Daymode", "Darkmode" }));
+                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Daymode", "Darkmode" }));
                 this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Activated", "Deactivated"}));
             }else if(Settings.isIndonesianLanguage()){
                 this.inputLanguage.setSelectedIndex(1);
-//                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Terang", "Gelap" }));
+                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Terang", "Gelap" }));
                 this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Aktif", "Dinonaktifkan"}));
             }else if(Settings.isJapaneseLanguage()){
                 this.inputLanguage.setSelectedIndex(2);
-//                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"デイモード", "ダークモード"}));
+                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"デイモード", "ダークモード"}));
                 this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"活性化", "非アクティブ化"}));
             }else if(Settings.isJapaneseRomajiLanguage()){
                 this.inputLanguage.setSelectedIndex(3);
-//                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Deimōdo", "Dākumōdo"}));
+                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Deimōdo", "Dākumōdo"}));
                 this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Kassei-ka", "Hiakutibu-ka"}));
             }else if(Settings.isKoreanLanguage()){
                 this.inputLanguage.setSelectedIndex(4);
-//                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"주간 모드", "다크 모드"}));
+                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"주간 모드", "다크 모드"}));
                 this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"활성화", "비활성화"}));
             }else if(Settings.isKoreanRomanizationLanguage()){
                 this.inputLanguage.setSelectedIndex(5);
-//                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"jugan modeu", "dakeu modeu"}));
+                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"jugan modeu", "dakeu modeu"}));
                 this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"hwalseonghwa", "bihwalseonghwa"}));
             }else{
                 this.inputLanguage.setSelectedIndex(0);
-//                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Daymode", "Darkmode" }));
+                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Daymode", "Darkmode" }));
                 this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Activated", "Deactivated"}));
             }
             
@@ -90,6 +95,37 @@ public class WindowSetting extends javax.swing.JFrame {
             }
     }
 
+    
+    public void setThemes(){
+        JLabel[] lbls = new JLabel[]{this.lblTheme, this.lblLanguage, this.lblFormat, this.lblAutosave, this.lblPeyimpanan};
+        JComboBox[] combs = new JComboBox[]{this.inputTheme, this.inputLanguage, this.inputFormat, this.inputAutosave};
+        
+        this.topPanel.setBackground(Settings.getThemeColors(new Color(180,185,184), new Color(57,60,64)));
+        this.mainPanel.setBackground(Settings.getThemeColors(new Color(255,255,255), new Color(35,35,37)));
+        this.btnSimpan.setBackground(Settings.getThemeColors(new Color(223,224,224), new Color(57,60,64)));
+        this.btnBatal.setBackground(Settings.getThemeColors(new Color(223,224,224), new Color(57,60,64)));
+        this.btnChooseStorage.setBackground(Settings.getThemeColors(new Color(240,240,240), new Color(14,14,14)));
+        this.txtPeyimpanan.setBackground(Settings.getThemeColors(new Color(255,255,255), new Color(35,35,37)));
+        this.lineApplications.setBackground(Settings.getThemeColors(new Color(8,8,8), new Color(77,79,81)));
+        for(int i = 0; i < combs.length; i++){
+            JComboBox comb = combs[i];
+            comb.setBackground(Settings.getThemeColors(new Color(222,222,222), new Color(35,35,37)));
+            comb.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(239,239,239)));
+        }
+        
+        this.lblPengaturan.setForeground(Settings.getThemeColors(new Color(0,16,26), new Color(255,255,255)));
+        this.lblApplications.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(245,242,242)));
+        this.btnSimpan.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(224,224,224)));
+        this.btnBatal.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(224,224,224)));
+        this.btnChooseStorage.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(255,250,250)));
+        this.txtPeyimpanan.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(228,228,228)));
+        this.lblCopyright.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(221,221,221)));
+        for(int i = 0; i < lbls.length; i++){
+            JLabel lbl = lbls[i];
+            lbl.setForeground(Settings.getThemeColors(new Color(18,14,14), new Color(246,245,245)));
+        }
+    }
+    
     public void setLangugage(){
         this.lblPengaturan.setText("  "+Settings.languageSetString(
             "Setting","Pengaturan","設定","Settei","환경","hwangyeong"
@@ -128,7 +164,7 @@ public class WindowSetting extends javax.swing.JFrame {
 
         topPanel = new javax.swing.JPanel();
         lblPengaturan = new javax.swing.JLabel();
-        btnClose = new javax.swing.JLabel();
+        btnBack = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
         lblApplications = new javax.swing.JLabel();
         lineApplications = new javax.swing.JSeparator();
@@ -145,7 +181,7 @@ public class WindowSetting extends javax.swing.JFrame {
         lblLanguage = new javax.swing.JLabel();
         inputLanguage = new javax.swing.JComboBox();
         inputTheme = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
+        lblCopyright = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -160,18 +196,18 @@ public class WindowSetting extends javax.swing.JFrame {
             }
         });
 
-        topPanel.setBackground(new java.awt.Color(187, 202, 200));
+        topPanel.setBackground(new java.awt.Color(180, 185, 184));
 
         lblPengaturan.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblPengaturan.setForeground(new java.awt.Color(0, 16, 26));
         lblPengaturan.setText("   Pengaturan");
 
-        btnClose.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnClose.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-window-windowsetting-close.png"))); // NOI18N
-        btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnBack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-window-windowsetting-back.png"))); // NOI18N
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCloseMouseClicked(evt);
+                btnBackMouseClicked(evt);
             }
         });
 
@@ -182,18 +218,20 @@ public class WindowSetting extends javax.swing.JFrame {
             .addGroup(topPanelLayout.createSequentialGroup()
                 .addComponent(lblPengaturan, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         topPanelLayout.setVerticalGroup(
             topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblPengaturan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
         mainPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         lblApplications.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
         lblApplications.setText("  Applications");
+
+        lineApplications.setBackground(new java.awt.Color(8, 8, 8));
 
         lblTheme.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         lblTheme.setForeground(new java.awt.Color(18, 14, 14));
@@ -224,7 +262,7 @@ public class WindowSetting extends javax.swing.JFrame {
         txtPeyimpanan.setDisabledTextColor(new java.awt.Color(255, 255, 255));
 
         btnChooseStorage.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        btnChooseStorage.setText("jButton1");
+        btnChooseStorage.setText("...");
         btnChooseStorage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnChooseStorageActionPerformed(evt);
@@ -232,7 +270,6 @@ public class WindowSetting extends javax.swing.JFrame {
         });
 
         btnSimpan.setBackground(new java.awt.Color(223, 224, 224));
-        btnSimpan.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         btnSimpan.setText("Simpan");
         btnSimpan.setBorder(null);
         btnSimpan.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -251,7 +288,6 @@ public class WindowSetting extends javax.swing.JFrame {
         });
 
         btnBatal.setBackground(new java.awt.Color(223, 224, 224));
-        btnBatal.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         btnBatal.setText("Batal");
         btnBatal.setBorder(null);
         btnBatal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -283,8 +319,8 @@ public class WindowSetting extends javax.swing.JFrame {
         inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Daymode", "Darkmode (Coming soon)" }));
         inputTheme.setMinimumSize(new java.awt.Dimension(88, 21));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        jLabel1.setText(" Copyright@ achmad baihaqi 2020. 設定");
+        lblCopyright.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        lblCopyright.setText(" Copyright@ achmad baihaqi 2020. ");
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -323,7 +359,7 @@ public class WindowSetting extends javax.swing.JFrame {
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblApplications, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lineApplications, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblCopyright, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -361,7 +397,7 @@ public class WindowSetting extends javax.swing.JFrame {
                     .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1))
+                .addComponent(lblCopyright))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -492,7 +528,7 @@ public class WindowSetting extends javax.swing.JFrame {
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_btnChooseStorageActionPerformed
 
-    private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
+    private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
        dispose();
        Settings.setPeyimpanan(storageBefore);
         java.awt.EventQueue.invokeLater(new Runnable(){
@@ -505,22 +541,22 @@ public class WindowSetting extends javax.swing.JFrame {
             }
         
         });
-    }//GEN-LAST:event_btnCloseMouseClicked
+    }//GEN-LAST:event_btnBackMouseClicked
 
     private void btnSimpanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSimpanMouseEntered
-        this.btnSimpan.setBackground(new java.awt.Color(138,143,143));
+        this.btnSimpan.setBackground(Settings.getThemeColors(new Color(138,143,143), new Color(22,23,24)));
     }//GEN-LAST:event_btnSimpanMouseEntered
 
     private void btnSimpanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSimpanMouseExited
-        this.btnSimpan.setBackground(new java.awt.Color(223,224,224));
+        this.btnSimpan.setBackground(Settings.getThemeColors(new Color(223,224,224), new Color(57,60,64)));
     }//GEN-LAST:event_btnSimpanMouseExited
 
     private void btnBatalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseEntered
-        this.btnBatal.setBackground(new java.awt.Color(138,143,143));
+        this.btnBatal.setBackground(Settings.getThemeColors(new Color(138,143,143), new Color(22,23,24)));
     }//GEN-LAST:event_btnBatalMouseEntered
 
     private void btnBatalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseExited
-        this.btnBatal.setBackground(new java.awt.Color(223,224,224));
+        this.btnBatal.setBackground(Settings.getThemeColors(new Color(223,224,224), new Color(57,60,64)));
     }//GEN-LAST:event_btnBatalMouseExited
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -574,17 +610,17 @@ public class WindowSetting extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnBack;
     private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnChooseStorage;
-    private javax.swing.JLabel btnClose;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JComboBox inputAutosave;
     private javax.swing.JComboBox inputFormat;
     private javax.swing.JComboBox inputLanguage;
     private javax.swing.JComboBox inputTheme;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblApplications;
     private javax.swing.JLabel lblAutosave;
+    private javax.swing.JLabel lblCopyright;
     private javax.swing.JLabel lblFormat;
     private javax.swing.JLabel lblLanguage;
     private javax.swing.JLabel lblPengaturan;
