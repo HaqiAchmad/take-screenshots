@@ -1,0 +1,72 @@
+﻿Root.java
+Take Screenshot,Ambil Screenshot,スクリーンショット,Sukurīnshotto,스크린 샷,seukeulin syas
+Save to,Simpan ke,に保存,Ni hozon,에 저장,e jeojang
+autosave,simpan otomatis,自動保存,Jidō hozon,자동 저장,jadong jeojang
+screenshot taken,screenshot diambil,取りました,Torimashita,촬영,chwal-yeong
+
+SimpanGambar.java
+Successfully screenshot!!,Screenshot sukses diambil!!,正常にスクリーンショット,Seijō ni sukurīnshotto,성공적으로 스크린 샷,seong-gongjeog-eulo seukeulin syas
+Filename,Nama file,ファイル名,Fairu-mei,파일 이름,pail ileum
+Format,Format,フォーマット,Fōmatto,체재,chejae
+Size,Ukuran,サイズ,Saizu,크기,keugi
+Save,Simpan,セーブ,Sēbu,저장,jeojang
+Rename,Rename,リネーム,Rinēmu,이름 바꾸기,ileum bakkugi
+Open,Buka,開いた,Aita,열다,yeolda
+Folder,Folder,フォルダ,Foruda,폴더,poldeo
+Delete,Hapus,削除する,Sakujo suru,지우다,jiuda
+
+Rename.java
+Rename image!,Ubah nama gambar!,画像の名前を変更,Gazō no namae o henkō,이미지 이름 바꾸기,imiji ileum bakkugi
+New name,Nama baru,新しい名前,Atarashī namae,새로운 이름,saeloun ileum
+Save,Simpan,セーブ,Sēbu,저장,jeojang
+Cancel,Batal,キャンセル,Kyanseru,취소,chwiso
+
+WindowSetting.java
+Setting,Pengaturan,Settei,設定,환경,hwangyeong
+Application,Aplikasi,応用,Ōyō,신청,sincheong
+Choose the theme as you wish,Pilih tema yang kamu suka,好きなテーマを選んでください,Sukina tēma o erande kudasai,테마를 선택하십시오,temaleul seontaeghasibsio
+Choose the language you understand,Pilih bahasa yang anda mengerti,言語を選んでください,Gengo o erande kudasai,당신의 언어를 고르시 오,dangsin-ui eon-eoleul goleusi o
+Choose screenshot effect,Pilih efek saat screenshot,スクリーンショット効果を選択,Sukurīnshotto kōka o sentaku,스크린 샷 효과 선택,seukeulin syas hyogwa seontaeg
+Choose sound effect,Pilih efek suara saat screenshot,効果音を選択,Kōka-on o sentaku,음향 효과를 선택하십시오,eumhyang hyogwaleul seontaeghasibsio
+Select image format,Pilih format pada gambar,画像形式を選択,Gazō keishiki o sentaku,이미지 형식 선택,imiji hyeongsig seontaeg,
+Auto save image when screenshot,Simpan otomatis gambar saat screenshot,スクリーンショット時に画像を自動保存,Sukurīnshotto-ji ni gazō o jidō hozon,스크린 샷시 이미지 자동 저장,seukeulin syas-si imiji jadong jeojang
+Default screenshot storage,Default penyimpanan screenshot,スクリーンショットストレージ,Sukurīnshottosutorēji,스크린 샷 저장,seukeulin syas jeojang
+Daymode,Terang,デイモード,Deimōdo,주간 모드,jugan modeu
+Darkmode,Gelap,ダークモード,Dākumōdo,다크 모드,dakeu modeu
+Deactivated,Dinonaktifkan,非アクティブ化,Hiakutibu-ka,비활성화,bihwalseonghwa
+English,Indonesian,日本 (Japan),日本（ローマ字）(Romaji), 한국어(Korea), 한국 (로맨틱 화) (romanized)
+Black flash,Kilat hitam,ブラックフラッシュ,Burakkufurasshu,검은 플래시,geom-eun peullaesi
+White flash,Kilat putih,白いフラッシュ,Shiroi furasshu,화이트 플래시,hwaiteu peullaesi
+Coming soon,Segera hadir,近日公開,Kinjitsu kōkai,출시 예정,chulsi yejeong
+Deactivated,Dinonaktifkan,非アクティブ化,Hiakutibu-ka,비활성화,bihwalseonghwa
+Voice 1,Suara 1,ボイス1,Boisu 1,음성 1,eumseong 1
+Voice 2,Suara 2,ボイス2,Boisu 2,음성 2,eumseong 2
+Voice 3,Suara 3,ボイス3,Boisu 3,음성 3,eumseong 3
+Voice 4,Suara 4,ボイス4,Boisu 4,음성 4,eumseong 4
+Voice 5,Suara 5,ボイス4,Boisu 5,음성 5,eumseong 5
+Activated,Diakfikan,活性化,Kassei-ka,활성화,hwalseonghwa
+Deactivated,Dinonaktifkan,非アクティブ化,Hiakutibu-ka,비활성화,bihwalseonghwa
+Reset settings,Reset pengaturan,設定をリセットする,Settei o risettosuru,설정 재설정,seoljeong jaeseoljeong
+Ratting application,Ratting aplikasi,評価アプリケーション,Hyōka apurikēshon,평가 신청,pyeong-ga sincheong
+Save,Simpan,セーブ,Sēbu,저장,jeojang
+Cancel,Batal,キャンセル,Kyanseru,취소,chwiso
+
+WindowRatting.java
+Your name,Nama kamu,あなたの名前,Anata no namae,당신의 이름,dangsin-ui ileum
+Feedback,Masukan,フィードバック,Fīdobakku,피드백,pideubaeg
+Ratting,Ratting,ラッティング,Rattingu,라팅,lating
+Send,Kirim,それを送る,Sore o okuru,보내,bonae
+Later,Nanti,後で,Atode,나중, Najung
+Hate,Benci,嫌い,Kirai,미움, Mium
+Dislike,Tidak suka,好きではない,Sukide wanai,싫어,silh-eo
+Not bad,Lumayan,悪くない,Warukunai,나쁘지 않다,nappeuji anhda
+Like,Suka,いいね,Ī ne,그 것처럼,geu geoscheoleom
+Love,Cinta,愛,Ai,사랑,salang
+Contact me,Kontak saya,私に連絡して,Watashi ni renraku shite,저에게 연락,jeoege yeonlag
+Windows does not yet support darkmode,Window belum mendukung darkmode,まだサポートされていないダークモード,Mada sapōto sa rete inai dākumōdo,아직 지원되지 않는 다크 모드,ajig jiwondoeji anhneun dakeu modeu
+Name cannot be empty, Nama tidak boleh kosong,名前は空にできません,Namae wa sora ni dekimasen,이름은 비워 둘 수 없습니다,ileum-eun biwo dul su eobs-seubnida
+Ratings cannot be empty,Ratting tidak boleh kosong,ラッティングは空にできません,Rattingu wa sora ni dekimasen,평가는 비워 둘 수 없습니다,pyeong-ganeun biwo dul su eobs-seubnida
+No internet connection, Tidak terhubung ke internet,インターネットに接続されていません,Intānetto ni setsuzoku sa rete imasen,인터넷에 연결되지 않음,inteones-e yeongyeoldoeji anh-eum
+
+KontakSaya.java
+Contact me,Kontak saya,私に連絡して,Watashi ni renraku shite,저에게 연락,jeoege yeonlag
