@@ -10,12 +10,9 @@ import java.io.IOException;
 /**
  * Class ini digunakan untuk memanipulasi file yang ada didalam program
  *
- * Type class : Superclass
- * Total method : 18
- * Total line : 528
  *
  * @author Achmad Baihaqi
- * @version 1.0
+ * @version 1.2
  * @since 10 06 2020
  */
 public class Files {
@@ -42,7 +39,7 @@ public class Files {
                 }
 
         }catch (IOException ex){
-            System.out.println("Terjadi kesalahan saat membuat file "+ ex);
+            Apps.showException("Terjadi kesalahan saat membuat file \""+ filename +"\"", Files.class.getName(), ex.toString());
         }
     }
 
@@ -55,7 +52,7 @@ public class Files {
      * @param filename nama file yang akan dibuat
      */
     public static void createFile(String directory, String filename){
-        // akan menambahkan \ jika pada directory belum terdapat \
+        // akan menambahkan '\' jika pada directory belum terdapat '\'
         if (directory.lastIndexOf('\\') != directory.length()-1){
             directory+="\\";
         }
@@ -72,7 +69,7 @@ public class Files {
                     }
                 }
         }catch (IOException ex){
-            System.out.println("Terjadi kesalahan saat membuat file "+ ex);
+            Apps.showException("Terjadi kesalahan saat membuat file \""+ filename +"\"", Files.class.getName(), ex.toString());
         }
 
 
@@ -215,93 +212,7 @@ public class Files {
                 return buffer;
 
         }catch (IOException ex){
-            System.out.println("Terjadi kesalahan " + ex);
-        }
-        return null;
-    }
-
-    /**
-     * Method ini digunakan untuk mengambil\mendapatkan data dari baris yang diinputkan user sampai kebaris terakhir
-     * Sebelum mengambil\mendapatkan data dari file method akan menghitung jumlah baris dari file
-     * Method akan membaca satu per satu baris yang ada didalam file melalui class BufferedReader
-     * Method akan melakukan perulangan sampai baris yang diinputkan user
-     * Note : Jika param fromLine nilainya lebih besar dari jumlah baris file atau param fromLine nilainya kurang dari satu
-     *        maka method akan mereturn pesan "LINE OUT OF BOUNDS" untuk menyatakan bahwa input yang dimasukan user tidak valid
-     * Jika sudah sampai dibaris terakhir selanjutnya method akan mereturn data ke-user
-     *
-     * @see FileReader
-     * @see BufferedReader
-     *
-     * @param filename file yang akan diambil datanya
-     * @param fromLine baris yang akan diambil datanya
-     * @return mengambil data dari baris yang diinputkan user kebaris terakhir
-     */
-    public static String getDataFile(String filename, int fromLine){
-
-        try{
-            FileReader file = new FileReader(filename);
-            BufferedReader show = new BufferedReader(file);
-            String buffer = show.readLine(), data = buffer;
-            int line = 1, end = countLineFile(filename);
-
-            if(fromLine > end || fromLine < 1){
-                return "LINE OUT OF BOUNDS";
-            }
-
-            for(int i = 0; i <= end; i++){
-                if(line >= fromLine){
-                    data+="\n"+buffer;
-                }
-                buffer = show.readLine();
-                line++;
-            }
-            return data;
-
-        }catch (IOException ex){
-            System.out.println("Terjadi kesalahan " + ex);
-        }
-        return null;
-    }
-
-    /**
-     * Method ini digunakan untuk mengambil\mendapatkan data dari baris awal yang diinputkan user sampai kebaris akhir yang diinputan user
-     * Sebelum mengambil\mendapatkan data dari file method akan menghitung jumlah baris dari file
-     * Method akan membaca satu per satu baris yang ada didalam file melalui class BufferedReader
-     * Method akan melakukan perulangan sampai baris yang diinputkan user
-     * Note : Jika param fromLine nilainya lebih besar dari jumlah baris file atau param fromLine nilainya kurang dari satu atau toLine nilainya kurang dari fromLine
-     *        maka method akan mereturn pesan "LINE OUT OF BOUNDS" untuk menyatakan bahwa input yang dimasukan user tidak valid
-     * Jika sudah sampai dibaris terakhir selanjutnya method akan mereturn data ke-user
-     *
-     * @see FileReader
-     * @see BufferedReader
-     *
-     * @param filename file yang akan diambil datanya
-     * @param fromLine awal baris yang akan diambil datanya
-     * @param toLine akhir baris yang akan diambil datanya
-     * @return mengambil data dari file dari baris tertentu sampai baris tertentu
-     */
-    public static String getDataFile(String filename, int fromLine, int toLine){
-
-        try{
-            FileReader file = new FileReader(filename);
-            BufferedReader show = new BufferedReader(file);
-            String buffer = show.readLine(), data = buffer;
-            int line = 1, end = countLineFile(filename);
-
-            if(fromLine > end || fromLine < 1 || toLine < fromLine){
-                return "LINE OUT OF BOUNDS";
-            }
-            for(int i = 0; i <= end; i++){
-                if(line >= fromLine && line <= toLine){
-                    data+="\n"+buffer;
-                }
-                buffer = show.readLine();
-                line++;
-            }
-            return data;
-
-        }catch (IOException ex){
-            System.out.println("Terjadi kesalahan " + ex);
+            Apps.showException("File mungkin sudah dihapus", Files.class.getName(), ex.toString());
         }
         return null;
     }
@@ -323,6 +234,7 @@ public class Files {
             FileWriter file = new FileWriter(filename, append);
             BufferedWriter tulis = new BufferedWriter(file);
 
+            // mengecek apakah data yang dimasukan null atau tidak, jika data bernilai null maka akan menuliskan spasi saja
                 if(data == null){
                     data = "";
                     if(append){
@@ -330,7 +242,7 @@ public class Files {
                     }else{
                         tulis.write(data); tulis.flush();
                     }
-                }else{
+                }else{ // jika data tidak bernilai null
                     if(append){
                         tulis.newLine(); tulis.write(data); tulis.flush(); // menambahkan kebaris baru
                     }else{
@@ -339,44 +251,13 @@ public class Files {
                 }
 
         }catch (IOException ex){
-            System.out.println("Terjadi kesalahan " + ex);
+            Apps.showException("File mungkin sudah dihapus", Files.class.getName(), ex.toString());
         }
-    }
-
-    /**
-     *  Digunakan untuk mencopykan data dari satu file ke file lain
-     *  Method ini menggunakan getDateFile() untuk mendapatkan data dari file yang akan dicopy
-     *  Lalu mempaste datanya ke file melalui method writeFile()
-     *
-     * @param file file yang akan dicopy datanya
-     * @param copyTo file yang akan dipaste datanya
-     */
-    public static void copyDataFile(String file, String copyTo){
-        String data = getDataFile(file);
-        writeFile(copyTo, data, false);
-    }
-
-    /**
-     * Digunakan untuk mendapatkan nama dari file
-     * Method akan mengambil kata ditengah" string dengan menggunakan method substring
-     * Yang di mulai dari var i sampai var j
-     *  var i : adalah index terakhir dari char '\',
-     *  var j : adalah index terakthir dari char '.'
-     *
-     *  Example : C:\\user\\YOU\\Downloads\\gambar.jpg maka outpunya adalah "gambar"
-     *
-     * @param filename input direktori file
-     * @return nama dari file
-     */
-    public static String getNamaFile(String filename){
-        int i = filename.lastIndexOf("\\"), j = filename.lastIndexOf(".");
-        return filename.substring(i+1,j);
     }
 
     /**
      * Method ini digunakan untuk menghitung jumlah keseluruhan baris yang ada didalam file
      * Cara kerja method ini dengan membaca keseluruhan data yang ada didalam file
-     * Jika terdapat baris maka nilainya adalah 1, nilainya akan ditampung kesebuah variabel, jika menemukan baris baru lagi maka nilai dari variabel akan bertambah satu, begitu seterusnya sampai kebaris terakhir
      *
      * @see FileReader
      * @see BufferedReader
@@ -398,11 +279,28 @@ public class Files {
                         }
                     line++;
                 }
-
+                
         }catch(IOException ex){
-            System.out.println("Terjadi kesalahan" + ex);
+            Apps.showException("File mungkin sudah dihapus", Files.class.getName(), ex.toString());
         }
-        return -1;
+        return 0;
+    }
+    
+    /**
+     * Digunakan untuk mendapatkan nama dari file
+     * Method akan mengambil kata ditengah" string dengan menggunakan method substring
+     * Yang di mulai dari var i sampai var j
+     *  var i : adalah index terakhir dari char '\',
+     *  var j : adalah index terakthir dari char '.'
+     *
+     *  Example : C:\\user\\YOU\\Downloads\\gambar.jpg maka outpunya adalah "gambar"
+     *
+     * @param filename input direktori file
+     * @return nama dari file
+     */
+    public static String getNamaFile(String filename){
+        int i = filename.lastIndexOf("\\"), j = filename.lastIndexOf(".");
+        return filename.substring(i+1,j);
     }
 
     /**
@@ -448,29 +346,6 @@ public class Files {
     }
 
     /**
-     * Digunakan untuk mengosongkan data dari file
-     * Method ini menggunakan class BufferedWriter untuk mengosongkan file
-     *
-     * @see FileWriter
-     * @see BufferedWriter
-     *
-     * @param filename file yang akan dikosongkan datanya
-     */
-    public static void setEmptyFile(String filename){
-
-        try {
-            FileWriter file = new FileWriter(filename);
-            BufferedWriter b = new BufferedWriter(file);
-            file.close();
-            file = new FileWriter(filename);
-            b = new BufferedWriter(file);
-
-        }catch (IOException ex){
-            System.out.println("Terjadi kesalahan " + ex);
-        }
-    }
-
-    /**
      * Digunakan untuk mendapatkan ukuran/size dari file dalam betuk String
      * Dengan memanfaatkan method length() pada class File untuk mendapatkan size dari file
      * Output dari method length() tersebut akan diproses pada method ini
@@ -478,38 +353,7 @@ public class Files {
      *  - jika sizenya berkisar antara 0 hingga 999 maka hasilnya adalah bytes, contoh output : 40 bytes
      *  - jika sizenya berkisar antara 1000 hingga 9999999 maka hasilnya adalah kilobytes, contoh output: 40 Kb
      *  - jika sizenya lebih besar dari 1000000 maka akan hasilnya megabytes, contoh output: 40 Mb
-     *  Note : jika size gambar adalah gigabytes maka akan dianggap sebagai megabytes
-     *         jika terjadi error maka akan mereturn -1
-     *
-     * @see File
-     *
-     * @param filename file yang akan diketahui sizenya
-     * @return size dari file dalam bentuk string
-     */
-    public static String getSizeFile(String filename){
-        File file = new File(filename);
-
-        double size = file.length();
-        if(size > 0 && size <= 999){
-            return Double.toString((int) size) + " bytes";
-        }else if(size >= 1000 && size <= 999999){
-            return Double.toString((int) size/1024) + " kb";
-        }else if(size >= 1000000){
-            return Double.toString((int)size/(1024*1024)) + " Mb";
-        }
-
-        return "-1";
-    }
-
-    /**
-     * Digunakan untuk mendapatkan ukuran/size dari file dalam betuk Integer
-     * Dengan memanfaatkan method length() pada class File untuk mendapatkan size dari file
-     * Output dari method length() tersebut akan diproses pada method ini
-     * Cara pemrosesanya sebagai berikut:
-     *  - jika sizenya berkisar antara 0 hingga 999 maka hasilnya adalah bytes, contoh output : 40 bytes
-     *  - jika sizenya berkisar antara 1000 hingga 9999999 maka hasilnya adalah kilobytes, contoh output: 40 Kb
-     *  - jika sizenya lebih besar dari 1000000 maka akan hasilnya megabytes, contoh output: 40 Mb
-     *  Note : jika size gambar adalah gigabytes maka akan dianggap sebagai megabytes
+     *  Note : jika size file adalah gigabytes maka akan dianggap sebagai megabytes
      *         jika terjadi error maka akan mereturn -1
      *
      * @see File
@@ -517,20 +361,21 @@ public class Files {
      * @param filename file yang akan diketahui sizenya
      * @return size dari file dalam bentuk integer
      */
-    public static int getSizeFile_Int(String filename){
+    public static String getSizeFile(String filename){
         File file = new File(filename);
 
         double size = file.length();
         if(size > 0 && size <= 999){
-            return (int) size;
+            return Integer.toString((int) size) + " bytes";
         }else if(size >= 1000 && size <= 999999){
-            return (int) size/1024;
+            return Integer.toString((int) size/1024) + " Kb"; 
         }else if(size >= 1000000){
-            return (int)size/(1024*1024);
+            return Integer.toString((int)size/(1024*1024)) + " Mb";
         }
 
-        return -1;
+        return "-1 Gb";
     }
+    
     /**
      * Method ini digunakan untuk menghapus file
      * Method ini menggunakan class File untuk menghapus file
