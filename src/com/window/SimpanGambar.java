@@ -1,15 +1,23 @@
 package com.window;
 
+import com.media.images.Gambar;
+import com.media.images.Screenshot;
+import com.system.*;
+import com.window.helper.*;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.*;
-import javax.swing.*;
-
-import com.system.*;
-import com.window.helper.*;
 import java.awt.Color;
 import java.awt.Frame;
+import javax.swing.*;
 
+/**
+ * 
+ * @author Achmad Baihaqi
+ * @version 1.3
+ * @since Take Screenshot 1.0
+ */
 public class SimpanGambar extends JFrame {
 
     private File screenshot;
@@ -18,8 +26,8 @@ public class SimpanGambar extends JFrame {
 
     
     public SimpanGambar(){
-        this.screenshot = new File(Aktivitas.getAktif());
-        this.gambar = Aktivitas.getAktif();
+        this.screenshot = new File(Screenshot.getLastScreenshot());
+        this.gambar = Screenshot.getLastScreenshot();
         this.widthGbr = Gambar.lebarGambar(this.screenshot);
         this.heightGbr = Gambar.tinggiGambar(this.screenshot);
  
@@ -101,31 +109,31 @@ public class SimpanGambar extends JFrame {
     }   
 
     public void setLanguage(){
-        this.lblTop.setText(Settings.languageSetString(
+        this.lblTop.setText(Settings.getLanguageActived(
                 "Successfully screenshot!!","Screenshot sukses diambil!!","正常にスクリーンショット", "Seijō ni sukurīnshotto", "성공적으로 스크린 샷","seong-gongjeog-eulo seukeulin syas"
         ));
-        this.lblFilename.setText(Settings.languageSetString(
+        this.lblFilename.setText(Settings.getLanguageActived(
                 "Filename","Nama file","ファイル名","Fairu-mei","파일 이름","pail ileum"
         ));
-        this.lblFormat.setText(Settings.languageSetString(
+        this.lblFormat.setText(Settings.getLanguageActived(
                 "Format","Format","フォーマット","Fōmatto","체재","chejae"
         ));
-        this.lblUkuran.setText(Settings.languageSetString(
+        this.lblUkuran.setText(Settings.getLanguageActived(
                 "Size","Ukuran","サイズ","Saizu","크기","keugi"
         ));
-        this.btnSave.setText(Settings.languageSetString(
+        this.btnSave.setText(Settings.getLanguageActived(
                 "Save image","Simpan","セーブ","Sēbu","저장","jeojang"
         ));
-        this.btnRename.setText(Settings.languageSetString(
+        this.btnRename.setText(Settings.getLanguageActived(
                 "Rename","Ubah nama","リネーム","Rinēmu","이름 바꾸기","ileum bakkugi"
         ));
-        this.btnShow.setText(Settings.languageSetString(
+        this.btnShow.setText(Settings.getLanguageActived(
                 "Open","Buka","開いた","Aita","열다","yeolda"
         ));
-        this.btnFolder.setText(Settings.languageSetString(
+        this.btnFolder.setText(Settings.getLanguageActived(
                 "Folder","Folder","フォルダ","Foruda","폴더","poldeo"
         ));
-        this.btnDelete.setText(Settings.languageSetString(
+        this.btnDelete.setText(Settings.getLanguageActived(
                 "Delete","Hapus","削除する","Sakujo suru","지우다","jiuda"
         ));
     }
@@ -387,7 +395,7 @@ public class SimpanGambar extends JFrame {
         lblMinimize.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblMinimize.setForeground(new java.awt.Color(0, 6, 1));
         lblMinimize.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblMinimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-minimize.png"))); // NOI18N
+        lblMinimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-minimize.png"))); // NOI18N
         lblMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblMinimizeMouseClicked(evt);
@@ -440,18 +448,17 @@ public class SimpanGambar extends JFrame {
 
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        Aktivitas.setOpen("open");
-        Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " membuka window SimpanGambar()"); 
+
+        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " membuka window SimpanGambar()"); 
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " keluar dari window SimpanGambar()."); 
+        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " keluar dari window SimpanGambar()."); 
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        Aktivitas.setOpen("close");
-        Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menutup aplikasi."); 
-        Database.backupDatabase();
+
+        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menutup aplikasi."); 
     }//GEN-LAST:event_formWindowClosing
 
     private void pnlTopMousePressed(MouseEvent evt) {//GEN-FIRST:event_pnlTopMousePressed
@@ -490,20 +497,20 @@ public class SimpanGambar extends JFrame {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         this.btnSave.setSelected(true);
         String filenameSebelumnya = txtFilename.getText();
-        if(Files.isExistFile(screenshot.getParent()+"\\"+txtFilename.getText()+Settings.getFormatSelected())){
+        if(Files.isExistFile(screenshot.getParent()+"\\"+txtFilename.getText()+Settings.getSetting(Settings.SETTING_FORMAT))){
             if(txtFilename.getText().equalsIgnoreCase(filenameSebelumnya)){
                 dispose();
                 this.back();
-                Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menyimpan hasil screenshot."); 
-                Aktivitas.addScreenshot(screenshot.getPath()+"|"+Tanggal.getTanggal_Activity());  
+                Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menyimpan hasil screenshot."); 
+                Aktivitas.addScreenshot(screenshot.getPath()+"|"+Waktu.getTanggal_Activity());  
             }else{
                 javax.swing.JOptionPane.showMessageDialog(null, txtFilename.getText() + " sudah ada di direktori "+ screenshot.getParent());
             }
         }else{
             dispose();
             this.back();
-            Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menyimpan hasil screenshot."); 
-            Aktivitas.addScreenshot(screenshot.getPath()+"|"+Tanggal.getTanggal_Activity());  
+            Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menyimpan hasil screenshot."); 
+            Aktivitas.addScreenshot(screenshot.getPath()+"|"+Waktu.getTanggal_Activity());  
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -517,34 +524,32 @@ public class SimpanGambar extends JFrame {
     private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
         
         try{
-            Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menampilakan hasil screenshot."); 
-            File file = new File(Aktivitas.getAktif());
+            Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menampilakan hasil screenshot."); 
+            File file = new File(Screenshot.getLastScreenshot());
             java.awt.Desktop.getDesktop().open(file);
             
         }catch(IOException ex){
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Terjadi kesalahan saat membuka file.\n" + ex);
+            Apps.showException("Terjadi kesalahan saat membuka file", SimpanGambar.class.getName(), ex.toString());
         }
     }//GEN-LAST:event_btnShowActionPerformed
 
     private void btnFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFolderActionPerformed
         
-        File file = new File(Aktivitas.getAktif().substring(0, Aktivitas.getAktif().lastIndexOf("\\")));
-        Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " membuka folder hasil screenshot."); 
+        File file = new File(Screenshot.getLastScreenshot().substring(0, Screenshot.getLastScreenshot().lastIndexOf("\\")));
+        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " membuka folder hasil screenshot."); 
         try{
             java.awt.Desktop.getDesktop().open(file);
         }catch(IOException ex){
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Tidak bisa menampilkan folder\n" + ex);
+            Apps.showException("Terjadi kesalahan saat membuka folder penyimpanan file", SimpanGambar.class.getName(), ex.toString());
         }
         
     }//GEN-LAST:event_btnFolderActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        System.out.println(Aktivitas.getAktif());
-        File hapus = new File(Aktivitas.getAktif());
+        System.out.println(Screenshot.getLastScreenshot());
+        File hapus = new File(Screenshot.getLastScreenshot());
         Files.deleteFile(hapus.toString());
-        Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menghapus hasil screenshot."); 
+        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menghapus hasil screenshot."); 
         dispose();
         this.back();
     }//GEN-LAST:event_btnDeleteActionPerformed
