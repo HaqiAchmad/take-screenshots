@@ -1,5 +1,6 @@
 package com.window.helper;
 
+import com.media.images.Screenshot;
 import com.system.*;
 import com.window.*;
 
@@ -8,13 +9,10 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 
 /**
- * 
- * Type class : Subclass
- * Total method : 18
- * Total line : 333 without java doc
+ * Window ini digunakan untuk mengubah nama pada gambar
  * 
  * @author Infinite World
- * @version 1.0
+ * @version 1.2
  * @since 13 05 2020
  */
 public class Rename extends javax.swing.JFrame {
@@ -24,7 +22,7 @@ public class Rename extends javax.swing.JFrame {
     
     public Rename() {
         initComponents();
-        this.gambar = new File(Aktivitas.getAktif());
+        this.gambar = new File(Screenshot.getLastScreenshot());
         
         this.setIconImage(Apps.getWindowIcon());
         this.setLocationRelativeTo(null);
@@ -53,16 +51,16 @@ public class Rename extends javax.swing.JFrame {
 
     public void setLanguage(){
 
-        this.lblTop.setText(Settings.languageSetString(
+        this.lblTop.setText(Settings.getLanguageActived(
                 "Rename image!","Ubah nama gambar!","画像の名前を変更","Gazō no namae o henkō","이미지 이름 바꾸기","imiji ileum bakkugi"
         ));
-        this.lblNama.setText(Settings.languageSetString(
+        this.lblNama.setText(Settings.getLanguageActived(
                 "New name","Nama baru","新しい名前","Atarashī namae","새로운 이름","saeloun ileum"
         ));
-        this.btnSave.setText(Settings.languageSetString(
+        this.btnSave.setText(Settings.getLanguageActived(
                 "Save","Simpan","セーブ","Sēbu","저장","jeojang"
         ));
-        this.btnBatal.setText(Settings.languageSetString(
+        this.btnBatal.setText(Settings.getLanguageActived(
                 "Cancel","Batal","キャンセル","Kyanseru","취소","chwiso"
         ));
 
@@ -118,7 +116,7 @@ public class Rename extends javax.swing.JFrame {
         lblTop.setText(" Ubah nama gambar!");
 
         lblMinimize.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblMinimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-minimize.png"))); // NOI18N
+        lblMinimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-minimize.png"))); // NOI18N
         lblMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblMinimizeMouseClicked(evt);
@@ -282,22 +280,21 @@ public class Rename extends javax.swing.JFrame {
 
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        Aktivitas.setOpen("open");
-        Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " membuka window Rename()"); 
+        
+        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " membuka window Rename()"); 
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " keluar dari window Rename()"); 
+        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " keluar dari window Rename()"); 
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        Aktivitas.setOpen("close");
-        Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menutup aplikasi"); 
-        Database.backupDatabase();
+        
+        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menutup aplikasi"); 
     }//GEN-LAST:event_formWindowClosing
 
     private void formKeyPressed(KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-       // batal
+       
     }//GEN-LAST:event_formKeyPressed
 
     private void pnlTopMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTopMousePressed
@@ -336,8 +333,8 @@ public class Rename extends javax.swing.JFrame {
     public void aksiBtnSimpan(){
         
         Files.renameFile(gambar.toString(), inpNama.getText());
-        Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " mengubah nama gambar dari ("+ gambar.getName() +") menjadi > " + inpNama.getText()+"."); 
-        Aktivitas.setAktif(this.gambar.getParent() +"\\"+ inpNama.getText() + Settings.getFormatSelected());
+        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " mengubah nama gambar dari ("+ gambar.getName() +") menjadi > " + inpNama.getText()+"."); 
+        Screenshot.setLastScreenshot(this.gambar.getParent() +"\\"+ inpNama.getText() + Settings.getSetting(Settings.SETTING_FORMAT));
         dispose();
         
         java.awt.EventQueue.invokeLater(new Runnable(){
@@ -379,8 +376,8 @@ public class Rename extends javax.swing.JFrame {
     }//GEN-LAST:event_lblMinimizeMouseClicked
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        Files.isExistFile(gambar.getParent()+"\\"+inpNama.getText()+Settings.getFormatSelected()); // biar g error :)
-        if(Files.isExistFile(gambar.getParent()+"\\"+inpNama.getText()+Settings.getFormatSelected())){
+        Files.isExistFile(gambar.getParent()+"\\"+inpNama.getText() + Settings.getSetting(Settings.SETTING_FORMAT)); // biar g error :)
+        if(Files.isExistFile(gambar.getParent()+"\\"+inpNama.getText() + Settings.getSetting(Settings.SETTING_FORMAT))){
             javax.swing.JOptionPane.showMessageDialog(null, inpNama.getText() + " sudah ada di direktori "+ gambar.getParent());
             this.setVisible(true);
         }else{
