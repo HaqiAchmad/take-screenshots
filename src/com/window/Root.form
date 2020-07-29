@@ -113,7 +113,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/media/app-window-root-camera-daymode.png"/>
+              <Image iconType="3" name="/com/media/icons/app-window-root-camera-daymode.png"/>
             </Property>
           </Properties>
         </Component>
@@ -129,7 +129,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/media/app-window-root-btnScreenshot-daymode.png"/>
+              <Image iconType="3" name="/com/media/icons/app-window-root-btnScreenshot-daymode.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Ambil Screenshot"/>
           </Properties>
@@ -203,6 +203,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Copyright@ achmad baihaqi 2020."/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblCopyrightMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="opsAutosave">
           <Properties>
@@ -222,7 +225,7 @@
         <Component class="javax.swing.JLabel" name="btnSetting">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/media/app-window-root-setting-daymode.png"/>
+              <Image iconType="3" name="/com/media/icons/app-window-root-setting-daymode.png"/>
             </Property>
           </Properties>
           <Events>
