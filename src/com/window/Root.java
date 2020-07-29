@@ -1,15 +1,24 @@
 package com.window;
 
+import com.media.images.Screenshot;
+import com.media.sounds.PlaySounds;
 import com.system.*;
-import com.window.*;
 
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.ImageIcon;
 
+/**
+ * Class ini digunakan untuk mengambil screenshot
+ * 
+ * @author Achmad Baihaqi
+ * @version 1.3
+ * @since Take Screenshot 1.0
+ */
 public class Root extends javax.swing.JFrame {
 
     
@@ -23,12 +32,12 @@ public class Root extends javax.swing.JFrame {
      
         
         this.btnScreenshot.setMnemonic(KeyEvent.VK_ENTER);
-        this.txtDirektori.setText(Settings.getPenyimpanan());
+        this.txtDirektori.setText(Settings.getSetting(Settings.SETTING_PEYIMPANAN));
         this.txtDirektori.setEditable(false);
         this.btnScreenshot.setUI(new javax.swing.plaf.basic.BasicButtonUI());
         this.btnSaveTo.setUI(new javax.swing.plaf.basic.BasicButtonUI());
-        this.lblTotalSS.setText(Integer.toString(Aktivitas.getTotalSS()) + " screenshot diambil.");
-        this.lblCopyright.setText("Copyright@ " + Apps.getAuthor()+" "+Apps.getReleased()+".");
+        this.lblTotalSS.setText(Apps.getTotalScreenshot() + " screenshot diambil.");
+        this.lblCopyright.setText("Copyright © " + Apps.getReleased()+" "+Apps.getAuthor()+".");
         if(Settings.isAutoSave()){
             this.opsAutosave.setSelected(true);
         }else{
@@ -57,26 +66,26 @@ public class Root extends javax.swing.JFrame {
         this.lblTotalSS.setForeground(Settings.getThemeColors(new Color(16,15,15), new Color(248,248,248)));
         
         
-        this.lblCamera.setIcon(Settings.getThemeIcons(new ImageIcon(getClass().getResource("/com/media/app-window-root-camera-daymode.png")), 
-                                                      new ImageIcon(getClass().getResource("/com/media/app-window-root-camera-darkmode.png"))));
-        this.btnScreenshot.setIcon(Settings.getThemeIcons(new ImageIcon(getClass().getResource("/com/media/app-window-root-btnScreenshot-daymode.png")), 
-                                                         new ImageIcon(getClass().getResource("/com/media/app-window-root-btnScreenshot-darkmode.png"))));
-        this.btnSetting.setIcon(Settings.getThemeIcons(new ImageIcon(getClass().getResource("/com/media/app-window-root-setting-daymode.png")), 
-                                                      new ImageIcon(getClass().getResource("/com/media/app-window-root-setting-darkmode.png"))));
+        this.lblCamera.setIcon(Settings.getThemeIcons(new ImageIcon(getClass().getResource("/com/media/icons/app-window-root-camera-daymode.png")), 
+                                                      new ImageIcon(getClass().getResource("/com/media/icons/app-window-root-camera-darkmode.png"))));
+        this.btnScreenshot.setIcon(Settings.getThemeIcons(new ImageIcon(getClass().getResource("/com/media/icons/app-window-root-btnScreenshot-daymode.png")), 
+                                                         new ImageIcon(getClass().getResource("/com/media/icons/app-window-root-btnScreenshot-darkmode.png"))));
+        this.btnSetting.setIcon(Settings.getThemeIcons(new ImageIcon(getClass().getResource("/com/media/icons/app-window-root-setting-daymode.png")), 
+                                                      new ImageIcon(getClass().getResource("/com/media/icons/app-window-root-setting-darkmode.png"))));
         
     }
 
     public void setLanguage(){
-        this.btnScreenshot.setText(Settings.languageSetString(
+        this.btnScreenshot.setText(Settings.getLanguageActived(
                 "Take Screenshot","Ambil Screenshot","スクリーンショット","Sukurīnshotto","스크린 샷","seukeulin syas"
         ));
-        this.opsAutosave.setText(Settings.languageSetString(
+        this.opsAutosave.setText(Settings.getLanguageActived(
                 "autosave","autosave","自動保存","Jidō hozon","자동 저장","jadongjeog"
         ));
-        this.lblSimpan.setText(Settings.languageSetString(
+        this.lblSimpan.setText(Settings.getLanguageActived(
                 "Save to :","Simpan ke :","に保存","Ni hozon","에 저장","e jeojang"
         ));
-        this.lblTotalSS.setText(Aktivitas.getTotalSS()+" "+ Settings.languageSetString(
+        this.lblTotalSS.setText(Apps.getTotalScreenshot()+" "+ Settings.getLanguageActived(
                 "screenshot taken...","screenshot diambil...","取りました...","Torimashita...","촬영...","chwal-yeong..."
         ));
     }
@@ -123,12 +132,12 @@ public class Root extends javax.swing.JFrame {
         });
 
         lblCamera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCamera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-window-root-camera-daymode.png"))); // NOI18N
+        lblCamera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-window-root-camera-daymode.png"))); // NOI18N
 
         btnScreenshot.setBackground(new java.awt.Color(40, 87, 186));
         btnScreenshot.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         btnScreenshot.setForeground(new java.awt.Color(255, 255, 255));
-        btnScreenshot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-window-root-btnScreenshot-daymode.png"))); // NOI18N
+        btnScreenshot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-window-root-btnScreenshot-daymode.png"))); // NOI18N
         btnScreenshot.setText("Ambil Screenshot");
         btnScreenshot.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -171,6 +180,11 @@ public class Root extends javax.swing.JFrame {
         lblCopyright.setBackground(new java.awt.Color(0, 1, 30));
         lblCopyright.setForeground(new java.awt.Color(89, 89, 89));
         lblCopyright.setText("Copyright@ achmad baihaqi 2020.");
+        lblCopyright.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCopyrightMouseClicked(evt);
+            }
+        });
 
         opsAutosave.setBackground(new java.awt.Color(234, 238, 241));
         opsAutosave.setForeground(new java.awt.Color(13, 13, 13));
@@ -186,7 +200,7 @@ public class Root extends javax.swing.JFrame {
             }
         });
 
-        btnSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/app-window-root-setting-daymode.png"))); // NOI18N
+        btnSetting.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-window-root-setting-daymode.png"))); // NOI18N
         btnSetting.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSettingMouseClicked(evt);
@@ -258,20 +272,18 @@ public class Root extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
-        Aktivitas.setOpen("open");
-        Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " membuka window Root().");
+        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " membuka window Root().");
         
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " keluar dari window Root().");
+        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " keluar dari window Root().");
     
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        Aktivitas.setOpen("close");
-        Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " menutup aplikasi." );
-        Database.backupDatabase();
+
+        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " menutup aplikasi." );
     }//GEN-LAST:event_formWindowClosing
 
     private void formKeyPressed(KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
@@ -291,12 +303,11 @@ public class Root extends javax.swing.JFrame {
         this.btnScreenshot.setForeground(Settings.getThemeColors(new Color(176,176,178), new Color(34,31,31)));
         try{
             Thread.sleep(200);
-            this.lblCamera.setIcon(Settings.getThemeIcons(new ImageIcon(getClass().getResource("/com/media/app-window-root-camera-daymode-entered.png")), 
-                                                      new ImageIcon(getClass().getResource("/com/media/app-window-root-camera-darkmode-entered.png"))));
+            this.lblCamera.setIcon(Settings.getThemeIcons(new ImageIcon(getClass().getResource("/com/media/icons/app-window-root-camera-daymode-entered.png")), 
+                                                          new ImageIcon(getClass().getResource("/com/media/icons/app-window-root-camera-darkmode-entered.png"))));
 
         }catch(InterruptedException iex){
-            iex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Terjadi kesalahan!\n"+iex);
+            Apps.showException("Terjadi kesalahan yang tidak diketahui", Root.class.getName(), iex.toString());
 
         }
     }//GEN-LAST:event_btnScreenshotMouseEntered
@@ -308,86 +319,87 @@ public class Root extends javax.swing.JFrame {
         
             try{
             Thread.sleep(200);
-            this.lblCamera.setIcon(Settings.getThemeIcons(new ImageIcon(getClass().getResource("/com/media/app-window-root-camera-daymode.png")), 
-                                                      new ImageIcon(getClass().getResource("/com/media/app-window-root-camera-darkmode.png"))));
+            this.lblCamera.setIcon(Settings.getThemeIcons(new ImageIcon(getClass().getResource("/com/media/icons/app-window-root-camera-daymode.png")), 
+                                                      new ImageIcon(getClass().getResource("/com/media/icons/app-window-root-camera-darkmode.png"))));
 
         }catch(InterruptedException iex){
-            iex.printStackTrace();
+            Apps.showException("Terjadi kesalahan yang tidak diketahui", Root.class.getName(), iex.toString());
             JOptionPane.showMessageDialog(null, "Terjadi kesalahan!\n"+iex);
 
         }
     }//GEN-LAST:event_btnScreenshotMouseExited
 
-    private void aksiBtnScreenshot(){
-        
-        int totalSS = Aktivitas.getTotalSS();
-        String date = Tanggal.getTanggal_Screenshot();
-        String filename = "Screenshot (" + Integer.toString(totalSS) +") " + date +" [haqi]";// example : Screenshot (1) 2020-01-12 13.36.10 [haqi].png
-        
+
+    private void btnScreenshotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScreenshotActionPerformed
+
+        int totalSS = Integer.parseInt(Apps.getTotalScreenshot()); // untuk mendapatkan total screenshot sebelumnya
+        String date = Waktu.getTanggal_Screenshot(); // mendapatkan waktu saat ini untuk penamaan hasil screenshot
+        String filename = "Screenshot (" + Integer.toString(totalSS) +") " + date;// example : Screenshot (1) 2020-01-12 13.36.10
+
         try{
-            
-            this.lblTotalSS.setText(Aktivitas.getTotalSS() + " screenshot diambil."); // mengupdate text di label lblTotalSs
-            this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+            Screenshot.playSoundEffect();
             this.setVisible(false);
-            Thread.sleep(300);                 
-            Gambar.ambilGambarLayar(filename, Gambar.FORMAT_PNG); // mengscreenshot layar
-            Aktivitas.setAktif(Settings.getPenyimpanan()+filename+Settings.getFormatSelected());
-            Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " melakukan screenshot."); // menambahkan ke aktivitas bahwa user melakukan screenshot
-            Aktivitas.setTotalSS(totalSS+=1); // mengupdate total screenshot
-            Thread.sleep(100);
-            this.dispose();
+            this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+            Thread.sleep(290);  // agar window root visible terlebih dahulu sebelum mengambil screenshot               
+            Apps.setTotalScreenshot(totalSS+=1); // mengupdate total screenshot
+            Screenshot.ambilScreenshot(filename); // mengambil screenshot layar
+            Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " melakukan screenshot."); // menambahkan ke aktivitas bahwa user melakukan screenshot
 
-
-        java.awt.EventQueue.invokeLater(new Runnable(){
+            
+            java.awt.EventQueue.invokeLater(new Runnable(){
         
             @Override 
             public void run(){
-                
-                if(opsAutosave.isSelected()){
-                    Settings.setAutoSave(Settings.AUTOSAVE_ACTIVATED);
-                    setVisible(true);
-                }else{
-                    Settings.setAutoSave(Settings.AUTOSAVE_DEACTIVATED);
-                    SimpanGambar simpanGambar = new SimpanGambar();
-                    simpanGambar.setLocation(getX(), getY());
-                    simpanGambar.setVisible(true);
+
+                try{
+                    if(opsAutosave.isSelected()){
+                        Settings.setSettings(Settings.SETTING_AUTOSAVE, "actived");
+                        setVisible(true);
+                    }else{
+
+                        Settings.setSettings(Settings.SETTING_AUTOSAVE, "deactived");
+                        SimpanGambar simpanGambar = new SimpanGambar();
+                        simpanGambar.setLocation(getX(), getY());
+                        Thread.sleep(200);
+                        simpanGambar.setVisible(true);
+                    }
+                    
+                }catch(IOException | InterruptedException ex){
+                    Apps.showException("Mungkin ada file yang terhapus didatabase", Root.class.getName(), ex.toString());
                 }
-                
             }
         });
             
         }catch(InterruptedException iex){
-            iex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Terjadi kesalahan!\n" + iex);
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, ex);
+            Apps.showException("Terjadi kesalahan yang tidak diketahui", Root.class.getName(), iex.toString());
         }
         
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-    }
-    
-    private void btnScreenshotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScreenshotActionPerformed
-        this.aksiBtnScreenshot();
     }//GEN-LAST:event_btnScreenshotActionPerformed
 
     private void btnSaveToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveToActionPerformed
-        
-        this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
-        javax.swing.JFileChooser jfc = new javax.swing.JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        jfc.setDialogTitle(Settings.languageSetString("Save to","Simpan ke","に保存","Ni hozon","에 저장","e jeojang"));
-        jfc.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
-        jfc.setAcceptAllFileFilterUsed(false);
-        int returnNilai = jfc.showSaveDialog(null);
+        try{
             
-            if(returnNilai == javax.swing.JFileChooser.APPROVE_OPTION){
-                if(jfc.getSelectedFile().isDirectory()){
-                    this.txtDirektori.setText(jfc.getSelectedFile().getPath());
-                    Settings.setPeyimpanan(jfc.getSelectedFile().getPath() + "\\");
-                    Aktivitas.addAktivitas(Tanggal.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " mengubah direktori penyimpanan ke " + jfc.getSelectedFile().getPath());
-                    System.out.println("Screenshots akan disimpan ke -> " + jfc.getSelectedFile().getPath());
+            this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+            javax.swing.JFileChooser jfc = new javax.swing.JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+            jfc.setDialogTitle(Settings.getLanguageActived("Save to","Simpan ke","に保存","Ni hozon","에 저장","e jeojang"));
+            jfc.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
+            jfc.setAcceptAllFileFilterUsed(false);
+            int returnNilai = jfc.showSaveDialog(null);
+
+                if(returnNilai == javax.swing.JFileChooser.APPROVE_OPTION){
+                    if(jfc.getSelectedFile().isDirectory()){
+                        this.txtDirektori.setText(jfc.getSelectedFile().getPath());
+                        Settings.setSettings(Settings.SETTING_PEYIMPANAN, jfc.getSelectedFile().getPath() + "\\");
+                        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " mengubah direktori penyimpanan ke " + jfc.getSelectedFile().getPath());
+                        System.out.println("Screenshots akan disimpan ke -> " + jfc.getSelectedFile().getPath());
+                    }
                 }
-            }
-        this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+            
+        }catch(IOException ex){
+            Apps.showException("Mungkin OS tidak mendukung membuat file di folder ini", Root.class.getName(), ex.toString());
+        }
     }//GEN-LAST:event_btnSaveToActionPerformed
 
 
@@ -414,6 +426,11 @@ public class Root extends javax.swing.JFrame {
 
         });
     }//GEN-LAST:event_btnSettingMouseClicked
+
+    private void lblCopyrightMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCopyrightMouseClicked
+        PlaySounds.play(PlaySounds.SUARA_NOTIF);
+        JOptionPane.showMessageDialog(null, "Copyright © " + Apps.getReleased() + " "+Apps.getAuthor()+". All Rights Reserved.");
+    }//GEN-LAST:event_lblCopyrightMouseClicked
 
 
 
