@@ -1,77 +1,50 @@
 package com.system;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 
 public class Settings {
 
-    /**
-     * File yang digunakan untuk menyimpan setelan ke database
+     /** 
+      * kode yang digunakan untuk mengubah dan mendapatkan setting
      */
-    private static File fileLanguage = new File("database\\language.haqi"),
-                        fileFormat = new File("database\\format.haqi"),
-                        fileTheme = new File("database\\Theme.haqi"),
-                        fileIsAutoSave = new File("database\\IsAutoSave.haqi"),
-                        fileSaveto = new File("database\\saveto.haqi");
+    public static final String SETTING_THEME = "Theme?", SETTING_LANGUAGE = "Language?", SETTING_PEYIMPANAN = "Peyimpanan?",
+                               SETTING_FORMAT = "Format?", SETTING_AUTOSAVE = "Autosave?", SETTING_EFEK_SUARA = "Efek Suara?";
+    
     /**
-     * kode bahasa yang digunakan untuk mengatur bahasa
+     * kode kode yang digunakan untuk mengubah value pada setting
      */
-    public static final int LANGUAGE_ENGLISH = 0, LANGUAGE_INDONESIAN = 1, LANGUAGE_JAPANESE = 2,
-            LANGUAGE_JAPANESE_ROMAJI = 3, LANGUAGE_KOREAN = 4, LANGUAGE_KOREAN_ROMANIZATION = 5;
-    /**
-     * kode yang digunakan untuk mengatur format gambar
-     */
-    public static final int SET_FORMAT_PNG = 6, SET_FORMAT_JPG = 7, SET_FORMAT_BMP = 8;
+    public static final String 
+                                /*
+                                  kode yang digunakan untuk mengatur bahasa aplikasi
+                                */
+                                LANGUAGE_ENGLISH = "ENGLISH", LANGUAGE_INDONESIAN = "INDONESIAN", LANGUAGE_JAPANESE = "JAPANESE",
+                                LANGUAGE_JAPANESE_ROMAJI = "ROMAJI", LANGUAGE_KOREAN = "KOREAN", LANGUAGE_KOREAN_ROMANIZATION = "ROMANIZATION",
+                                /*
+                                 * kode yang digunakan untuk mengatur format gambar
+                                 */
+                                FORMAT_PNG = ".png", FORMAT_JPG = ".jpg", FORMAT_BMP = ".bmp",
+                                /*
+                                 * kode yang digunakan untuk mengatur tema aplikasi
+                                 */
+                                THEME_DAYMODE = "Daymode", THEME_DARKMODE = "Darkmode",
+                                /*
+                                 * kode yang digunakan untuk mengatur gambar disimpan otomatis atau tidak
+                                 */
+                                AUTOSAVE_ACTIVATED = "Actived", AUTOSAVE_DEACTIVATED = "Deactivated",
+                                /*
+                                 kode yang digunakan untuk mengatur efek suara saat screenshot
+                                */
+                                EFEK_SUARA_DEACTIVATED = "Deactivated", EFEK_SUARA_1 = "suara 1.mp3", EFEK_SUARA_2 = "suara 2.mp3", EFEK_SUARA_3 = "suara 3.mp3", EFEK_SUARA_4 = "suara 4.mp3", EFEK_SUARA_5 = "suara 5.mp3"
+                                ;
 
-    /**
-     * kode yang digunakan untuk mengatur tema aplikasi
-     */
-    public static final int THEME_DAYMODE = 9, THEME_DARKMODE = 10;
-
-    /**
-     * kode yang digunakan untuk mengatur gambar disimpan otomatis atau tidak
-     */
-    public static final int AUTOSAVE_ACTIVATED = 11, AUTOSAVE_DEACTIVATED = 12;
-
-    /**
-     * Mendapatkan bahasa yang disetting user dengan membaca file language.haqi pada database
-     * Jika data kosong maka method akan menuliskan english ke file language.haqi dan mereturn english
-     *
-     * @return bahasa yang disetting user
-     */
-    public static String getLanguage(){
-        String data = Files.getDataFile(fileLanguage.toString());
-        if(data == null){
-            setLanguage(LANGUAGE_ENGLISH);
-            return "ENGLISH";
-        }else{
-            return data;
-        }
-    }
-
-    /**
-     * Method ini digunakan untuk menuliskan setelan bahasa yang diatur user
-     * Method ini menuliskan setelan bahasa melalui bantuan code bahasa ,
-     * Jika code yang dimasukan ENGLISH maka method akan menuliskan kata english ke file
-     * Jika code yang dimasukan INDONESIAN maka method akan menuliskan kata indonesian ke file dan seterusnya
-     * Jika code yang dimasukan tidak tersedia maka secara default method akan menulikan english
-     *
-     * @param code input code bahasa
-     */
-    public static void setLanguage(int code){
-
-        switch (code){
-            case LANGUAGE_ENGLISH: Files.writeFile(fileLanguage.toString(),"ENGLISH", false); break;
-            case LANGUAGE_INDONESIAN: Files.writeFile(fileLanguage.toString(), "INDONESIAN", false); break;
-            case LANGUAGE_JAPANESE: Files.writeFile(fileLanguage.toString(), "JAPANESE", false); break;
-            case LANGUAGE_JAPANESE_ROMAJI: Files.writeFile(fileLanguage.toString(), "ROMAJI", false); break;
-            case LANGUAGE_KOREAN: Files.writeFile(fileLanguage.toString(), "KOREAN", false); break;
-            case LANGUAGE_KOREAN_ROMANIZATION: Files.writeFile(fileLanguage.toString(), "ROMANIZATION", false); break;
-            default: Files.writeFile(fileLanguage.toString(), "ENGLISH", false); break;
-        }
-    }
-
+    
     /**
      * Untuk mengecek apakah user memakai setelan bahasa Inggris
      * Jika ya maka akan mereturn true jika tidak mereturn false
@@ -79,7 +52,7 @@ public class Settings {
      * @return apakah user memakai setelan bahasa Inggris atau tidak
      */
     public static boolean isEnglishLanguage(){
-        if(getLanguage().contains("ENGLISH")){
+        if(Settings.getSetting(SETTING_LANGUAGE).contains("ENGLISH")){
             return true;
         }else{
             return false;
@@ -93,7 +66,7 @@ public class Settings {
      * @return apakah user memakai setelan bahasa Indonesian atau tidak
      */
     public static boolean isIndonesianLanguage(){
-        if(getLanguage().contains("INDONESIAN")){
+        if(Settings.getSetting(SETTING_LANGUAGE).contains("INDONESIAN")){
             return true;
         }else{
             return false;
@@ -107,7 +80,7 @@ public class Settings {
      * @return apakah user memakai setelan bahasa Jepangs atau tidak
      */
     public static boolean isJapaneseLanguage(){
-        if(getLanguage().contains("JAPANESE")){
+        if(Settings.getSetting(SETTING_LANGUAGE).contains("JAPANESE")){
             return true;
         }else{
             return false;
@@ -121,7 +94,7 @@ public class Settings {
      * @return apakah user memakai setelan bahasa Jepang (Romaji) atau tidak
      */
     public static boolean isJapaneseRomajiLanguage(){
-        if(getLanguage().contains("ROMAJI")){
+        if(Settings.getSetting(SETTING_LANGUAGE).contains("ROMAJI")){
             return true;
         }else{
             return false;
@@ -135,7 +108,7 @@ public class Settings {
      * @return apakah user memakai setelan bahasa Korea atau tidak
      */
     public static boolean isKoreanLanguage(){
-        if(getLanguage().contains("KOREAN")){
+        if(Settings.getSetting(SETTING_LANGUAGE).contains("KOREAN")){
             return true;
         }else{
             return false;
@@ -149,36 +122,10 @@ public class Settings {
      * @return apakah user memakai setelan bahasa Korea (Romanized) atau tidak
      */
     public static boolean isKoreanRomanizationLanguage(){
-        if(getLanguage().contains("ROMANIZATION")){
+        if(Settings.getSetting(SETTING_LANGUAGE).contains("ROMANIZATION")){
             return true;
         }else{
             return false;
-        }
-    }
-
-    /**
-     * Method ini digunakan untuk medapatkan kata tertentu kedalam bahasa yang disetting user
-     * Jika user menggatur bahasa ke English maka yang direturn adalah param english
-     * Jika user mengatur bahasa ke Indonesian maka yang direturn adalah param indonesian
-     *
-     * @param english text dalam bahasa inggris
-     * @param indonesian text dalam bahasa indonesia
-     * @param japanese text dalam bahasa jepang
-     * @param korean text dalam bahasa korea
-     * @return kata dalam bahasa tertentu
-     */
-    public static String languageSetString(String english, String indonesian, String japanese, String korean){
-
-        if(isEnglishLanguage()){
-            return english;
-        }else if(isIndonesianLanguage()){
-            return indonesian;
-        }else if(isJapaneseLanguage()){
-            return japanese;
-        }else if(isKoreanLanguage()){
-            return korean;
-        }else {
-            return english;
         }
     }
 
@@ -195,7 +142,7 @@ public class Settings {
      * @param romanization text dalam bahasa korean (romanized)
      * @return kata dalam bahasa tertentu
      */
-    public static String languageSetString(String english, String indonesian, String japanese, String romaji, String korean, String romanization){
+    public static String getLanguageActived(String english, String indonesian, String japanese, String romaji, String korean, String romanization){
 
         if(isEnglishLanguage()){
             return english;
@@ -214,124 +161,116 @@ public class Settings {
         }
     }
 
-    public static String getFormatSelected(){
-        String data = Files.getDataFile(fileFormat.toString());
-        if(data == null){
-            return ".png";
-        }else{
-            return data;
-        }
-    }
-
-    public static void setFormatSelected(int code){
-
-        switch (code){
-            case SET_FORMAT_PNG: Files.writeFile(fileFormat.toString(), ".png", false); break;
-            case SET_FORMAT_JPG: Files.writeFile(fileFormat.toString(), ".jpg", false); break;
-            case SET_FORMAT_BMP: Files.writeFile(fileFormat.toString(), ".bmp", false); break;
-            default: Files.writeFile(fileFormat.toString(), ".png", false); break;
-        }
-    }
-
+    /**
+     * Digunakan untuk mengecek apakah user memakai format png atau tidak.
+     * Jika ya maka akan mereturn true jika tidak mereturn false
+     * 
+     * @return user memakai format png atau tidak
+     */
     public static boolean isPngFormat(){
-        if(getFormatSelected().contains(".png")){
+        if(Settings.getSetting(SETTING_FORMAT).contains(".png")){
             return true;
         }else {
             return false;
         }
     }
 
+    /**
+     * Digunakan untuk mengecek apakah user memakai format jpg atau tidak.
+     * Jika ya maka akan mereturn true jika tidak mereturn false
+     * 
+     * @return user memakai format jpg atau tidak
+     */
     public static boolean isJpgFormat(){
-        if(getFormatSelected().contains(".jpg")){
+        if(Settings.getSetting(SETTING_FORMAT).contains(".jpg")){
             return true;
         }else {
             return false;
         }
     }
 
+    /**
+     * Digunakan untuk mengecek apakah user memakai format bmp atau tidak.
+     * Jika ya maka akan mereturn true jika tidak mereturn false
+     * 
+     * @return user memakai format bmp atau tidak
+     */
     public static boolean isBmpFormat(){
-        if(getFormatSelected().contains(".bmp")){
+        if(Settings.getSetting(SETTING_FORMAT).contains(".bmp")){
             return true;
         }else {
             return false;
-        }
-    }
-
-    public static String getTheme(){
-        String data = Files.getDataFile(fileTheme.toString());
-        if(data == null){
-            return "daymode";
-        }else{
-            return data;
-        }
-    }
-
-    public static void setTheme(int code){
-        
-        switch(code){
-            case THEME_DAYMODE: Files.writeFile(fileTheme.toString(), "daymode", false); break;
-            case THEME_DARKMODE: Files.writeFile(fileTheme.toString(), "darkmode", false); break;
-            default: Files.writeFile(fileTheme.toString(), "daymode", false); break;
         }
     }
     
+    /**
+     * Digunakan untuk mendapat untuk mengatur applikasi ke daymode atau darkmode. 
+     * Method akan mengecek apakah user sedang memakai daymode atau darkmode.
+     * Jika user memakai daymode maka akan mereturn param daymode, 
+     * Jika user memakai darkmode maka akan mereturn param darkmode, 
+     * 
+     * @param daymode input color saat daymode
+     * @param darkmode input color saat darkmode
+     * @return 
+     */
     public static Color getThemeColors(Color daymode, Color darkmode){
         if(isDaymode()){
             return daymode;
         }else if(isDarkmode()){
             return darkmode;
         }else{
-            return daymode;
+            return daymode; // default
         }
     }
-    
+
+    /**
+     * Digunakan untuk mendapat untuk mengatur icon applikasi ke daymode atau darkmode. 
+     * Method akan mengecek apakah user sedang memakai daymode atau darkmode.
+     * Jika user memakai daymode maka akan mereturn param daymode, 
+     * Jika user memakai darkmode maka akan mereturn param darkmode, 
+     * 
+     * @param directoryDaymode input color saat daymode
+     * @param directoryDarkmode input color saat darkmode
+     * @return 
+     */
     public static ImageIcon getThemeIcons(ImageIcon directoryDaymode, ImageIcon directoryDarkmode){
         if(isDaymode()){
             return directoryDaymode;
         }else if(isDarkmode()){
             return directoryDarkmode;
         }else{
-            return directoryDaymode;
+            return directoryDaymode; // default
         }
     }
     
-    public static boolean isDaymode(){
-        if(getTheme().contains("daymode")){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    
-    public static boolean isDarkmode(){
-        if(getTheme().contains("darkmode")){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    
-
     /**
-     * Method akan menuliskan autosave(input) ke file isautosave.haqi
-     * Input yang dituliskan hanya memiliki dua nilai yaitu:
-     *  actived : user mengaktifkan setelan untuk autosave
-     *  deactived : user menonaktifkan setelan untuk autosave
-     *
-     * Note : jika input selain actived atau deactived maka method akan secara default akan menuliskan deactived
-     *
-     * @see FileWriter
-     * @see BufferedWriter
-     * @param code kode untuk pengaturan
+     * Digunakan untuk mengecek apakah user memakai mode daymode atau tidak.
+     * Jika ya maka akan mereturn true jika tidak mereturn false
+     * 
+     * @return user memakai mode daymode atau tidak
      */
-    public static void setAutoSave(int code){
-        switch (code){
-            case AUTOSAVE_ACTIVATED: Files.writeFile(fileIsAutoSave.toString(), "actived", false); break;
-            case AUTOSAVE_DEACTIVATED: Files.writeFile(fileIsAutoSave.toString(), "deactived", false); break;
-            default:Files.writeFile(fileIsAutoSave.toString(), "deactived", false); break;
+    public static boolean isDaymode(){
+        if(Settings.getSetting(SETTING_THEME).contains("Daymode")){
+            return true;
+        }else{
+            return false;
         }
     }
-
+    
+    /**
+     * Digunakan untuk mengecek apakah user memakai mode darkmode atau tidak.
+     * Jika ya maka akan mereturn true jika tidak mereturn false
+     * 
+     * @return user memakai mode darkmode atau tidak
+     */
+    public static boolean isDarkmode(){
+        if(Settings.getSetting(SETTING_THEME).contains("Darkmode")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
     /**
      * Berfungsi untuk mengetaui apakan user mensetting untuk autosave atau tidak
      *
@@ -340,7 +279,7 @@ public class Settings {
      * @return jika ya maka mereturn true, jika tidak maka mereturn false
      */
     public static boolean isAutoSave(){
-        String data = Files.getDataFile(fileIsAutoSave.toString());
+        String data = Settings.getSetting(Settings.SETTING_AUTOSAVE);
 
         if(data == null){
             return false;
@@ -351,38 +290,215 @@ public class Settings {
         }
     }
 
-    /**
-     * Method ini digunakan untuk mendapatkan direktori yang diatur user untuk menyimpan hasil screenshot
-     * Dengan membaca file SaveTo.haqi
-     * Lalu method akan mereturn data yang ada difile SaveTo.haqi
-     * Jika file SaveTo.haqi kosong maka method akan mereturn direktori userhome\\downloads sebagai default Example : "C:\\Users\\YOU\\Downloads\\
-     *
-     * @see FileReader
-     * @see BufferedReader
-     *
-     * @return direktori untuk menyimpan file hasil screenshot
+     /**
+     * Digunakan untuk mengecek apakah user menonaktifkan efek suara atau tidak
+     * Jika ya maka akan mereturn true jika tidak mereturn false
+     * 
+     * @return user menonaktifkan efek suara atau tidak
      */
-    public static String getPenyimpanan() {
-        String storage = Files.getDataFile(fileSaveto.toString());
-        if (storage == null) {
-            return "C:\\Users\\" + Apps.getUsername() + "\\Downloads\\";
-        } else {
-            return storage;
+    public static boolean isEfekSuara_Nonaktif(){
+        if(Settings.getSetting(Settings.SETTING_EFEK_SUARA).contains("Deactivated")){
+            return true;
+        }else{
+            return false;
         }
     }
-
-    /**
-     * Method ini digunakan untuk menyimpan direktori peyimpanan screenshot yang diatur user
-     * Direktori akan disimpan kefile SaveTo.haqi
-     * User dapat menguabah setelan direktori di window com.window.Root.java
-     *
-     * @see FileWriter
-     * @see BufferedWriter
-     *
-     * @param simpanKe input direktori yang diatur user
+    
+     /**
+     * Digunakan untuk mengecek apakah user memakai efek suara 1 atau tidak
+     * Jika ya maka akan mereturn true jika tidak mereturn false
+     * 
+     * @return user memakai efek suara 1 atau tidak
      */
-    public static void setPeyimpanan(String simpanKe) {
-        Files.writeFile(fileSaveto.toString(), simpanKe, false);
+    public static boolean isEfekSuara_1(){
+        if(Settings.getSetting(Settings.SETTING_EFEK_SUARA).contains("suara 1.mp3")){
+            return true;
+        }else{
+            return false;
+        }
     }
     
+     /**
+     * Digunakan untuk mengecek apakah user memakai efek suara 2 atau tidak
+     * Jika ya maka akan mereturn true jika tidak mereturn false
+     * 
+     * @return user memakai efek suara 2 atau tidak
+     */
+    public static boolean isEfekSuara_2(){
+        if(Settings.getSetting(Settings.SETTING_EFEK_SUARA).contains("suara 2.mp3")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+     /**
+     * Digunakan untuk mengecek apakah user memakai efek suara 3 atau tidak
+     * Jika ya maka akan mereturn true jika tidak mereturn false
+     * 
+     * @return user memakai efek suara 3 atau tidak
+     */
+    public static boolean isEfekSuara_3(){
+        if(Settings.getSetting(Settings.SETTING_EFEK_SUARA).contains("suara 3.mp3")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+     /**
+     * Digunakan untuk mengecek apakah user memakai efek suara 4 atau tidak
+     * Jika ya maka akan mereturn true jika tidak mereturn false
+     * 
+     * @return user memakai efek suara 4 atau tidak
+     */
+    public static boolean isEfekSuara_4(){
+        if(Settings.getSetting(Settings.SETTING_EFEK_SUARA).contains("suara 4.mp3")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+     /**
+     * Digunakan untuk mengecek apakah user memakai efek suara 5 atau tidak
+     * Jika ya maka akan mereturn true jika tidak mereturn false
+     * 
+     * @return user memakai efek suara 5 atau tidak
+     */
+    public static boolean isEfekSuara_5(){
+        if(Settings.getSetting(Settings.SETTING_EFEK_SUARA).contains("suara 5.mp3")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    /**
+     * Method ini digunakan untuk mengubah setting yang diatur oleh user
+     * 
+     * 
+     * @param setting setting yang akan diubah valuenya
+     * @param value value dari setting
+     * @throws IOException 
+     */
+    public static void setSettings(final String setting, final String value) throws IOException{
+        
+        String buffer;
+        // mendapatkan data setting sebelumnya
+        File fileSetting = new File("src\\com\\database\\settings.haqi");
+        FileReader fSetting = new FileReader(fileSetting);
+        BufferedReader dataSetting = new BufferedReader(fSetting);
+        buffer = dataSetting.readLine();
+        
+        // digunakan untuk menampung sementara data setting saat diupdate
+        File fileTemp = new File("src\\com\\database\\temp\\temp.haqi");
+        FileWriter fTemp = new FileWriter(fileTemp);
+        BufferedWriter dataTemp = new BufferedWriter(fTemp);
+
+            // membaca data setting sebelumnya
+            while(buffer != null){
+                    if(buffer.contains(setting)){ // mengupdate value pada setting
+                        dataTemp.write(setting+value);
+                        dataTemp.newLine();
+                        dataTemp.flush();
+                        Aktivitas.addAktivitas(Waktu.getTanggal_Activity()+"\t-> " + Apps.getUsername() + " Mengubah setelan " + setting + " ke " + value);
+                    }else{
+                        dataTemp.write(buffer);
+                        dataTemp.newLine();
+                        dataTemp.flush();
+                        
+                    }
+
+                buffer = dataSetting.readLine();
+                
+            }
+        
+        
+        fSetting.close();
+        fTemp.close();
+        dataSetting.close();
+        dataTemp.close();
+        
+        // mendapatkan data setting yang diupdate oleh user, yang sebelumnya disimpan di file temp.haqi
+        fSetting = new FileReader(fileTemp);
+        dataSetting = new BufferedReader(fSetting);
+        // menuliskan data setting yang diupdate user ke file setting.haqi
+        fTemp = new FileWriter(fileSetting);
+        dataTemp = new BufferedWriter(fTemp);
+        
+            buffer = dataSetting.readLine();
+            while(buffer != null){
+                dataTemp.write(buffer);
+                dataTemp.newLine();
+                dataTemp.flush();
+                buffer = dataSetting.readLine();
+            }
+            
+        fSetting.close();
+        fTemp.close();
+        dataSetting.close();
+        dataTemp.close();
+        Files.deleteFile(fileTemp.toString()); // menghapus file temp.haqi
+        
+    }
+    
+    /**
+     * Method ini digunakan untuk mendapatkan setting/pengaturan yang dipakai user
+     * Selanjutnya method akan mereturn value dari setting yang diinputkan 
+     * 
+     * Contoh setting & value = Language?INDONESIAN| "kata sebelum tanda ? adalah  'setting' sedangkan kata sesudah : adalah 'value'"
+     * 
+     * 
+     * @param setting input untuk mengetahui informasi dari aplikasi 
+     * @return info tentang aplikasi sesuai dengan input key
+     */
+    public static String getSetting(final String setting){
+        try{
+            FileReader file = new FileReader("src\\com\\database\\settings.haqi");
+            BufferedReader data = new BufferedReader(file);
+            String buffer = data.readLine();
+            
+            // jika buffer nilainya adalah null, berarti data pada file settings.haqi telah diubah dengan paksa 
+            if(buffer == null){
+                Settings.resetSetting();
+                Apps.showNotification("Database corrupt!", Settings.class.getName(), "Database mungkin telah diedit dengan paksa.");
+            }
+               // membaca file settings.haqi
+                while(buffer != null){
+                        if(buffer.contains(setting)){ // jika setting ditemukan 
+                            return buffer.substring(buffer.indexOf("?")+1); // mereturn value dari setting
+                        }
+                    buffer = data.readLine();
+                }
+            
+        }catch(IOException ex){
+            Apps.showException("File settings.haqi mungkin tidak ada didalam database!!", Settings.class.getName(), ex.toString());
+        }
+        return "default"; // jika setting tidak ditemukan maka method akan mereturn default
+    }
+    
+    /**
+     * Digunakan untuk mereset data dari setting jika file settings.haqi terhapus
+     * 
+     * @throws IOException 
+     */
+    public static void resetSetting() throws IOException{
+        
+        FileWriter file = new FileWriter("src\\com\\database\\settings.haqi");
+        BufferedWriter setting = new BufferedWriter(file);
+        
+        // mereset setting
+        setting.write(Settings.SETTING_LANGUAGE + "INDONESIAN"); setting.newLine();
+        setting.write(Settings.SETTING_THEME + "Daymode");  setting.newLine();
+        setting.write(Settings.SETTING_FORMAT + ".png"); setting.newLine();
+        setting.write(Settings.SETTING_PEYIMPANAN + "C:\\Users\\" + Apps.getUsername() + "\\Desktop\\"); setting.newLine();
+        setting.write(Settings.SETTING_EFEK_SUARA + "suara 1.mp3"); setting.newLine();
+        setting.write(Settings.SETTING_AUTOSAVE + "deactivated"); setting.newLine();
+        setting.flush();
+        
+    }
+    
+
 }
+
