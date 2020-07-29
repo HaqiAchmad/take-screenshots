@@ -1,115 +1,34 @@
 package com.system;
 
-import java.io.*;
-import javax.swing.JOptionPane;
-
+import java.io.File;
 
 /**
- * Class ini digunakan untuk merekam aktivitas yang dilakukan user, menuliskan informasi ke system, mendapatkan informasi system
- * Contoh aktivitas seperti : saat user menekan tombol screenshot maka class ini akan menuliskan ke system bahwa user melakukan screenshot,
- *                            saat user menekan tombol autosave maka class ini akan menuliskan ke system bahwa user mengatur screenshot akan tersimpan secara otomatis
- * 
- * Class ini sebagian besar hanya berisi getter dan setter saja
- * System yang dimaksud adalah semua file yang terdapat di dalam package com.database
- * 
- * 
- * Type class : Superclass
- * Total method : 16
- * Total line : 274
+ * Class ini digunakan untuk  merekam aktivitas yang dilakukan user, dan menuliskan datanya ke database
+ * Contoh aktivitas seperti : user melakukan screenshot, user mengubah setelan applikasi, user membuka sebuah window, dll
+ *  
  * 
  * @author Achmad Baihaqi
- * @version 1.3
+ * @version 1.5
  * @since 15-05-2020
  */
 public class Aktivitas {
 
     /**
-     * File yang berada didalam database
+     * File yang digunakan untuk menyimpan aktivitas user
      */
-     private static File fileAbout = new File("database\\about.haqi"),
-                         fileAktivitas = new File("database\\aktivitas.haqi"),
-                         fileDate = new File("database\\date.haqi"),
-                         fileIsActive = new File ("database\\isActive.haqi"),
-                         fileIsAutoSave = new File("database\\isAutoSave.haqi"),
-                         fileIsOpen = new File("database\\isOpen.haqi"),
-                         fileLanguage = new File("database\\language.haqi"),
-                         fileSaveTo = new File("database\\SaveTo.haqi"),
-                         fileScreenshots = new File("database\\screenshots.haqi"),
-                         fileTheme = new File("database\\theme.haqi"),
-                         fileTotalSS = new File("database\\TotalSS.haqi");
-
-
-
-
+     private static final File fileAktivitas = new File("src\\com\\database\\aktivitas.haqi"),
+                               fileScreenshots = new File("src\\com\\database\\screenshots.haqi");
+     
     /**
      * 
-     * Bertugas untuk menuliskan semua aktivitas yang dilakukan user ke system tepatnya ke file aktivitas.haqi
-     * Method ini akan menulikan aktivitas user ke file tersebut pada baris baru 
+     * Bertugas untuk menuliskan semua aktivitas yang dilakukan user ke database tepatnya ke file aktivitas.haqi
+     * Method ini akan menulikan aktivitas user ke file tersebut pada baris baru
      * 
      * 
-     * @see FileWriter
-     * @see BufferedWriter
-     * @param aktivitas digunakan sebagai input, input disini adalah aktivitas yang dilakukan user
+     * @param aktivitas aktivitas yang dilakukan user
      */
     public static void addAktivitas(String aktivitas){
         Files.writeFile(fileAktivitas.toString(), aktivitas, true);
-    }
-    
-    /**
-     * Berfungsi untuk menampilakan semua aktivitas yang dilakukan user ke konsol/screen
-     * Dengan membaca file aktivitas.haqi
-     * 
-     * @see FileReader
-     * @see BufferedWriter
-     */
-    private static void showAktivitas(){
-        Files.showFile(fileAktivitas.toString());
-    }
-    
-    /**
-     * Method berfungsi untuk mengetaui total screenshot yang diambil user
-     * Dengan mengambil data dari file TotalSS.haqi melaui class Files
-     * Method ini juga berfungsi untuk penamaan file hasil sceenshot
-     * 
-     * Note : jika file kosong maka akan mereturn 1
-     * 
-     * @see Files
-     *
-     * @return total screenshot yang diambil
-     */
-    public static int getTotalSS(){
-        String totalSS = Files.getDataFile(fileTotalSS.toString());
-        if(totalSS == null){
-            return 0;
-        }else{
-            return Integer.parseInt(totalSS);
-        }
-    }
-
-    /**
-     * Berfungsi untuk mengupdate total screenshot yang diambil. "total sceenshot akan selalu diupdate saat user menekan tombol take scrensot pada com.window.Root() "
-     * Method ini akan mengkonversi totalSS ke string dan menuliskanya ke file TotalSS.haqi
-     * Method ini akan menimpa data total ss sebelumnya
-     * 
-     * @see FileWriter 
-     * @see BufferedWriter
-     * @param totalSS input total jumlah screenthot
-     */
-    public static void setTotalSS(int totalSS){
-
-        Files.writeFile(fileTotalSS.toString(), Integer.toString(totalSS),false);
-    }
-    
-    /**
-     * Menampilkan semua data yang ada didalam file sceeenshots.haqi ke console/layar
-     * Data tersebut berisi direktori dari screenshot yang diambil user
-     * 
-     * @see FileReader 
-     * @see BufferedReader
-     * 
-     */
-    public static void showScreenshots(){
-        Files.showFile(fileScreenshots.toString());
     }
     
     /**
@@ -125,70 +44,21 @@ public class Aktivitas {
     }
     
     /**
-     * Untuk mengatur apakan aplikasi sudah terbuka atau belum
-     * Dengan menuliskan open(input) ke file isopen.haqi dan menimpa data sebelumnya(append = false)
-     * Key(open) hanya memiliki dua nilai yaitu:
-     *  open: berarti aplikasi saat ini sedang dibuka
-     *  close: berarti aplikasi saat ini sedang tidak dibuka
+     * Berfungsi untuk menampilakan semua aktivitas yang dilakukan user ke konsol/screen
      * 
-     * Note : jika nilai dari key bukan open atau close maka method ini akan menuliskan close(sebagai default)
-     * 
-     * @see FileWriter
-     * @see BufferedWriter
-     * @param key hanya dapat bernilai open atau close
      */
-    public static void setOpen(String key){
-        if(key.equalsIgnoreCase("open")){
-            Files.writeFile(fileIsOpen.toString(), key, false);
-        }else{
-            Files.writeFile(fileIsOpen.toString(), key, false);
-        }
-    }
-
-    /**
-     * Method ini digunakan untuk mengetahui apakan aplikasi sudah terbuka atau belum
-     * 
-     * Note : kemungkinan aplikasi akan terjadi error saat dijalankan secara bersamaan
-     * 
-     * @return jika sudah mereturn true, jika belum mereturn false 
-     */
-    public static boolean isOpen_aplikasi(){
-        String data = Files.getDataFile(fileIsOpen.toString());
-        if(data == null){
-            return false;
-        }else if(data.equals("open")){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    
-
-    /**
-     * Untuk menuliskan direktori file yang akan diproes ke file isactive.haqi
-     * Yang dimaksud "file yang akan diproses" adalah Opsi yang ditampilkan setelah screenshot diambil(com.window.SimpanGambar.java)
-     * 
-     * @see FileWriter
-     * @see BufferedWriter
-     * @param aktif direktori file yang akan diproses 
-     */
-    public static void setAktif(String aktif){
-        Files.writeFile(fileIsActive.toString(), aktif, false);
+    private static void showAktivitas(){
+        Files.showFile(fileAktivitas.toString());
     }
     
     /**
-     * Mendapatkan file yang sedang aktif(file yang sedang diproses pada SimpanGambar.java)
-     * Data diambil dari file isactive.haqi
-     * Method ini juga digunakan untuk mendapatkan data-data dari file  yang sedang di proses seperti (nama file, format file, ukuran file, resolusi file, dll)
-     *
+     * Menampilkan semua data yang ada didalam file sceeenshots.haqi ke console/layar
+     * Data tersebut berisi direktori dari screenshot yang diambil user
      * 
-     * @see FileReader 
-     * @see BufferedReader
-     * @return  file yang sedang aktif
      */
-    public static String getAktif(){
-        return Files.getDataFile(fileIsActive.toString());
+    public static void showScreenshots(){
+        Files.showFile(fileScreenshots.toString());
     }
-
-
+    
+    
 }
