@@ -1,5 +1,7 @@
 package com.system;
 
+import com.database.Database;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -9,6 +11,13 @@ import java.io.IOException;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 
+/**
+ * Digunakan untuk mendapatkan dan mengedit sebuah penggaturan aplikasi
+ * 
+ * @author Achmad Baihaqi
+ * @version 1.2
+ * @since 15-05-2020
+ */
 public class Settings {
 
      /** 
@@ -52,11 +61,7 @@ public class Settings {
      * @return apakah user memakai setelan bahasa Inggris atau tidak
      */
     public static boolean isEnglishLanguage(){
-        if(Settings.getSetting(SETTING_LANGUAGE).contains("ENGLISH")){
-            return true;
-        }else{
-            return false;
-        }
+        return Settings.getSetting(SETTING_LANGUAGE).contains("ENGLISH");
     }
 
     /**
@@ -66,11 +71,7 @@ public class Settings {
      * @return apakah user memakai setelan bahasa Indonesian atau tidak
      */
     public static boolean isIndonesianLanguage(){
-        if(Settings.getSetting(SETTING_LANGUAGE).contains("INDONESIAN")){
-            return true;
-        }else{
-            return false;
-        }
+        return Settings.getSetting(SETTING_LANGUAGE).contains("INDONESIAN");
     }
 
     /**
@@ -80,11 +81,7 @@ public class Settings {
      * @return apakah user memakai setelan bahasa Jepangs atau tidak
      */
     public static boolean isJapaneseLanguage(){
-        if(Settings.getSetting(SETTING_LANGUAGE).contains("JAPANESE")){
-            return true;
-        }else{
-            return false;
-        }
+        return Settings.getSetting(SETTING_LANGUAGE).contains("JAPANESE");
     }
 
     /**
@@ -94,11 +91,7 @@ public class Settings {
      * @return apakah user memakai setelan bahasa Jepang (Romaji) atau tidak
      */
     public static boolean isJapaneseRomajiLanguage(){
-        if(Settings.getSetting(SETTING_LANGUAGE).contains("ROMAJI")){
-            return true;
-        }else{
-            return false;
-        }
+        return Settings.getSetting(SETTING_LANGUAGE).contains("ROMAJI");
     }
 
     /**
@@ -108,11 +101,7 @@ public class Settings {
      * @return apakah user memakai setelan bahasa Korea atau tidak
      */
     public static boolean isKoreanLanguage(){
-        if(Settings.getSetting(SETTING_LANGUAGE).contains("KOREAN")){
-            return true;
-        }else{
-            return false;
-        }
+        return Settings.getSetting(SETTING_LANGUAGE).contains("KOREAN");
     }
 
     /**
@@ -122,12 +111,9 @@ public class Settings {
      * @return apakah user memakai setelan bahasa Korea (Romanized) atau tidak
      */
     public static boolean isKoreanRomanizationLanguage(){
-        if(Settings.getSetting(SETTING_LANGUAGE).contains("ROMANIZATION")){
-            return true;
-        }else{
-            return false;
-        }
+        return Settings.getSetting(SETTING_LANGUAGE).contains("ROMANIZATION");
     }
+
 
     /**
      * Method ini digunakan untuk medapatkan kata tertentu kedalam bahasa yang disetting user
@@ -168,11 +154,7 @@ public class Settings {
      * @return user memakai format png atau tidak
      */
     public static boolean isPngFormat(){
-        if(Settings.getSetting(SETTING_FORMAT).contains(".png")){
-            return true;
-        }else {
-            return false;
-        }
+        return Settings.getSetting(SETTING_FORMAT).contains(".png");
     }
 
     /**
@@ -182,11 +164,7 @@ public class Settings {
      * @return user memakai format jpg atau tidak
      */
     public static boolean isJpgFormat(){
-        if(Settings.getSetting(SETTING_FORMAT).contains(".jpg")){
-            return true;
-        }else {
-            return false;
-        }
+        return Settings.getSetting(SETTING_FORMAT).contains(".jpg");
     }
 
     /**
@@ -196,11 +174,7 @@ public class Settings {
      * @return user memakai format bmp atau tidak
      */
     public static boolean isBmpFormat(){
-        if(Settings.getSetting(SETTING_FORMAT).contains(".bmp")){
-            return true;
-        }else {
-            return false;
-        }
+        return Settings.getSetting(SETTING_FORMAT).contains(".bmp");
     }
     
     /**
@@ -250,11 +224,7 @@ public class Settings {
      * @return user memakai mode daymode atau tidak
      */
     public static boolean isDaymode(){
-        if(Settings.getSetting(SETTING_THEME).contains("Daymode")){
-            return true;
-        }else{
-            return false;
-        }
+        return Settings.getSetting(SETTING_THEME).contains("Daymode");
     }
     
     /**
@@ -264,11 +234,7 @@ public class Settings {
      * @return user memakai mode darkmode atau tidak
      */
     public static boolean isDarkmode(){
-        if(Settings.getSetting(SETTING_THEME).contains("Darkmode")){
-            return true;
-        }else{
-            return false;
-        }
+        return Settings.getSetting(SETTING_THEME).contains("Darkmode");
     }
     
     /**
@@ -283,11 +249,7 @@ public class Settings {
 
         if(data == null){
             return false;
-        }else if(data.equalsIgnoreCase("actived")){
-            return true;
-        }else{
-            return false;
-        }
+        }else return data.equalsIgnoreCase("actived");
     }
 
      /**
@@ -297,11 +259,7 @@ public class Settings {
      * @return user menonaktifkan efek suara atau tidak
      */
     public static boolean isEfekSuara_Nonaktif(){
-        if(Settings.getSetting(Settings.SETTING_EFEK_SUARA).contains("Deactivated")){
-            return true;
-        }else{
-            return false;
-        }
+        return Settings.getSetting(Settings.SETTING_EFEK_SUARA).contains("Deactivated");
     }
     
      /**
@@ -311,11 +269,7 @@ public class Settings {
      * @return user memakai efek suara 1 atau tidak
      */
     public static boolean isEfekSuara_1(){
-        if(Settings.getSetting(Settings.SETTING_EFEK_SUARA).contains("suara 1.mp3")){
-            return true;
-        }else{
-            return false;
-        }
+        return Settings.getSetting(Settings.SETTING_EFEK_SUARA).contains("suara 1.mp3");
     }
     
      /**
@@ -325,11 +279,7 @@ public class Settings {
      * @return user memakai efek suara 2 atau tidak
      */
     public static boolean isEfekSuara_2(){
-        if(Settings.getSetting(Settings.SETTING_EFEK_SUARA).contains("suara 2.mp3")){
-            return true;
-        }else{
-            return false;
-        }
+        return Settings.getSetting(Settings.SETTING_EFEK_SUARA).contains("suara 2.mp3");
     }
     
      /**
@@ -339,11 +289,7 @@ public class Settings {
      * @return user memakai efek suara 3 atau tidak
      */
     public static boolean isEfekSuara_3(){
-        if(Settings.getSetting(Settings.SETTING_EFEK_SUARA).contains("suara 3.mp3")){
-            return true;
-        }else{
-            return false;
-        }
+        return Settings.getSetting(Settings.SETTING_EFEK_SUARA).contains("suara 3.mp3");
     }
     
      /**
@@ -353,11 +299,7 @@ public class Settings {
      * @return user memakai efek suara 4 atau tidak
      */
     public static boolean isEfekSuara_4(){
-        if(Settings.getSetting(Settings.SETTING_EFEK_SUARA).contains("suara 4.mp3")){
-            return true;
-        }else{
-            return false;
-        }
+        return Settings.getSetting(Settings.SETTING_EFEK_SUARA).contains("suara 4.mp3");
     }
     
      /**
@@ -367,11 +309,7 @@ public class Settings {
      * @return user memakai efek suara 5 atau tidak
      */
     public static boolean isEfekSuara_5(){
-        if(Settings.getSetting(Settings.SETTING_EFEK_SUARA).contains("suara 5.mp3")){
-            return true;
-        }else{
-            return false;
-        }
+        return Settings.getSetting(Settings.SETTING_EFEK_SUARA).contains("suara 5.mp3");
     }
     
     /**
@@ -386,13 +324,13 @@ public class Settings {
         
         String buffer;
         // mendapatkan data setting sebelumnya
-        File fileSetting = new File("src\\com\\database\\settings.haqi");
+        File fileSetting = new File(Database.getDirectoryDB() + "settings.haqi");
         FileReader fSetting = new FileReader(fileSetting);
         BufferedReader dataSetting = new BufferedReader(fSetting);
         buffer = dataSetting.readLine();
         
         // digunakan untuk menampung sementara data setting saat diupdate
-        File fileTemp = new File("src\\com\\database\\temp\\temp.haqi");
+        File fileTemp = new File(Database.getDirectoryDB() + "temp\\temp.haqi");
         FileWriter fTemp = new FileWriter(fileTemp);
         BufferedWriter dataTemp = new BufferedWriter(fTemp);
 
@@ -455,7 +393,7 @@ public class Settings {
      */
     public static String getSetting(final String setting){
         try{
-            FileReader file = new FileReader("src\\com\\database\\settings.haqi");
+            FileReader file = new FileReader(Database.getDirectoryDB() + "settings.haqi");
             BufferedReader data = new BufferedReader(file);
             String buffer = data.readLine();
             
@@ -485,7 +423,7 @@ public class Settings {
      */
     public static void resetSetting() throws IOException{
         
-        FileWriter file = new FileWriter("src\\com\\database\\settings.haqi");
+        FileWriter file = new FileWriter(Database.getDirectoryDB() + "settings.haqi");
         BufferedWriter setting = new BufferedWriter(file);
         
         // mereset setting
@@ -499,6 +437,4 @@ public class Settings {
         
     }
     
-
 }
-
