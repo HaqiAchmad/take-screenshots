@@ -12,7 +12,7 @@ import java.io.IOException;
  *
  *
  * @author Achmad Baihaqi
- * @version 1.2
+ * @version 1.3
  * @since 10 06 2020
  */
 public class Files {
@@ -41,60 +41,6 @@ public class Files {
         }catch (IOException ex){
             Apps.showException("Terjadi kesalahan saat membuat file \""+ filename +"\"", Files.class.getName(), ex.toString());
         }
-    }
-
-    /**
-     * Method ini digunakan untuk membuat file di dalam directory/folder yang diinputkan user
-     * Sebelum membuat file method akan mengecek apakah file yang akan dibuat exist atau tidak
-     * Jika tidak exist maka file akan dibuat jika exist maka file tidak akan dibuat
-     *
-     * @param directory directory dari file yang akan dibuat
-     * @param filename nama file yang akan dibuat
-     */
-    public static void createFile(String directory, String filename){
-        // akan menambahkan '\' jika pada directory belum terdapat '\'
-        if (directory.lastIndexOf('\\') != directory.length()-1){
-            directory+="\\";
-        }
-
-        try{
-            File file = new File(directory+filename);
-                if(isExistFile(filename)){
-                    System.out.println("File tersebut sudah ada");
-                }else{
-                    if (file.createNewFile()){
-                        System.out.println("File berhasil dibuat");
-                    }else{
-                        System.out.println("Gagal membuat file \""+ filename +"\"");
-                    }
-                }
-        }catch (IOException ex){
-            Apps.showException("Terjadi kesalahan saat membuat file \""+ filename +"\"", Files.class.getName(), ex.toString());
-        }
-
-
-    }
-
-    /**
-     * Method ini digunakan untuk membuat folder
-     * Sebelum membuat folder method akan mengecek apakah folder yang akan dibuat exist atau tidak
-     * Jika tidak exist maka folder akan dibuat jika exist maka folder tidak akan dibuat
-     *
-     * @param folderName nama folder yang akan dibuat
-     */
-    public static void createFolder(String folderName){
-
-        File file = new File(folderName);
-            if(isExistFolder(folderName)){
-                System.out.println("Folder tersebut sudah ada");
-            }else{
-                if(file.mkdir()){
-                    System.out.println("Folder berhasil dibuat");
-                }else{
-                    System.out.println("Gagal membuat folder \""+ folderName +"\"");
-                }
-            }
-
     }
 
     /**
@@ -128,11 +74,7 @@ public class Files {
     public static boolean isExistFile(String directoryFile){
 
         File file = new File(directoryFile);
-            if(file.exists()){
-                return true;
-            }else{
-                return false;
-            }
+        return file.exists();
     }
 
     /**
@@ -145,11 +87,7 @@ public class Files {
     public static boolean isExistFolder(String directory){
 
         File file = new File(directory);
-            if(file.exists()){
-                return true;
-            }else{
-                return false;
-            }
+        return file.exists();
     }
 
     /**
@@ -180,44 +118,6 @@ public class Files {
     }
 
     /**
-     * Method ini digunakan untuk mengambil\mendapatkan semua data yang ada didalam file
-     * Sebelum mengambil\mendapatkan data dari file method akan menghitung jumlah baris dari file
-     * Method akan membaca satu per satu baris yang ada didalam file melalui class BufferedReader
-     * Method akan melakukan perulangan sampai baris terakhir dari file
-     * Note : Jika baris dari file hanya satu maka method akan langsung mereturn data tanpa melakukan perulangan
-     * Jika sudah sampai dibaris terakhir selanjutnya method akan mereturn data ke-user
-     *
-     * @see FileReader
-     * @see BufferedReader
-     *
-     * @param filename file yang akan diambil datanya
-     * @return semua data yang ada didalam file
-     */
-    public static String getDataFile(String filename){
-
-        try{
-            FileReader file = new FileReader(filename);
-            BufferedReader show = new BufferedReader(file);
-            String buffer = show.readLine();
-            int end = countLineFile(filename);
-            //untuk menghindari null pointer jika hanya ada satu baris di dalam file
-            if(end == 1){
-                return buffer;
-            }
-
-                for(int i = 0; i <= end; i++){
-                    buffer+=show.readLine()+"\n";
-                }
-
-                return buffer;
-
-        }catch (IOException ex){
-            Apps.showException("File mungkin sudah dihapus", Files.class.getName(), ex.toString());
-        }
-        return null;
-    }
-
-    /**
      * Method ini digunakan untuk menambahkan data kedalam file
      * Method ini menggunakan class BufferedWriter untuk menambakan data kefile yang diinputkan
      * Jika param append bernilai true maka data akan ditambahkan dibaris baru sebaliknya jika bernilai false maka data akan menimpa data sebelumnya
@@ -236,7 +136,7 @@ public class Files {
 
             // mengecek apakah data yang dimasukan null atau tidak, jika data bernilai null maka akan menuliskan spasi saja
                 if(data == null){
-                    data = "";
+                    data = " ";
                     if(append){
                         tulis.newLine(); tulis.write(data); tulis.flush(); // menambahkan kebaris baru
                     }else{
@@ -253,37 +153,6 @@ public class Files {
         }catch (IOException ex){
             Apps.showException("File mungkin sudah dihapus", Files.class.getName(), ex.toString());
         }
-    }
-
-    /**
-     * Method ini digunakan untuk menghitung jumlah keseluruhan baris yang ada didalam file
-     * Cara kerja method ini dengan membaca keseluruhan data yang ada didalam file
-     *
-     * @see FileReader
-     * @see BufferedReader
-     *
-     * @param directoryFile file yang akan dihitung jumlah barisnya
-     * @return jumlah baris yang ada didalam file
-     */
-    public static int countLineFile(String directoryFile){
-        int line = 1;
-        try{
-            FileReader file = new FileReader(directoryFile);
-            BufferedReader data = new BufferedReader(file);
-            String buffer = data.readLine();
-
-                while (buffer != null){
-                    buffer = data.readLine();
-                        if (buffer == null){
-                            return line;
-                        }
-                    line++;
-                }
-                
-        }catch(IOException ex){
-            Apps.showException("File mungkin sudah dihapus", Files.class.getName(), ex.toString());
-        }
-        return 0;
     }
     
     /**
@@ -394,6 +263,5 @@ public class Files {
                 System.out.println("gagal menghapus file");
             }
     }
-
 
 }
