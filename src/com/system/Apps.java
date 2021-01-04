@@ -1,9 +1,10 @@
 package com.system;
 
+import com.database.Database;
 import com.media.sounds.PlaySounds;
+import java.awt.Desktop;
 
 import java.awt.Image;
-import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileReader;
@@ -14,14 +15,19 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.UnknownHostException;
+import java.util.Date;
 import java.util.Properties;
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
+
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.*;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMultipart;
+import javax.swing.ImageIcon;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
@@ -33,7 +39,7 @@ import javax.swing.JOptionPane;
 * 
 * 
 * @author Achmad Baihaqi
-* @version 1.3
+* @version 1.5
 * @since 13 05 2020
 */
 
@@ -50,17 +56,16 @@ public class Apps {
     private final static Toolkit tk = Toolkit.getDefaultToolkit();
     
     /**
-     * Gmail, password dan recipent yang akan digunakan untuk mengirimkan ratting dari user,
-       Ngehack mandul 7 turunan
-     */
-    private static final String GMAIL       = "null",
-                                RECIPIENT   = "null",
-                                PASSWORD    = "null";
-    
-    /**
      * Digunakan untuk mereset data aplikasi jika file about.haqi diubah
      */
-    private static final String[] defaultData = {"Take Screenshots", "1.5", "Achmad Baihaqi", "2020", "0"};
+    private static final String[] defaultData = {"Take Screenshots", "1.6", "Achmad Baihaqi", "2020", "0"};
+    
+    /**
+     * Gmail, password dan recipent yang akan digunakan untuk mengirimkan ratting dari user
+     */
+    private static final String GMAIL       = "baihaqi.myapps@gmail.com",
+                                RECIPIENT   = "hakiahmad756@gmail.com",
+                                PASSWORD    = "$->myapps.java(2020);";
     
     /**
      * Method ini digunakan untuk mengetahui nama dari device user
@@ -93,7 +98,8 @@ public class Apps {
     /**
      * Digunakan untuk mengecek apakah user tersambung ke inernet atau tidak
      * 
-     * @return user tersambung ke inernet atau tidak
+     * @return Jika user tersambung te Internet maka akan mengembalikan nilai <b>True</b>. 
+     *         Tapi jika user tidak tersambung ke Internet maka akan mengembalikan nilai <b>False</b>
      */
     public static boolean isConnectInternet(){
         Socket s = new Socket();
@@ -111,6 +117,24 @@ public class Apps {
                     Apps.showException("Terjadi kesalahan yang tidak diketahui", Apps.class.getName(), ex.toString());
                 }
             }
+    }
+    
+    /**
+     * digunakan untuk membuka sebuah link
+     * 
+     * @param link 
+     * @throws java.io.IOException 
+     * @throws java.net.URISyntaxException 
+     */
+    public static void openLink(final String link) throws IOException, URISyntaxException {
+        if(Apps.isConnectInternet()){
+            Desktop desktop = Desktop.getDesktop();
+            desktop.browse(new URI(link));
+            JOptionPane.showMessageDialog(null, "Sedang membuka link yang dituju!", "Pesan", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            PlaySounds.play(PlaySounds.SUARA_NOTIF);
+            JOptionPane.showMessageDialog(null, "Tidak terhubung ke internet!!");
+        }
     }
     
     /**
@@ -174,26 +198,24 @@ public class Apps {
         try{
             String buffer;
             // mendapatkan data applikasi
-            File file = new File("src\\com\\database\\about.haqi");
-            FileReader app = new FileReader(file);
-            BufferedReader dataApp = new BufferedReader(app);
-            buffer = dataApp.readLine();
-            
-            // jika file kosong
-            if(buffer == null){
-                Apps.showNotification("Database mungkin corrupt!!", Apps.class.getName(), "Silahkan restart applikasi!");
-                Apps.resetDataApp();
-            }
-            
-            // membaca file about.haqi
+            File file = new File(Database.getDirectoryDB() + "about.haqi");
+            BufferedReader dataApp;
+            try (FileReader app = new FileReader(file)) {
+                dataApp = new BufferedReader(app);
+                buffer = dataApp.readLine();
+                // jika file kosong
+                if(buffer == null){
+                    Apps.showNotification("Database mungkin corrupt!!", Apps.class.getName(), "Silahkan restart applikasi!");
+                    Apps.resetDataApp();
+                }   // membaca file about.haqi
                 while(buffer != null){
-                        if(buffer.contains(key)){ // jika key yang diinputkan ada didalam database maka method akan mereturn value dari key
-                            return buffer.substring(buffer.indexOf(":")+1); // merturn value dari key
-                        }
+                    if(buffer.contains(key)){ // jika key yang diinputkan ada didalam database maka method akan mereturn value dari key
+                        return buffer.substring(buffer.indexOf(":")+1); // merturn value dari key
+                    }
                     buffer = dataApp.readLine();
 
                 }
-            app.close();
+            }
             dataApp.close();
         }catch(IOException ex){
             Apps.showException("Tidak dapat menemukan file yang dituju!!\nSilahkan restart applikasi!", Apps.class.getName(), ex.toString());
@@ -290,7 +312,7 @@ public class Apps {
      */
     public static void setTotalScreenshot(int update){
         try{
-            FileWriter file = new FileWriter("src\\com\\database\\about.haqi");
+            FileWriter file = new FileWriter(Database.getDirectoryDB() + "about.haqi");
             BufferedWriter data = new BufferedWriter(file);
             
             // menuliskan kembali data sebelumnya
@@ -316,7 +338,7 @@ public class Apps {
     public static void resetDataApp(){
         
         try{
-            FileWriter file = new FileWriter("src\\com\\database\\about.haqi");
+            FileWriter file = new FileWriter(Database.getDirectoryDB() + "about.haqi");
             BufferedWriter data = new BufferedWriter(file);
 
             // mereset data kembali 
@@ -340,7 +362,7 @@ public class Apps {
      * 
      * @param pesan pesan yang akan dikirimkan
      */
-    public static void reportUser(final String pesan){
+    private static void reportUser(final String pesan){
         if(Apps.isConnectInternet()){
             new Thread(new Runnable(){
             
@@ -362,9 +384,9 @@ public class Apps {
      * Email dapat berisi ratting dari user atau laporan bahwa user mengedit database
      * 
      * @param subject subject dari email
-     * @param htmlcode isi dari email
+     * @param body isi dari email
      */
-    public static void sendGmail(String subject, String htmlcode){
+    public static void sendGmail(String subject, String body){
             
         System.out.println("Mengirim email ke " + RECIPIENT);
 
@@ -394,17 +416,17 @@ public class Apps {
             message.setFrom(new InternetAddress(GMAIL)); // mengatur pengirim email
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(RECIPIENT)); // mengatur tipe pesan dan penerima email
             message.setSubject(subject); // mengatur subject dari email
-            message.setContent(htmlcode, "text/html"); // mengatur isi dari email
+            message.setContent(body, "text/html"); // mengatur isi dari email
 
             Transport.send(message); // mengirimkan email 
             System.out.println("Email sukses terkirim ke " + RECIPIENT);
 
         }catch (MessagingException ex) {
-            Apps.showException("Fitur dimatikan oleh pemilik!!", Apps.class.getName(), ex.toString());
+            Apps.showException("Ada masalah saat mengirim email", Apps.class.getName(), ex.toString());
         }
 
     }
-    
+
     /**
      * Digunakan untuk menampilkan pesan/notifikasi ke user
      * 
@@ -428,7 +450,5 @@ public class Apps {
         PlaySounds.play(PlaySounds.SUARA_ERROR);
         JOptionPane.showMessageDialog(null, "Terjadi Kesalahan!!\n\nPesan :\n" + message + "\n\nLokasi :\n"+ location +"\n\nException :\n" + exception);
     }
-    
-    
     
 }
