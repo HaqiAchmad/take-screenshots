@@ -1,5 +1,6 @@
 package com.system;
 
+import com.database.Database;
 import java.io.File;
 
 /**
@@ -8,7 +9,7 @@ import java.io.File;
  *  
  * 
  * @author Achmad Baihaqi
- * @version 1.5
+ * @version 1.6
  * @since 15-05-2020
  */
 public class Aktivitas {
@@ -16,8 +17,8 @@ public class Aktivitas {
     /**
      * File yang digunakan untuk menyimpan aktivitas user
      */
-     private static final File fileAktivitas = new File("src\\com\\database\\aktivitas.haqi"),
-                               fileScreenshots = new File("src\\com\\database\\screenshots.haqi");
+     private static final File fileAktivitas = new File(Database.getDirectoryDB() + "aktivitas.haqi"),
+                               fileScreenshots = new File(Database.getDirectoryDB() + "screenshots.haqi");
      
     /**
      * 
@@ -34,9 +35,7 @@ public class Aktivitas {
     /**
      * Menuliskan direktori screenshot ke file screenshots.haqi
      * Direktori akan dituliskan pada baris baru (append)
-     * 
-     * @see FileWriter
-     * @see BufferedWriter
+     *
      * @param screenshot input direktori screenshot yang diambil user
      */
     public static void addScreenshot(String screenshot){
@@ -59,6 +58,5 @@ public class Aktivitas {
     public static void showScreenshots(){
         Files.showFile(fileScreenshots.toString());
     }
-    
     
 }
