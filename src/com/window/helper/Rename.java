@@ -1,10 +1,15 @@
 package com.window.helper;
 
 import com.media.images.Screenshot;
-import com.system.*;
-import com.window.*;
+import com.system.Aktivitas;
+import com.system.Apps;
+import com.system.Files;
+import com.system.Settings;
+import com.system.Waktu;
+import com.window.SimpanGambar;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
@@ -12,12 +17,12 @@ import java.io.File;
  * Window ini digunakan untuk mengubah nama pada gambar
  * 
  * @author Infinite World
- * @version 1.2
+ * @version 1.4
  * @since 13 05 2020
  */
 public class Rename extends javax.swing.JFrame {
 
-    private File gambar;
+    private final File gambar;
     private int xx, yy;
     
     public Rename() {
@@ -33,7 +38,7 @@ public class Rename extends javax.swing.JFrame {
         this.setLanguage();
     }
 
-    public void setThemes(){
+    private void setThemes(){
         this.pnlTop.setBackground(Settings.getThemeColors(new Color(203,206,208), new Color(57, 60, 64)));
         this.pnlBottom.setBackground(Settings.getThemeColors(new Color(203,206,208), new Color(57, 60, 64)));
         this.pnlMain.setBackground(Settings.getThemeColors(new Color(239,240,240), new Color(35, 35, 37)));
@@ -49,19 +54,19 @@ public class Rename extends javax.swing.JFrame {
         this.lblNama.setForeground(Settings.getThemeColors(new Color(16,0,11), new Color(237,237,237)));
     }
 
-    public void setLanguage(){
+    private void setLanguage(){
 
         this.lblTop.setText(Settings.getLanguageActived(
-                "Rename image!","Ubah nama gambar!","画像の名前を変更","Gazō no namae o henkō","이미지 이름 바꾸기","imiji ileum bakkugi"
+                "Rename image!","Ubah nama gambar!" , "画像の名前を変更","Gazō no namae o henkō","이미지 이름 바꾸기","imiji ileum bakkugi"
         ));
         this.lblNama.setText(Settings.getLanguageActived(
-                "New name","Nama baru","新しい名前","Atarashī namae","새로운 이름","saeloun ileum"
+                "New name","Nama baru" , "新しい名前","Atarashī namae","새로운 이름","saeloun ileum"
         ));
         this.btnSave.setText(Settings.getLanguageActived(
-                "Save","Simpan","セーブ","Sēbu","저장","jeojang"
+                "Save","Simpan",  "セーブ","Sēbu","저장","jeojang"
         ));
         this.btnBatal.setText(Settings.getLanguageActived(
-                "Cancel","Batal","キャンセル","Kyanseru","취소","chwiso"
+                "Cancel","Batal",  "キャンセル","Kyanseru","취소","chwiso"
         ));
 
     }
@@ -71,15 +76,15 @@ public class Rename extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlTop = new javax.swing.JPanel();
-        lblTop = new javax.swing.JLabel();
-        lblMinimize = new javax.swing.JLabel();
-        pnlBottom = new javax.swing.JPanel();
-        btnSave = new javax.swing.JButton();
-        btnBatal = new javax.swing.JButton();
         pnlMain = new javax.swing.JPanel();
         lblNama = new javax.swing.JLabel();
         inpNama = new javax.swing.JTextField();
+        pnlBottom = new javax.swing.JPanel();
+        btnSave = new javax.swing.JButton();
+        btnBatal = new javax.swing.JButton();
+        pnlTop = new javax.swing.JPanel();
+        lblTop = new javax.swing.JLabel();
+        lblMinimize = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -100,45 +105,31 @@ public class Rename extends javax.swing.JFrame {
             }
         });
 
-        pnlTop.setBackground(new java.awt.Color(203, 206, 208));
-        pnlTop.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        pnlMain.setBackground(new java.awt.Color(239, 240, 240));
+        pnlMain.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                pnlTopMouseDragged(evt);
+                pnlMainMouseDragged(evt);
             }
         });
-        pnlTop.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlMain.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                pnlTopMousePressed(evt);
+                pnlMainMousePressed(evt);
             }
         });
 
-        lblTop.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        lblTop.setText(" Ubah nama gambar!");
+        lblNama.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblNama.setForeground(new java.awt.Color(16, 0, 11));
+        lblNama.setText("Nama baru ");
 
-        lblMinimize.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblMinimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-minimize.png"))); // NOI18N
-        lblMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblMinimizeMouseClicked(evt);
+        inpNama.setBackground(new java.awt.Color(239, 240, 240));
+        inpNama.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        inpNama.setText("new name");
+        inpNama.setPreferredSize(new java.awt.Dimension(55, 26));
+        inpNama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inpNamaKeyPressed(evt);
             }
         });
-
-        javax.swing.GroupLayout pnlTopLayout = new javax.swing.GroupLayout(pnlTop);
-        pnlTop.setLayout(pnlTopLayout);
-        pnlTopLayout.setHorizontalGroup(
-            pnlTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTopLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblTop, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblMinimize)
-                .addGap(15, 15, 15))
-        );
-        pnlTopLayout.setVerticalGroup(
-            pnlTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblMinimize, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-            .addComponent(lblTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
 
         pnlBottom.setBackground(new java.awt.Color(203, 206, 208));
         pnlBottom.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -209,31 +200,45 @@ public class Rename extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnlMain.setBackground(new java.awt.Color(239, 240, 240));
-        pnlMain.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        pnlTop.setBackground(new java.awt.Color(203, 206, 208));
+        pnlTop.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                pnlMainMouseDragged(evt);
+                pnlTopMouseDragged(evt);
             }
         });
-        pnlMain.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlTop.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                pnlMainMousePressed(evt);
+                pnlTopMousePressed(evt);
             }
         });
 
-        lblNama.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblNama.setForeground(new java.awt.Color(16, 0, 11));
-        lblNama.setText("Nama baru ");
+        lblTop.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        lblTop.setText(" Ubah nama gambar!");
 
-        inpNama.setBackground(new java.awt.Color(239, 240, 240));
-        inpNama.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        inpNama.setText("new name");
-        inpNama.setPreferredSize(new java.awt.Dimension(55, 26));
-        inpNama.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                inpNamaKeyPressed(evt);
+        lblMinimize.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblMinimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-minimize.png"))); // NOI18N
+        lblMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMinimizeMouseClicked(evt);
             }
         });
+
+        javax.swing.GroupLayout pnlTopLayout = new javax.swing.GroupLayout(pnlTop);
+        pnlTop.setLayout(pnlTopLayout);
+        pnlTopLayout.setHorizontalGroup(
+            pnlTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTopLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTop, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblMinimize)
+                .addGap(15, 15, 15))
+        );
+        pnlTopLayout.setVerticalGroup(
+            pnlTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblMinimize, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+            .addComponent(lblTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
         pnlMain.setLayout(pnlMainLayout);
@@ -245,34 +250,30 @@ public class Rename extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(inpNama, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
+            .addComponent(pnlBottom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlMainLayout.setVerticalGroup(
             pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMainLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addComponent(pnlTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNama, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inpNama, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addComponent(pnlBottom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBottom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pnlTop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(108, 108, 108)
-                .addComponent(pnlBottom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(pnlTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(pnlMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(pnlMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -289,7 +290,6 @@ public class Rename extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        
         Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menutup aplikasi"); 
     }//GEN-LAST:event_formWindowClosing
 
@@ -320,14 +320,14 @@ public class Rename extends javax.swing.JFrame {
     }//GEN-LAST:event_pnlMainMouseDragged
 
     private void pnlBottomMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlBottomMousePressed
-        xx = evt.getX();
-        yy = evt.getY();
+//        xx = evt.getX();
+//        yy = evt.getY();
     }//GEN-LAST:event_pnlBottomMousePressed
 
     private void pnlBottomMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlBottomMouseDragged
-        int x = evt.getXOnScreen(),
-            y = evt.getYOnScreen();
-        this.setLocation(x-xx, y-yy);
+//        int x = evt.getXOnScreen(),
+//            y = evt.getYOnScreen();
+//        this.setLocation(x-xx, y-yy);
     }//GEN-LAST:event_pnlBottomMouseDragged
 
     public void aksiBtnSimpan(){
@@ -376,8 +376,8 @@ public class Rename extends javax.swing.JFrame {
     }//GEN-LAST:event_lblMinimizeMouseClicked
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        Files.isExistFile(gambar.getParent()+"\\"+inpNama.getText() + Settings.getSetting(Settings.SETTING_FORMAT)); // biar g error :)
-        if(Files.isExistFile(gambar.getParent()+"\\"+inpNama.getText() + Settings.getSetting(Settings.SETTING_FORMAT))){
+        boolean isExist = Files.isExistFile(gambar.getParent()+"\\"+inpNama.getText() + Settings.getSetting(Settings.SETTING_FORMAT)); // biar g error :)
+        if(isExist){
             javax.swing.JOptionPane.showMessageDialog(null, inpNama.getText() + " sudah ada di direktori "+ gambar.getParent());
             this.setVisible(true);
         }else{
@@ -414,6 +414,7 @@ public class Rename extends javax.swing.JFrame {
 
 
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Rename().setVisible(true);
             }
