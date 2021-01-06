@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
  * 
  * @author Achmad Baihaqi
  * @since 14 July 2020
- * @version 1.0
+ * @version 1.1
  */
 public class Screenshot {
     
@@ -48,7 +48,7 @@ public class Screenshot {
             Rectangle rectangle = new Rectangle(Apps.getLebarScreen(), Apps.getTinggiScreen()); // mengatur lebar dan tinggi screenshot
             BufferedImage capture = new Robot().createScreenCapture(rectangle); // menangkap screenshot layar
             
-                /**
+                /*
                  * Mengecek apakah direktori penyimpanan screenshot yang diatur user exist atau tidak
                  * Jika exist maka screenshot akan secara otaomatis tersimpan
                  * Jika tidak maka screenshot akan disimpan di desktop
@@ -60,9 +60,10 @@ public class Screenshot {
                     Apps.showNotification("Direktori penyimpanan screenshot tidak ditemukan\n"
                                         + "Screenshot akan disimpan di desktop dan format pada gambar diatur ke .png\n"
                                         + "Atau mungkin OS anda tidak mengizinkan membuat file di direktori yang anda atur!", Screenshot.class.getName(), "Silahkan untuk reset pengaturan anda untuk memperbaiki error ini!!");
-                    System.out.println(new File(penyimpanan).exists());
+                    // screenshot akan disimpan ke desktop
                     ImageIO.write(capture, "png", new File("C:\\Users\\" + Apps.getUsername() + "\\Desktop\\"+filename+".png")); // menyimpan screenshot ke desktop
                     Screenshot.setLastScreenshot(createScreenshot);
+                    Settings.setSettings(Settings.SETTING_PEYIMPANAN, "C:\\Users\\" + Apps.getUsername() + "\\Desktop\\");
                 }
 
             
