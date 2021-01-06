@@ -10,6 +10,7 @@ import com.window.helper.Ratting;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.io.IOException;
+
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -19,7 +20,7 @@ import javax.swing.JOptionPane;
  * Digunakan untuk mengubah setting pada aplikasi
  * 
  * @author Achmad Baihaqi
- * @version 1.2
+ * @version 1.4
  * @since Take Screenshot 1.4
  */
 public class WindowSetting extends javax.swing.JFrame {
@@ -31,7 +32,7 @@ public class WindowSetting extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setIconImage(Apps.getWindowIcon());
-        this.setTitle(Settings.getLanguageActived("Setting","Pengaturan","設定","Settei","환경","hwangyeong"));
+        this.setTitle(Settings.getLanguageActived("Setting","Pengaturan", "設定","Settei","환경","hwangyeong"));
 
         this.lblCopyright.setText("Copyright © " + Apps.getReleased() + " "+Apps.getAuthor()+".");
         this.btnChooseStorage.setUI(new javax.swing.plaf.basic.BasicButtonUI());
@@ -47,86 +48,84 @@ public class WindowSetting extends javax.swing.JFrame {
         /**
          * Mengatur combo box pada theme, language, format, autosave dan efek screenshot sesuai seting yang dipilih usser
          */
-        
-        
-            if(Settings.isEnglishLanguage()){
-                this.inputLanguage.setSelectedIndex(0);
-                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Daymode", "Darkmode" }));
-                this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Deactivated", "Voice 1", "Voice 2", "Voice 3", "Voice 4", "Voice 5"}));
-                this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Activated", "Deactivated"}));
-            }else if(Settings.isIndonesianLanguage()){
-                this.inputLanguage.setSelectedIndex(1);
-                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Terang", "Gelap" }));
-                this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Dinonaktifkan", "Suara 1", "Suara 2", "Suara 3", "Suara 4", "Suara 5"}));
-                this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Aktif", "Dinonaktifkan"}));
-            }else if(Settings.isJapaneseLanguage()){
-                this.inputLanguage.setSelectedIndex(2);
-                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"デイモード", "ダークモード"}));
-                this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"非アクティブ化", "ボイス1", "ボイス2", "ボイス3", "ボイス4", "ボイス5"}));
-                this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"活性化", "非アクティブ化"}));
-            }else if(Settings.isJapaneseRomajiLanguage()){
-                this.inputLanguage.setSelectedIndex(3);
-                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Deimōdo", "Dākumōdo"}));
-                this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Hiakutibu-ka", "Boisu 1", "Boisu 2", "Boisu 3", "Boisu 4", "Boisu 5"}));
-                this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Kassei-ka", "Hiakutibu-ka"}));
-            }else if(Settings.isKoreanLanguage()){
-                this.inputLanguage.setSelectedIndex(4);
-                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"주간 모드", "다크 모드"}));
-                this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"비활성화", "음성 1", "음성 2", "음성 3", "음성 4", "음성 5"}));
-                this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"활성화", "비활성화"}));
-            }else if(Settings.isKoreanRomanizationLanguage()){
-                this.inputLanguage.setSelectedIndex(5);
-                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"jugan modeu", "dakeu modeu"}));
-                this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"bihwalseonghwa", "eumsoeng 1", "eumsoeng 2", "eumsoeng 3", "eumsoeng 4", "eumsoeng 5"}));
-                this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"hwalseonghwa", "bihwalseonghwa"}));
-            }else{
-                this.inputLanguage.setSelectedIndex(0);
-                this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Daymode", "Darkmode" }));
-                this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Deactivated", "Voice 1", "Voice 2", "Voice 3", "Voice 4", "Voice 5"}));
-                this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Activated", "Deactivated"}));
-            }
-            
-            if(Settings.isDaymode()){
-                this.inputTheme.setSelectedIndex(0);
-            }else{
-                this.inputTheme.setSelectedIndex(1);
-            }
-            
-            if(Settings.isPngFormat()){
-                this.inputFormat.setSelectedIndex(0);
-            }else if(Settings.isJpgFormat()){
-                this.inputFormat.setSelectedIndex(1);
-            }else if(Settings.isBmpFormat()){
-                this.inputFormat.setSelectedIndex(2);
-            }else{
-                this.inputFormat.setSelectedIndex(0);
-            }
-            
-            if(Settings.isEfekSuara_Nonaktif()){
-                this.inputEfekSuara.setSelectedIndex(0);
-            }else if(Settings.isEfekSuara_1()){
-                this.inputEfekSuara.setSelectedIndex(1);
-            }else if(Settings.isEfekSuara_2()){
-                this.inputEfekSuara.setSelectedIndex(2);
-            }else if(Settings.isEfekSuara_3()){
-                this.inputEfekSuara.setSelectedIndex(3);
-            }else if(Settings.isEfekSuara_4()){
-                this.inputEfekSuara.setSelectedIndex(4);
-            }else if(Settings.isEfekSuara_5()){
-                this.inputEfekSuara.setSelectedIndex(5);
-            }else{
-                this.inputEfekSuara.setSelectedIndex(0);
-            }
-            
-            if(Settings.isAutoSave()){
-                this.inputAutosave.setSelectedIndex(0);
-            }else{
-                this.inputAutosave.setSelectedIndex(1);
-            }
+        if(Settings.isEnglishLanguage()){
+            this.inputLanguage.setSelectedIndex(0);
+            this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Daymode", "Darkmode" }));
+            this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Deactivated", "Voice 1", "Voice 2", "Voice 3", "Voice 4", "Voice 5"}));
+            this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Activated", "Deactivated"}));
+        }else if(Settings.isIndonesianLanguage()){
+            this.inputLanguage.setSelectedIndex(1);
+            this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Terang", "Gelap" }));
+            this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Dinonaktifkan", "Suara 1", "Suara 2", "Suara 3", "Suara 4", "Suara 5"}));
+            this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Aktif", "Dinonaktifkan"}));
+        }else if(Settings.isJapaneseLanguage()){
+            this.inputLanguage.setSelectedIndex(3);
+            this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"デイモード", "ダークモード"}));
+            this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"非アクティブ化", "ボイス1", "ボイス2", "ボイス3", "ボイス4", "ボイス5"}));
+            this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"活性化", "非アクティブ化"}));
+        }else if(Settings.isJapaneseRomajiLanguage()){
+            this.inputLanguage.setSelectedIndex(4);
+            this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Deimōdo", "Dākumōdo"}));
+            this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Hiakutibu-ka", "Boisu 1", "Boisu 2", "Boisu 3", "Boisu 4", "Boisu 5"}));
+            this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Kassei-ka", "Hiakutibu-ka"}));
+        }else if(Settings.isKoreanLanguage()){
+            this.inputLanguage.setSelectedIndex(5);
+            this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"주간 모드", "다크 모드"}));
+            this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"비활성화", "음성 1", "음성 2", "음성 3", "음성 4", "음성 5"}));
+            this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"활성화", "비활성화"}));
+        }else if(Settings.isKoreanRomanizationLanguage()){
+            this.inputLanguage.setSelectedIndex(6);
+            this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"jugan modeu", "dakeu modeu"}));
+            this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"bihwalseonghwa", "eumsoeng 1", "eumsoeng 2", "eumsoeng 3", "eumsoeng 4", "eumsoeng 5"}));
+            this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"hwalseonghwa", "bihwalseonghwa"}));
+        }else{
+            this.inputLanguage.setSelectedIndex(0);
+            this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Daymode", "Darkmode" }));
+            this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Deactivated", "Voice 1", "Voice 2", "Voice 3", "Voice 4", "Voice 5"}));
+            this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Activated", "Deactivated"}));
+        }
+
+        if(Settings.isDaymode()){
+            this.inputTheme.setSelectedIndex(0);
+        }else{
+            this.inputTheme.setSelectedIndex(1);
+        }
+
+        if(Settings.isPngFormat()){
+            this.inputFormat.setSelectedIndex(0);
+        }else if(Settings.isJpgFormat()){
+            this.inputFormat.setSelectedIndex(1);
+        }else if(Settings.isBmpFormat()){
+            this.inputFormat.setSelectedIndex(2);
+        }else{
+            this.inputFormat.setSelectedIndex(0);
+        }
+
+        if(Settings.isEfekSuara_Nonaktif()){
+            this.inputEfekSuara.setSelectedIndex(0);
+        }else if(Settings.isEfekSuara_1()){
+            this.inputEfekSuara.setSelectedIndex(1);
+        }else if(Settings.isEfekSuara_2()){
+            this.inputEfekSuara.setSelectedIndex(2);
+        }else if(Settings.isEfekSuara_3()){
+            this.inputEfekSuara.setSelectedIndex(3);
+        }else if(Settings.isEfekSuara_4()){
+            this.inputEfekSuara.setSelectedIndex(4);
+        }else if(Settings.isEfekSuara_5()){
+            this.inputEfekSuara.setSelectedIndex(5);
+        }else{
+            this.inputEfekSuara.setSelectedIndex(0);
+        }
+
+        if(Settings.isAutoSave()){
+            this.inputAutosave.setSelectedIndex(0);
+        }else{
+            this.inputAutosave.setSelectedIndex(1);
+        }
     }
 
     
-    public void setThemes(){
+    private void setThemes(){
         JLabel[] lbls = new JLabel[]{this.lblTheme, this.lblLanguage, this.lblFormat, this.lblEfekSuara, lblAutosave, this.lblPeyimpanan};
         JComboBox[] combs = new JComboBox[]{this.inputTheme, this.inputLanguage, this.inputFormat, this.inputEfekSuara, this.inputAutosave, this.inputEfekSuara};
         
@@ -137,8 +136,7 @@ public class WindowSetting extends javax.swing.JFrame {
         this.btnChooseStorage.setBackground(Settings.getThemeColors(new Color(240,240,240), new Color(14,14,14)));
         this.txtPenyimpanan.setBackground(Settings.getThemeColors(new Color(255,255,255), new Color(35,35,37)));
         this.lineApplications.setBackground(Settings.getThemeColors(new Color(8,8,8), new Color(77,79,81)));
-        for(int i = 0; i < combs.length; i++){
-            JComboBox comb = combs[i];
+        for (JComboBox comb : combs) {
             comb.setBackground(Settings.getThemeColors(new Color(222,222,222), new Color(35,35,37)));
             comb.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(239,239,239)));
         }
@@ -152,48 +150,47 @@ public class WindowSetting extends javax.swing.JFrame {
         this.lblCopyright.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(221,221,221)));
         this.lblRatting.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(221,221,221)));
         this.lblResetPengaturan.setForeground(Settings.getThemeColors(new Color(255,0,0), new Color(224,45,45)));
-        for(int i = 0; i < lbls.length; i++){
-            JLabel lbl = lbls[i];
+        for (JLabel lbl : lbls) {
             lbl.setForeground(Settings.getThemeColors(new Color(18,14,14), new Color(246,245,245)));
         }
     }
     
-    public void setLangugage(){
+    private void setLangugage(){
         this.lblPengaturan.setText("  "+Settings.getLanguageActived(
-            "Setting","Pengaturan","設定","Settei","환경","hwangyeong"
+            "Setting","Pengaturan",  "設定","Settei","환경","hwangyeong"
         ));
         this.lblApplications.setText("   "+Settings.getLanguageActived(
-            "Applications","Aplikasi","応用","Ōyō","신청","sincheong"
+            "Applications","Aplikasi",  "応用","Ōyō","신청","sincheong"
         ));
         this.lblTheme.setText("   "+Settings.getLanguageActived( 
-            "Choose the theme as you wish","Pilih tema yang kamu suka","好きなテーマを選んでください","Sukina tēma o erande kudasai","테마를 선택하십시오","temaleul seontaeghasibsio"  
+            "Choose the theme as you wish","Pilih tema yang kamu suka", "好きなテーマを選んでください","Sukina tēma o erande kudasai","테마를 선택하십시오","temaleul seontaeghasibsio"
         ));
         this.lblLanguage.setText("   "+Settings.getLanguageActived(
-             "Choose the language you understand", "Pilih bahasa yang anda mengerti", "言語を選んでください ", "Gengo o erande kudasai", "당신의 언어를 고르시 오" ,"dangsin-ui eon-eoleul goleusi o"
+             "Choose the language you understand", "Pilih bahasa yang anda mengerti",  "言語を選んでください ", "Gengo o erande kudasai", "당신의 언어를 고르시 오" ,"dangsin-ui eon-eoleul goleusi o"
         ));
         this.lblFormat.setText("   "+Settings.getLanguageActived(
-             "Select image format", "Pilih format pada gambar", "画像形式を選択", "Gazō keishiki o sentaku", "이미지 형식 선택" ,"imiji hyeongsig seontaeg"
+             "Select image format", "Pilih format pada gambar",  "画像形式を選択", "Gazō keishiki o sentaku", "이미지 형식 선택" ,"imiji hyeongsig seontaeg"
         ));
         this.lblEfekSuara.setText("   "+Settings.getLanguageActived(
-             "Choose sound effect", "Pilih efek suara saat screenshot", "効果音を選択", "Kōka-on o sentaku","음향 효과를 선택하십시오", "eumhyang hyogwaleul seontaeghasibsio"
+             "Choose sound effect", "Pilih efek suara saat screenshot",  "効果音を選択", "Kōka-on o sentaku","음향 효과를 선택하십시오", "eumhyang hyogwaleul seontaeghasibsio"
         ));
         this.lblAutosave.setText("   "+Settings.getLanguageActived(
              "Auto save image when screenshot", "Simpan otomatis gambar saat screenshot", "スクリーンショット時に画像を自動保存" ,"Sukurīnshotto-ji ni gazō o jidō hozon", "스크린 샷시 이미지 자동 저장", "seukeulin syas-si imiji jadong jeojang"
         ));
         this.lblPeyimpanan.setText("   "+Settings.getLanguageActived(
-             "Default screenshot storage", "Default penyimpanan screenshot", "スクリーンショットストレージ", "Sukurīnshottosutorēji", "스크린 샷 저장", "seukeulin syas jeojang"
+             "Default screenshot storage", "Default penyimpanan screenshot",  "スクリーンショットストレージ", "Sukurīnshottosutorēji", "스크린 샷 저장", "seukeulin syas jeojang"
         ));
         this.lblRatting.setText(" "+Settings.getLanguageActived(
-                "Retting application","Ratting aplikasi","評価アプリケーション","Hyōka apurikēshon","평가 신청","pyeong-ga sincheong"
+                "Retting application","Ratting aplikasi",  "評価アプリケーション","Hyōka apurikēshon","평가 신청","pyeong-ga sincheong"
         ));
         this.lblResetPengaturan.setText(Settings.getLanguageActived(
-                "Reset settings", "Reset pengaturan", "設定をリセットする", "Settei o risettosuru", "설정 재설정 ", "seoljeong jaeseoljeong"
+                "Reset settings", "Reset pengaturan",  "設定をリセットする", "Settei o risettosuru", "설정 재설정 ", "seoljeong jaeseoljeong"
         )+"???");
         this.btnSimpan.setText(Settings.getLanguageActived(
-                "Save","Simpan","セーブ","Sēbu","저장","jeojang"
+                "Save","Simpan",  "セーブ","Sēbu","저장","jeojang"
         ));
         this.btnBatal.setText(Settings.getLanguageActived(
-                "Cancel","Batal","キャンセル","Kyanseru","취소","chwiso"
+                "Cancel","Batal",  "キャンセル","Kyanseru","취소","chwiso"
         ));
 
     }
@@ -356,7 +353,7 @@ public class WindowSetting extends javax.swing.JFrame {
 
         inputLanguage.setBackground(new java.awt.Color(222, 222, 222));
         inputLanguage.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        inputLanguage.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "English", "Indonesian", "日本", "日本（ローマ字)", "한국어", "한국 (로맨틱 화)" }));
+        inputLanguage.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "English", "Indonesian", "Javanese (Coming Soon)", "日本", "日本（ローマ字)", "한국어", "한국 (로맨틱 화)" }));
         inputLanguage.setMinimumSize(new java.awt.Dimension(88, 21));
 
         inputTheme.setBackground(new java.awt.Color(222, 222, 222));
@@ -529,10 +526,11 @@ public class WindowSetting extends javax.swing.JFrame {
             switch(this.inputLanguage.getSelectedIndex()){
                 case 0: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_ENGLISH) ; break;
                 case 1: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_INDONESIAN) ; break;
-                case 2: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_JAPANESE) ; break;
-                case 3: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_JAPANESE_ROMAJI) ; break;
-                case 4: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_KOREAN) ; break;
-                case 5: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_KOREAN_ROMANIZATION) ; break;
+                case 2: JOptionPane.showMessageDialog(this, "Japanese language is coming soon");
+                case 3: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_JAPANESE) ; break;
+                case 4: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_JAPANESE_ROMAJI) ; break;
+                case 5: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_KOREAN) ; break;
+                case 6: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_KOREAN_ROMANIZATION) ; break;
                 default: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_ENGLISH) ; break;
             }
             
@@ -608,7 +606,7 @@ public class WindowSetting extends javax.swing.JFrame {
     private void btnChooseStorageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStorageActionPerformed
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         javax.swing.JFileChooser jfc = new javax.swing.JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        jfc.setDialogTitle(Settings.getLanguageActived("Save to","Simpan ke","に保存","Ni hozon","에 저장","e jeojang"));
+        jfc.setDialogTitle(Settings.getLanguageActived("Save to","Simpan ke",  "に保存","Ni hozon","에 저장","e jeojang"));
         jfc.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
         jfc.setAcceptAllFileFilterUsed(false);
         int returnNilai = jfc.showSaveDialog(null);
@@ -709,6 +707,7 @@ public class WindowSetting extends javax.swing.JFrame {
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new WindowSetting().setVisible(true);
             }
@@ -741,6 +740,4 @@ public class WindowSetting extends javax.swing.JFrame {
     private javax.swing.JPanel topPanel;
     private javax.swing.JTextField txtPenyimpanan;
     // End of variables declaration//GEN-END:variables
-
-
 }
