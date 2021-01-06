@@ -2,7 +2,10 @@ package com.window;
 
 import com.media.images.Screenshot;
 import com.media.sounds.PlaySounds;
-import com.system.*;
+import com.system.Aktivitas;
+import com.system.Apps;
+import com.system.Settings;
+import com.system.Waktu;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -16,7 +19,7 @@ import javax.swing.ImageIcon;
  * Class ini digunakan untuk mengambil screenshot
  * 
  * @author Achmad Baihaqi
- * @version 1.3
+ * @version 1.5
  * @since Take Screenshot 1.0
  */
 public class Root extends javax.swing.JFrame {
@@ -29,7 +32,6 @@ public class Root extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setIconImage(Apps.getWindowIcon());
-     
         
         this.btnScreenshot.setMnemonic(KeyEvent.VK_ENTER);
         this.txtDirektori.setText(Settings.getSetting(Settings.SETTING_PEYIMPANAN));
@@ -46,11 +48,9 @@ public class Root extends javax.swing.JFrame {
         
         this.setThemes();
         this.setLanguage();
-        
-        
     }
     
-    public void setThemes(){
+    private void setThemes(){
         this.panelMain.setBackground(Settings.getThemeColors(new Color(234,238,241), new Color(35,35,37)));
         this.btnScreenshot.setBackground(Settings.getThemeColors(new Color(40,87,186), new Color(61,113,219)));
         this.btnSaveTo.setBackground(Settings.getThemeColors(new Color(255,255,255), new Color(28,25,25)));
@@ -75,18 +75,18 @@ public class Root extends javax.swing.JFrame {
         
     }
 
-    public void setLanguage(){
+    private void setLanguage(){
         this.btnScreenshot.setText(Settings.getLanguageActived(
-                "Take Screenshot","Ambil Screenshot","スクリーンショット","Sukurīnshotto","스크린 샷","seukeulin syas"
+                "Take Screenshot","Ambil Screenshot", "スクリーンショット","Sukurīnshotto","스크린 샷","seukeulin syas"
         ));
         this.opsAutosave.setText(Settings.getLanguageActived(
-                "autosave","autosave","自動保存","Jidō hozon","자동 저장","jadongjeog"
+                "autosave","autosave",  "自動保存","Jidō hozon","자동 저장","jadongjeog"
         ));
         this.lblSimpan.setText(Settings.getLanguageActived(
-                "Save to :","Simpan ke :","に保存","Ni hozon","에 저장","e jeojang"
+                "Save to :","Simpan ke :",  "に保存 : ","Ni hozon : ","에 저장 : ","e jeojang : "
         ));
         this.lblTotalSS.setText(Apps.getTotalScreenshot()+" "+ Settings.getLanguageActived(
-                "screenshot taken...","screenshot diambil...","取りました...","Torimashita...","촬영...","chwal-yeong..."
+                "screenshot taken...","screenshot diambil...",  "取りました...","Torimashita...","촬영...","chwal-yeong..."
         ));
     }
     
@@ -271,25 +271,23 @@ public class Root extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
         Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " membuka window Root().");
-        
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " keluar dari window Root().");
-    
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-
         Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " menutup aplikasi." );
     }//GEN-LAST:event_formWindowClosing
 
+    @Deprecated
     private void formKeyPressed(KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_formKeyPressed
 
+    @Deprecated
     private void panelMainKeyPressed(KeyEvent evt) {//GEN-FIRST:event_panelMainKeyPressed
 //        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
 //            this.aksiBtnScreenshot();
@@ -298,7 +296,6 @@ public class Root extends javax.swing.JFrame {
     }//GEN-LAST:event_panelMainKeyPressed
 
     private void btnScreenshotMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScreenshotMouseEntered
-    
         this.btnScreenshot.setBackground(Settings.getThemeColors(new Color(34,71,147), new Color(28,99,246)));
         this.btnScreenshot.setForeground(Settings.getThemeColors(new Color(176,176,178), new Color(34,31,31)));
         try{
@@ -313,12 +310,11 @@ public class Root extends javax.swing.JFrame {
     }//GEN-LAST:event_btnScreenshotMouseEntered
 
     private void btnScreenshotMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScreenshotMouseExited
-     
         this.btnScreenshot.setBackground(Settings.getThemeColors(new Color(40,87,186), new Color(61,113,219)));
         this.btnScreenshot.setForeground(Settings.getThemeColors(new Color(255,255,255), new Color(34,31,31)));
         
             try{
-            Thread.sleep(200);
+                Thread.sleep(200);
             this.lblCamera.setIcon(Settings.getThemeIcons(new ImageIcon(getClass().getResource("/com/media/icons/app-window-root-camera-daymode.png")), 
                                                       new ImageIcon(getClass().getResource("/com/media/icons/app-window-root-camera-darkmode.png"))));
 
@@ -329,19 +325,20 @@ public class Root extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnScreenshotMouseExited
 
-
     private void btnScreenshotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScreenshotActionPerformed
-
-        int totalSS = Integer.parseInt(Apps.getTotalScreenshot()); // untuk mendapatkan total screenshot sebelumnya
+        int totalSS = Integer.parseInt(Apps.getTotalScreenshot()) + 1; // untuk mendapatkan total screenshot sebelumnya dan ditambahkan 1
         String date = Waktu.getTanggal_Screenshot(); // mendapatkan waktu saat ini untuk penamaan hasil screenshot
         String filename = "Screenshot (" + Integer.toString(totalSS) +") " + date;// example : Screenshot (1) 2020-01-12 13.36.10
-
+ 
         try{
             Screenshot.playSoundEffect();
-            this.setVisible(false);
             this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
+            this.setVisible(false);
             Thread.sleep(290);  // agar window root visible terlebih dahulu sebelum mengambil screenshot               
-            Apps.setTotalScreenshot(totalSS+=1); // mengupdate total screenshot
+            Apps.setTotalScreenshot(totalSS); // mengupdate total screenshot
+            this.lblTotalSS.setText(Apps.getTotalScreenshot()+" "+ Settings.getLanguageActived(
+                    "screenshot taken...","screenshot diambil...",  "取りました...","Torimashita...","촬영...","chwal-yeong..."
+            ));
             Screenshot.ambilScreenshot(filename); // mengambil screenshot layar
             Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " melakukan screenshot."); // menambahkan ke aktivitas bahwa user melakukan screenshot
 
@@ -382,7 +379,7 @@ public class Root extends javax.swing.JFrame {
             
             this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
             javax.swing.JFileChooser jfc = new javax.swing.JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-            jfc.setDialogTitle(Settings.getLanguageActived("Save to","Simpan ke","に保存","Ni hozon","에 저장","e jeojang"));
+            jfc.setDialogTitle(Settings.getLanguageActived("Save to","Simpan ke", "に保存","Ni hozon","에 저장","e jeojang"));
             jfc.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
             jfc.setAcceptAllFileFilterUsed(false);
             int returnNilai = jfc.showSaveDialog(null);
@@ -402,12 +399,12 @@ public class Root extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSaveToActionPerformed
 
-
-
+    @Deprecated
     private void opsAutosaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opsAutosaveMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_opsAutosaveMouseClicked
 
+    @Deprecated
     private void opsAutosaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opsAutosaveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_opsAutosaveActionPerformed
@@ -429,7 +426,7 @@ public class Root extends javax.swing.JFrame {
 
     private void lblCopyrightMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCopyrightMouseClicked
         PlaySounds.play(PlaySounds.SUARA_NOTIF);
-        JOptionPane.showMessageDialog(null, "Copyright © " + Apps.getReleased() + " "+Apps.getAuthor()+". All Rights Reserved.");
+        JOptionPane.showMessageDialog(null, "Copyright © " + Apps.getReleased() + "-2021 "+Apps.getAuthor()+". All Rights Reserved.");
     }//GEN-LAST:event_lblCopyrightMouseClicked
 
 
@@ -437,6 +434,8 @@ public class Root extends javax.swing.JFrame {
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
+            @Override
             public void run() {
                 new Root().setVisible(true);
             }
