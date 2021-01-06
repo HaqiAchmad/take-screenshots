@@ -4,6 +4,7 @@ import com.media.sounds.PlaySounds;
 import com.system.Apps;
 import com.system.Settings;
 import com.window.WindowSetting;
+import java.awt.Color;
 
 import java.awt.Cursor;
 import javax.swing.JOptionPane;
@@ -14,10 +15,15 @@ import javax.swing.JOptionPane;
  * Ratting dari user akan dikirimkan lewat gmail
  * 
  * @author Achmad baihaqi
- * @version 1.2
- * @since 08 July 2020
+ * @version 1.4
+ * @since 08 Juli 2020
  */
 public class Ratting extends javax.swing.JFrame {
+    
+    /**
+     * Digunaakan untuk mengecek apakah window KontakSaya sedang dibuka atau tidak
+     */
+    public static boolean isOpen_KontakSaya = false;
 
     /**
      * Ratting yang diberikan user, defaultnya adalah 0
@@ -32,22 +38,49 @@ public class Ratting extends javax.swing.JFrame {
         this.setIconImage(Apps.getWindowIcon());
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-         
+        
+        this.btnKirim.setUI(new javax.swing.plaf.basic.BasicButtonUI());
+        this.btnNanti.setUI(new javax.swing.plaf.basic.BasicButtonUI());
+        
+        setLanguage();
+        setThemes();
+    }
+    
+    private void setThemes(){
+        this.pnlMain.setBackground(Settings.getThemeColors(new Color(255,255,255), new Color(35,35,37)));
+        this.btnKirim.setBackground(Settings.getThemeColors(new Color(193,193,193), new Color(57,60,64)));
+        this.btnNanti.setBackground(Settings.getThemeColors(new Color(193,193,193), new Color(57,60,64)));
+        this.inputNama.setBackground(Settings.getThemeColors(new Color(250,250,250), new Color(45,48,49)));
+        this.inputMasukan.setBackground(Settings.getThemeColors(new Color(250,250,250), new Color(45,48,49)));
+        
+        this.btnKirim.setForeground(Settings.getThemeColors(new Color(5,5,5), new Color(255,255,255)));
+        this.btnNanti.setForeground(Settings.getThemeColors(new Color(5,5,5), new Color(255,255,255)));
+        this.inputNama.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(255,255,255)));
+        this.inputNama.setCaretColor(Settings.getThemeColors(new Color(0,0,0), new Color(255,255,255)));
+        this.inputMasukan.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(255,255,255)));
+        this.inputMasukan.setCaretColor(Settings.getThemeColors(new Color(0,0,0), new Color(255,255,255)));
+        this.lblNama.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(255,255,255)));
+        this.lblMasukan.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(255,255,255)));
+        this.lblRatting.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(255,255,255)));
+        this.lblEmot.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(255,255,255)));
+        this.lblKontak.setForeground(Settings.getThemeColors(new Color(58,90,223), new Color(255,51,51)));
+    }
+    
+    private void setLanguage(){
         this.lblNama.setText("  "+Settings.getLanguageActived("Your name", "Nama kamu", "あなたの名前", "Anata no namae", "당신의 이름", "dangsin-ui ileum"));
         this.lblMasukan.setText("  "+Settings.getLanguageActived("Feedback", "Masukan", "フィードバック", "Fīdobakku", "피드백", "pideubaeg"));
         this.lblRatting.setText("  "+Settings.getLanguageActived("Ratting" ,"Ratting", "ラッティング", "Rattingu", "라팅", "lating"));
-        
-        this.lblTemporary.setText(Settings.getLanguageActived("Window does not yet support darkmode", "Window belum mendukung darkmode", "まだサポートされていないダークモード", "Mada sapōto sa rete inai dākumōdo", "아직 지원되지 않는 다크 모드", "ajig jiwondoeji anhneun dakeu modeu"));
-        this.lblKontak.setText(Settings.getLanguageActived("Contact me", "Kontak saya", "私に連絡して", "Watashi ni renraku shite", "저에게 연락", "jeoege yeonlag"));
-        this.btnKirim.setText(Settings.getLanguageActived("Send", "Kirim", "それを送る", "Sore o okuru", "보내", "bonae"));
-        this.btnNanti.setText(Settings.getLanguageActived("Later", "Nanti", "後で", "Atode", "나중", "Najung"));
+
+        this.lblKontak.setText(Settings.getLanguageActived("Contact Developer...", "Kontak Developer...", "開発者に連絡する", "Kaihatsu-sha ni renraku suru", "개발자에게 문의", "gaebalja-ege mun-ui"));
+        this.btnKirim.setText(Settings.getLanguageActived("Send", "Kirim",  "それを送る", "Sore o okuru", "보내", "bonae"));
+        this.btnNanti.setText(Settings.getLanguageActived("Later", "Nanti",  "後で", "Atode", "나중", "Najung"));
     }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        pnlMain = new javax.swing.JPanel();
         btnNanti = new javax.swing.JButton();
         btnKirim = new javax.swing.JButton();
         lblNama = new javax.swing.JLabel();
@@ -62,12 +95,11 @@ public class Ratting extends javax.swing.JFrame {
         star3 = new javax.swing.JLabel();
         star5 = new javax.swing.JLabel();
         lblEmot = new javax.swing.JLabel();
-        lblTemporary = new javax.swing.JLabel();
         lblKontak = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        pnlMain.setBackground(new java.awt.Color(255, 255, 255));
 
         btnNanti.setBackground(new java.awt.Color(193, 193, 193));
         btnNanti.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
@@ -157,11 +189,7 @@ public class Ratting extends javax.swing.JFrame {
         lblEmot.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
         lblEmot.setText("Sangat Suka");
 
-        lblTemporary.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
-        lblTemporary.setForeground(new java.awt.Color(251, 47, 47));
-        lblTemporary.setText("아직 지원되지 않는 다크 모드");
-
-        lblKontak.setFont(new java.awt.Font("Dialog", 0, 11)); // NOI18N
+        lblKontak.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         lblKontak.setForeground(new java.awt.Color(58, 90, 223));
         lblKontak.setText("Kontak saya...");
         lblKontak.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -170,83 +198,78 @@ public class Ratting extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
+        pnlMain.setLayout(pnlMainLayout);
+        pnlMainLayout.setHorizontalGroup(
+            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMainLayout.createSequentialGroup()
+                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlMainLayout.createSequentialGroup()
                         .addComponent(lblNama, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                             .addComponent(inputNama)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(pnlMainLayout.createSequentialGroup()
                         .addComponent(lblRatting, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(lblEmot, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(pnlMainLayout.createSequentialGroup()
+                        .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlMainLayout.createSequentialGroup()
                                 .addGap(110, 110, 110)
                                 .addComponent(star1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(star2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(star3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblTemporary, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblKontak, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
+                        .addGap(6, 6, 6)
+                        .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlMainLayout.createSequentialGroup()
                                 .addComponent(star4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(star5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
+                            .addGroup(pnlMainLayout.createSequentialGroup()
                                 .addComponent(btnNanti, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnKirim, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnKirim, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlMainLayout.createSequentialGroup()
                     .addComponent(lblMasukan, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 311, Short.MAX_VALUE)))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        pnlMainLayout.setVerticalGroup(
+            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(inputNama, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(star4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(star5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblRatting, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(star1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(star2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(star3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblEmot, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(lblEmot, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlMainLayout.createSequentialGroup()
+                        .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnNanti, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnKirim, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblKontak)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTemporary))))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(lblKontak, javax.swing.GroupLayout.Alignment.TRAILING)))
+            .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlMainLayout.createSequentialGroup()
                     .addGap(61, 61, 61)
                     .addComponent(lblMasukan, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(190, Short.MAX_VALUE)))
@@ -256,11 +279,11 @@ public class Ratting extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -290,16 +313,11 @@ public class Ratting extends javax.swing.JFrame {
             }
         }else if(!Apps.isConnectInternet()){ // mengecek apakah user terhubung ke internet 
             Apps.showNotification("Tidak terhubung ke internet!", Ratting.class.getName(), "Internet error!");
-        }else{ // jika user sudah memehuni semua kriteria yang ditentukan method akan menggirimkan ratting dari user 
-            // membuat pesan  yang berisi rattig dan masukan dari user untuk dikirimkan 
-            String nama = this.inputNama.getText(),
-                   star = Integer.toString(this.starValue),
-                   subject = Integer.toString(this.starValue) + " Bintang dari " + this.inputNama.getText() + " <"+Apps.getName()+">",
-                   masukan = "<h2>"+nama+" Memberi bintang " + star+"</h2>"
-                            + "<h4>Masukan dari "+nama+":</h4>"
-                            + "<h6> >> "+ inputMasukan.getText() + "</h6>" ;
+        }else{ // jika user sudah memehuni semua kriteria yang ditentukan method akan menggirimkan ratting dari user
             // mengirimkan ratting dari user ke gmail hakiahmad756@gmail.com
-                Apps.sendGmail(subject, masukan);
+                String subject = "" + starValue + " bintang dari " + inputNama.getText(),
+                       body = "<p>" + subject + "<br>" + "masukan:" + inputMasukan.getText() + "</p>";
+                Apps.sendGmail(subject, body);
                 JOptionPane.showMessageDialog(null, "Ratting sukses terkirim...");
                 this.btnKirim.setVisible(false); // jika ratting sudah terkirim maka btnKirim akan tidak terlihat dan btnNanti textnya berubah menjadi kembali
                 this.btnNanti.setText("Kembali");
@@ -309,7 +327,7 @@ public class Ratting extends javax.swing.JFrame {
 
     /**
      * Berfungsi untuk kembali ke window setting
-     * @param evt 
+     * @param evt event
      */
     private void btnNantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNantiActionPerformed
         this.dispose();
@@ -336,8 +354,10 @@ public class Ratting extends javax.swing.JFrame {
          this.star3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-bintang-kosong.png")));
          this.star4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-bintang-kosong.png")));
          this.star5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-bintang-kosong.png")));
-         this.lblEmot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-benci.png")));
-         this.lblEmot.setText(Settings.getLanguageActived("Hate", "Benci", "嫌い", "Kirai", "미움", "Mium"));
+         this.lblEmot.setIcon(Settings.getThemeIcons(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-benci.png")), 
+                                                     new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-benci-darkmode.png"))
+         ));
+         this.lblEmot.setText(Settings.getLanguageActived("Hate", "Benci",  "嫌い", "Kirai", "미움", "Mium"));
     }//GEN-LAST:event_star1MouseClicked
 
     /**
@@ -352,7 +372,9 @@ public class Ratting extends javax.swing.JFrame {
          this.star3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-bintang-kosong.png")));
          this.star4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-bintang-kosong.png")));
          this.star5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-bintang-kosong.png")));
-         this.lblEmot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-tidaksuka.png")));
+         this.lblEmot.setIcon(Settings.getThemeIcons(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-tidaksuka.png")), 
+                                                     new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-tidaksuka-darkmode.png"))
+         ));
          this.lblEmot.setText(Settings.getLanguageActived("Dislike" ,"Tidak suka", "好きではない", "Sukide wanai", "싫어", "silh-eo"));
     }//GEN-LAST:event_star2MouseClicked
 
@@ -368,8 +390,10 @@ public class Ratting extends javax.swing.JFrame {
          this.star3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-bintang.png")));   
          this.star4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-bintang-kosong.png")));
          this.star5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-bintang-kosong.png")));
-         this.lblEmot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-lumayan.png")));
-         this.lblEmot.setText(Settings.getLanguageActived("Not bad", "Lumayan", "悪くない", "Warukunai", "나쁘지 않다", "nappeuji anhda"));
+         this.lblEmot.setIcon(Settings.getThemeIcons(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-lumayan.png")), 
+                                                     new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-lumayan-darkmode.png"))
+         ));
+         this.lblEmot.setText(Settings.getLanguageActived("Not bad", "Lumayan",  "悪くない", "Warukunai", "나쁘지 않다", "nappeuji anhda"));
     }//GEN-LAST:event_star3MouseClicked
 
     /**
@@ -384,7 +408,9 @@ public class Ratting extends javax.swing.JFrame {
          this.star3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-bintang.png"))); 
          this.star4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-bintang.png"))); 
          this.star5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-bintang-kosong.png")));
-         this.lblEmot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-suka.png")));
+         this.lblEmot.setIcon(Settings.getThemeIcons(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-suka.png")), 
+                                                     new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-suka-darkmode.png"))
+         ));
          this.lblEmot.setText(Settings.getLanguageActived("Like", "Suka", "いいね", "Ī ne", "그 것처럼", "geu geoscheoleom"));
     }//GEN-LAST:event_star4MouseClicked
 
@@ -400,7 +426,9 @@ public class Ratting extends javax.swing.JFrame {
          this.star3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-bintang.png"))); 
          this.star4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-bintang.png"))); 
          this.star5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-bintang.png"))); 
-         this.lblEmot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-cinta.png")));
+         this.lblEmot.setIcon(Settings.getThemeIcons(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-cinta.png")), 
+                                                     new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-cinta-darkmode.png"))
+         ));
          this.lblEmot.setText(Settings.getLanguageActived("Love", "Cinta", "愛", "Ai", "사랑", "salang"));
     }//GEN-LAST:event_star5MouseClicked
 
@@ -409,27 +437,30 @@ public class Ratting extends javax.swing.JFrame {
      * @param evt 
      */
     private void lblKontakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblKontakMouseClicked
-        
-        java.awt.EventQueue.invokeLater(new Runnable(){
-        
-            @Override
-            public void run(){
-                if(!Apps.isConnectInternet()){
-                    Apps.showNotification("Tidak terhubung ke internet!", Ratting.class.getName(), "Internet error!");
-                }else{
-                    PlaySounds.play(PlaySounds.SUARA_NOTIF);
-                    KontakSaya kontak = new KontakSaya();
-                    kontak.setLocation(getX(), getY());
-                    kontak.setVisible(true);
-                }
-            }
-        });
+        // membuka window kontakSaya
+        if(!isOpen_KontakSaya){
+            isOpen_KontakSaya = true;
+            KontakSaya kontak = new KontakSaya();
+            kontak.setLocation(getX(), getY());
+
+                java.awt.EventQueue.invokeLater(new Runnable(){
+
+                    @Override
+                    public void run(){
+                        kontak.setVisible(true);
+                    }
+                });            
+        }else{
+            PlaySounds.play(PlaySounds.SUARA_NOTIF);
+            JOptionPane.showMessageDialog(null, "Window sudah terbuka!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_lblKontakMouseClicked
 
 
     public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Ratting().setVisible(true);
             }
@@ -441,14 +472,13 @@ public class Ratting extends javax.swing.JFrame {
     private javax.swing.JButton btnNanti;
     private javax.swing.JTextArea inputMasukan;
     private javax.swing.JTextField inputNama;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEmot;
     private javax.swing.JLabel lblKontak;
     private javax.swing.JLabel lblMasukan;
     private javax.swing.JLabel lblNama;
     private javax.swing.JLabel lblRatting;
-    private javax.swing.JLabel lblTemporary;
+    private javax.swing.JPanel pnlMain;
     private javax.swing.JLabel star1;
     private javax.swing.JLabel star2;
     private javax.swing.JLabel star3;
