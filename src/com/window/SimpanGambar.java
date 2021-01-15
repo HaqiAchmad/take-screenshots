@@ -113,31 +113,31 @@ public class SimpanGambar extends javax.swing.JFrame {
 
     private void setLanguage() {
         this.lblTop.setText(Settings.getLanguageActived(
-                "Successfully screenshot!!", "Screenshot sukses diambil!!",  "正常にスクリーンショット", "Seijō ni sukurīnshotto", "성공적으로 스크린 샷", "seong-gongjeog-eulo seukeulin syas"
+                "Successfully screenshot!!", "Screenshot sukses diambil!!", "Gambar sukses dijupuk!!", "正常にスクリーンショット", "Seijō ni sukurīnshotto", "성공적으로 스크린 샷", "seong-gongjeog-eulo seukeulin syas"
         ));
         this.lblFilename.setText(Settings.getLanguageActived(
-                "Filename", "Nama file",  "ファイル名", "Fairu-mei", "파일 이름", "pail ileum"
+                "Filename", "Nama file", "Jeneng file", "ファイル名", "Fairu-mei", "파일 이름", "pail ileum"
         ));
         this.lblFormat.setText(Settings.getLanguageActived(
-                "Format", "Format",  "フォーマット", "Fōmatto", "체재", "chejae"
+                "Format", "Format", "Format", "フォーマット", "Fōmatto", "체재", "chejae"
         ));
         this.lblUkuran.setText(Settings.getLanguageActived(
-                "Size", "Ukuran",  "サイズ", "Saizu", "크기", "keugi"
+                "Size", "Ukuran", "Ukuran", "サイズ", "Saizu", "크기", "keugi"
         ));
         this.btnSave.setText(Settings.getLanguageActived(
-                "Save image", "Simpan", "セーブ", "Sēbu", "저장", "jeojang"
+                "Save image", "Simpan", "Simpen", "セーブ", "Sēbu", "저장", "jeojang"
         ));
         this.btnRename.setText(Settings.getLanguageActived(
-                "Rename", "Ubah nama", "リネーム", "Rinēmu", "이름 바꾸기", "ileum bakkugi"
+                "Rename", "Ubah nama", "Ganti Jeneng", "リネーム", "Rinēmu", "이름 바꾸기", "ileum bakkugi"
         ));
         this.btnShow.setText(Settings.getLanguageActived(
-                "Open", "Buka",  "開いた", "Aita", "열다", "yeolda"
+                "Open", "Buka", "Mbukak", "開いた", "Aita", "열다", "yeolda"
         ));
         this.btnFolder.setText(Settings.getLanguageActived(
-                "Folder", "Folder",  "フォルダ", "Foruda", "폴더", "poldeo"
+                "Folder", "Folder", "Folder", "フォルダ", "Foruda", "폴더", "poldeo"
         ));
         this.btnDelete.setText(Settings.getLanguageActived(
-                "Delete", "Hapus", "削除する", "Sakujo suru", "지우다", "jiuda"
+                "Delete", "Hapus", "Mbusek", "削除する", "Sakujo suru", "지우다", "jiuda"
         ));
     }
 
