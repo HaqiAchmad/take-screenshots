@@ -32,6 +32,7 @@ public class Root extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setIconImage(Apps.getWindowIcon());
+     
         
         this.btnScreenshot.setMnemonic(KeyEvent.VK_ENTER);
         this.txtDirektori.setText(Settings.getSetting(Settings.SETTING_PEYIMPANAN));
@@ -48,6 +49,7 @@ public class Root extends javax.swing.JFrame {
         
         this.setThemes();
         this.setLanguage();
+        Screenshot.createSample();
     }
     
     private void setThemes(){
@@ -77,16 +79,16 @@ public class Root extends javax.swing.JFrame {
 
     private void setLanguage(){
         this.btnScreenshot.setText(Settings.getLanguageActived(
-                "Take Screenshot","Ambil Screenshot", "スクリーンショット","Sukurīnshotto","스크린 샷","seukeulin syas"
+                "Take Screenshot","Ambil Screenshot", "Njupuk Gambar","スクリーンショット","Sukurīnshotto","스크린 샷","seukeulin syas"
         ));
         this.opsAutosave.setText(Settings.getLanguageActived(
-                "autosave","autosave",  "自動保存","Jidō hozon","자동 저장","jadongjeog"
+                "autosave","autosave", "otomatis", "自動保存","Jidō hozon","자동 저장","jadongjeog"
         ));
         this.lblSimpan.setText(Settings.getLanguageActived(
-                "Save to :","Simpan ke :",  "に保存 : ","Ni hozon : ","에 저장 : ","e jeojang : "
+                "Save to :","Simpan ke :", "Panggon : " , "に保存 : ","Ni hozon : ","에 저장 : ","e jeojang : "
         ));
         this.lblTotalSS.setText(Apps.getTotalScreenshot()+" "+ Settings.getLanguageActived(
-                "screenshot taken...","screenshot diambil...",  "取りました...","Torimashita...","촬영...","chwal-yeong..."
+                "screenshot taken...","screenshot diambil...", "gambar dijupuk...", "取りました...","Torimashita...","촬영...","chwal-yeong..."
         ));
     }
     
@@ -337,7 +339,7 @@ public class Root extends javax.swing.JFrame {
             Thread.sleep(290);  // agar window root visible terlebih dahulu sebelum mengambil screenshot               
             Apps.setTotalScreenshot(totalSS); // mengupdate total screenshot
             this.lblTotalSS.setText(Apps.getTotalScreenshot()+" "+ Settings.getLanguageActived(
-                    "screenshot taken...","screenshot diambil...",  "取りました...","Torimashita...","촬영...","chwal-yeong..."
+                    "screenshot taken...","screenshot diambil...", "gambar dijupuk...", "取りました...","Torimashita...","촬영...","chwal-yeong..."
             ));
             Screenshot.ambilScreenshot(filename); // mengambil screenshot layar
             Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " melakukan screenshot."); // menambahkan ke aktivitas bahwa user melakukan screenshot
@@ -379,7 +381,7 @@ public class Root extends javax.swing.JFrame {
             
             this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
             javax.swing.JFileChooser jfc = new javax.swing.JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-            jfc.setDialogTitle(Settings.getLanguageActived("Save to","Simpan ke", "に保存","Ni hozon","에 저장","e jeojang"));
+            jfc.setDialogTitle(Settings.getLanguageActived("Save to","Simpan ke", "Simpen nandi" ,"に保存","Ni hozon","에 저장","e jeojang"));
             jfc.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
             jfc.setAcceptAllFileFilterUsed(false);
             int returnNilai = jfc.showSaveDialog(null);
