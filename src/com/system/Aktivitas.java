@@ -35,7 +35,9 @@ public class Aktivitas {
     /**
      * Menuliskan direktori screenshot ke file screenshots.haqi
      * Direktori akan dituliskan pada baris baru (append)
-     *
+     * 
+     * @see FileWriter
+     * @see BufferedWriter
      * @param screenshot input direktori screenshot yang diambil user
      */
     public static void addScreenshot(String screenshot){
