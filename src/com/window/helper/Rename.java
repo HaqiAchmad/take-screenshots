@@ -57,16 +57,16 @@ public class Rename extends javax.swing.JFrame {
     private void setLanguage(){
 
         this.lblTop.setText(Settings.getLanguageActived(
-                "Rename image!","Ubah nama gambar!" , "画像の名前を変更","Gazō no namae o henkō","이미지 이름 바꾸기","imiji ileum bakkugi"
+                "Rename image!","Ubah nama gambar!", "Ganti jeneng gambar!", "画像の名前を変更","Gazō no namae o henkō","이미지 이름 바꾸기","imiji ileum bakkugi"
         ));
         this.lblNama.setText(Settings.getLanguageActived(
-                "New name","Nama baru" , "新しい名前","Atarashī namae","새로운 이름","saeloun ileum"
+                "New name","Nama baru", "Jeneng gambar", "新しい名前","Atarashī namae","새로운 이름","saeloun ileum"
         ));
         this.btnSave.setText(Settings.getLanguageActived(
-                "Save","Simpan",  "セーブ","Sēbu","저장","jeojang"
+                "Save","Simpan", "Simpen", "セーブ","Sēbu","저장","jeojang"
         ));
         this.btnBatal.setText(Settings.getLanguageActived(
-                "Cancel","Batal",  "キャンセル","Kyanseru","취소","chwiso"
+                "Cancel","Batal", "Gak sido", "キャンセル","Kyanseru","취소","chwiso"
         ));
 
     }
