@@ -32,7 +32,7 @@ public class WindowSetting extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setIconImage(Apps.getWindowIcon());
-        this.setTitle(Settings.getLanguageActived("Setting","Pengaturan", "設定","Settei","환경","hwangyeong"));
+        this.setTitle(Settings.getLanguageActived("Setting","Pengaturan", "Setelan","設定","Settei","환경","hwangyeong"));
 
         this.lblCopyright.setText("Copyright © " + Apps.getReleased() + " "+Apps.getAuthor()+".");
         this.btnChooseStorage.setUI(new javax.swing.plaf.basic.BasicButtonUI());
@@ -58,6 +58,11 @@ public class WindowSetting extends javax.swing.JFrame {
             this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Terang", "Gelap" }));
             this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Dinonaktifkan", "Suara 1", "Suara 2", "Suara 3", "Suara 4", "Suara 5"}));
             this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Aktif", "Dinonaktifkan"}));
+        }else if(Settings.isJavaneseLanguage()){
+            this.inputLanguage.setSelectedIndex(2);
+            this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Padang", "Peteng"}));
+            this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Dipatèni", "Swara 1", "Swara 2", "Swara 3", "Swara 4", "Swara 5"}));
+            this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Diaktifake", "Dipatèni"}));
         }else if(Settings.isJapaneseLanguage()){
             this.inputLanguage.setSelectedIndex(3);
             this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"デイモード", "ダークモード"}));
@@ -157,40 +162,40 @@ public class WindowSetting extends javax.swing.JFrame {
     
     private void setLangugage(){
         this.lblPengaturan.setText("  "+Settings.getLanguageActived(
-            "Setting","Pengaturan",  "設定","Settei","환경","hwangyeong"
+            "Setting","Pengaturan", "Setelan", "設定","Settei","환경","hwangyeong"
         ));
         this.lblApplications.setText("   "+Settings.getLanguageActived(
-            "Applications","Aplikasi",  "応用","Ōyō","신청","sincheong"
+            "Applications","Aplikasi", "Aplikasi", "応用","Ōyō","신청","sincheong"
         ));
         this.lblTheme.setText("   "+Settings.getLanguageActived( 
-            "Choose the theme as you wish","Pilih tema yang kamu suka", "好きなテーマを選んでください","Sukina tēma o erande kudasai","테마를 선택하십시오","temaleul seontaeghasibsio"
+            "Choose the theme as you wish","Pilih tema yang kamu suka", "Pilih tema sing sampeyan senengi", "好きなテーマを選んでください","Sukina tēma o erande kudasai","테마를 선택하십시오","temaleul seontaeghasibsio"
         ));
         this.lblLanguage.setText("   "+Settings.getLanguageActived(
-             "Choose the language you understand", "Pilih bahasa yang anda mengerti",  "言語を選んでください ", "Gengo o erande kudasai", "당신의 언어를 고르시 오" ,"dangsin-ui eon-eoleul goleusi o"
+             "Choose the language you understand", "Pilih bahasa yang anda mengerti", "Pilih basa sing sampeyan pahami", "言語を選んでください ", "Gengo o erande kudasai", "당신의 언어를 고르시 오" ,"dangsin-ui eon-eoleul goleusi o"
         ));
         this.lblFormat.setText("   "+Settings.getLanguageActived(
-             "Select image format", "Pilih format pada gambar",  "画像形式を選択", "Gazō keishiki o sentaku", "이미지 형식 선택" ,"imiji hyeongsig seontaeg"
+             "Select image format", "Pilih format pada gambar", "Pilih format ing gambar", "画像形式を選択", "Gazō keishiki o sentaku", "이미지 형식 선택" ,"imiji hyeongsig seontaeg"
         ));
         this.lblEfekSuara.setText("   "+Settings.getLanguageActived(
-             "Choose sound effect", "Pilih efek suara saat screenshot",  "効果音を選択", "Kōka-on o sentaku","음향 효과를 선택하십시오", "eumhyang hyogwaleul seontaeghasibsio"
+             "Choose sound effect", "Pilih efek suara saat screenshot", "Pilih efek swara nalika gambar dijupuk", "効果音を選択", "Kōka-on o sentaku","음향 효과를 선택하십시오", "eumhyang hyogwaleul seontaeghasibsio"
         ));
         this.lblAutosave.setText("   "+Settings.getLanguageActived(
-             "Auto save image when screenshot", "Simpan otomatis gambar saat screenshot", "スクリーンショット時に画像を自動保存" ,"Sukurīnshotto-ji ni gazō o jidō hozon", "스크린 샷시 이미지 자동 저장", "seukeulin syas-si imiji jadong jeojang"
+             "Auto save image when screenshot", "Simpan otomatis gambar saat screenshot", "Simpen gambar kanthi otomatis", "スクリーンショット時に画像を自動保存" ,"Sukurīnshotto-ji ni gazō o jidō hozon", "스크린 샷시 이미지 자동 저장", "seukeulin syas-si imiji jadong jeojang"
         ));
         this.lblPeyimpanan.setText("   "+Settings.getLanguageActived(
-             "Default screenshot storage", "Default penyimpanan screenshot",  "スクリーンショットストレージ", "Sukurīnshottosutorēji", "스크린 샷 저장", "seukeulin syas jeojang"
+             "Default screenshot storage", "Default penyimpanan screenshot", "Panggon kanggo nyimpen gambar", "スクリーンショットストレージ", "Sukurīnshottosutorēji", "스크린 샷 저장", "seukeulin syas jeojang"
         ));
         this.lblRatting.setText(" "+Settings.getLanguageActived(
-                "Retting application","Ratting aplikasi",  "評価アプリケーション","Hyōka apurikēshon","평가 신청","pyeong-ga sincheong"
+                "Retting application","Ratting aplikasi", "Ratting aplikasi", "評価アプリケーション","Hyōka apurikēshon","평가 신청","pyeong-ga sincheong"
         ));
         this.lblResetPengaturan.setText(Settings.getLanguageActived(
-                "Reset settings", "Reset pengaturan",  "設定をリセットする", "Settei o risettosuru", "설정 재설정 ", "seoljeong jaeseoljeong"
+                "Reset settings", "Reset pengaturan", "Reset setelan", "設定をリセットする", "Settei o risettosuru", "설정 재설정 ", "seoljeong jaeseoljeong"
         )+"???");
         this.btnSimpan.setText(Settings.getLanguageActived(
-                "Save","Simpan",  "セーブ","Sēbu","저장","jeojang"
+                "Save","Simpan", "Simpen", "セーブ","Sēbu","저장","jeojang"
         ));
         this.btnBatal.setText(Settings.getLanguageActived(
-                "Cancel","Batal",  "キャンセル","Kyanseru","취소","chwiso"
+                "Cancel","Batal", "Batal", "キャンセル","Kyanseru","취소","chwiso"
         ));
 
     }
@@ -353,7 +358,7 @@ public class WindowSetting extends javax.swing.JFrame {
 
         inputLanguage.setBackground(new java.awt.Color(222, 222, 222));
         inputLanguage.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        inputLanguage.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "English", "Indonesian", "Javanese (Coming Soon)", "日本", "日本（ローマ字)", "한국어", "한국 (로맨틱 화)" }));
+        inputLanguage.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "English", "Indonesian", "Javanese", "日本", "日本（ローマ字)", "한국어", "한국 (로맨틱 화)" }));
         inputLanguage.setMinimumSize(new java.awt.Dimension(88, 21));
 
         inputTheme.setBackground(new java.awt.Color(222, 222, 222));
@@ -526,7 +531,7 @@ public class WindowSetting extends javax.swing.JFrame {
             switch(this.inputLanguage.getSelectedIndex()){
                 case 0: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_ENGLISH) ; break;
                 case 1: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_INDONESIAN) ; break;
-                case 2: JOptionPane.showMessageDialog(this, "Japanese language is coming soon");
+                case 2: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_JAVANESE); break;
                 case 3: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_JAPANESE) ; break;
                 case 4: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_JAPANESE_ROMAJI) ; break;
                 case 5: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_KOREAN) ; break;
@@ -606,7 +611,7 @@ public class WindowSetting extends javax.swing.JFrame {
     private void btnChooseStorageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStorageActionPerformed
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         javax.swing.JFileChooser jfc = new javax.swing.JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        jfc.setDialogTitle(Settings.getLanguageActived("Save to","Simpan ke",  "に保存","Ni hozon","에 저장","e jeojang"));
+        jfc.setDialogTitle(Settings.getLanguageActived("Save to","Simpan ke", "Simpen nandi", "に保存","Ni hozon","에 저장","e jeojang"));
         jfc.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
         jfc.setAcceptAllFileFilterUsed(false);
         int returnNilai = jfc.showSaveDialog(null);
