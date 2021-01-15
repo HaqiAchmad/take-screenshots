@@ -67,13 +67,13 @@ public class Ratting extends javax.swing.JFrame {
     }
     
     private void setLanguage(){
-        this.lblNama.setText("  "+Settings.getLanguageActived("Your name", "Nama kamu", "あなたの名前", "Anata no namae", "당신의 이름", "dangsin-ui ileum"));
-        this.lblMasukan.setText("  "+Settings.getLanguageActived("Feedback", "Masukan", "フィードバック", "Fīdobakku", "피드백", "pideubaeg"));
-        this.lblRatting.setText("  "+Settings.getLanguageActived("Ratting" ,"Ratting", "ラッティング", "Rattingu", "라팅", "lating"));
+        this.lblNama.setText("  "+Settings.getLanguageActived("Your name", "Nama kamu", "Jeneng mu", "あなたの名前", "Anata no namae", "당신의 이름", "dangsin-ui ileum"));
+        this.lblMasukan.setText("  "+Settings.getLanguageActived("Feedback", "Masukan", "Masukan",  "フィードバック", "Fīdobakku", "피드백", "pideubaeg"));
+        this.lblRatting.setText("  "+Settings.getLanguageActived("Ratting" ,"Ratting", "Rating", "ラッティング", "Rattingu", "라팅", "lating"));
 
-        this.lblKontak.setText(Settings.getLanguageActived("Contact Developer...", "Kontak Developer...", "開発者に連絡する", "Kaihatsu-sha ni renraku suru", "개발자에게 문의", "gaebalja-ege mun-ui"));
-        this.btnKirim.setText(Settings.getLanguageActived("Send", "Kirim",  "それを送る", "Sore o okuru", "보내", "bonae"));
-        this.btnNanti.setText(Settings.getLanguageActived("Later", "Nanti",  "後で", "Atode", "나중", "Najung"));
+        this.lblKontak.setText(Settings.getLanguageActived("Contact Developer...", "Kontak Developer...", "Kontak Pengembang...", "開発者に連絡する", "Kaihatsu-sha ni renraku suru", "개발자에게 문의", "gaebalja-ege mun-ui"));
+        this.btnKirim.setText(Settings.getLanguageActived("Send", "Kirim", "Ngirim", "それを送る", "Sore o okuru", "보내", "bonae"));
+        this.btnNanti.setText(Settings.getLanguageActived("Later", "Nanti", "Mengko", "後で", "Atode", "나중", "Najung"));
     }
     
     @SuppressWarnings("unchecked")
@@ -315,9 +315,7 @@ public class Ratting extends javax.swing.JFrame {
             Apps.showNotification("Tidak terhubung ke internet!", Ratting.class.getName(), "Internet error!");
         }else{ // jika user sudah memehuni semua kriteria yang ditentukan method akan menggirimkan ratting dari user
             // mengirimkan ratting dari user ke gmail hakiahmad756@gmail.com
-                String subject = "" + starValue + " bintang dari " + inputNama.getText(),
-                       body = "<p>" + subject + "<br>" + "masukan:" + inputMasukan.getText() + "</p>";
-                Apps.sendGmail(subject, body);
+                Apps.sendRatting(inputNama.getText(), starValue, inputMasukan.getText());
                 JOptionPane.showMessageDialog(null, "Ratting sukses terkirim...");
                 this.btnKirim.setVisible(false); // jika ratting sudah terkirim maka btnKirim akan tidak terlihat dan btnNanti textnya berubah menjadi kembali
                 this.btnNanti.setText("Kembali");
@@ -357,7 +355,7 @@ public class Ratting extends javax.swing.JFrame {
          this.lblEmot.setIcon(Settings.getThemeIcons(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-benci.png")), 
                                                      new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-benci-darkmode.png"))
          ));
-         this.lblEmot.setText(Settings.getLanguageActived("Hate", "Benci",  "嫌い", "Kirai", "미움", "Mium"));
+         this.lblEmot.setText(Settings.getLanguageActived("Hate", "Benci", "Sengit", "嫌い", "Kirai", "미움", "Mium"));
     }//GEN-LAST:event_star1MouseClicked
 
     /**
@@ -375,7 +373,7 @@ public class Ratting extends javax.swing.JFrame {
          this.lblEmot.setIcon(Settings.getThemeIcons(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-tidaksuka.png")), 
                                                      new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-tidaksuka-darkmode.png"))
          ));
-         this.lblEmot.setText(Settings.getLanguageActived("Dislike" ,"Tidak suka", "好きではない", "Sukide wanai", "싫어", "silh-eo"));
+         this.lblEmot.setText(Settings.getLanguageActived("Dislike" ,"Tidak suka", "Ora seneng", "好きではない", "Sukide wanai", "싫어", "silh-eo"));
     }//GEN-LAST:event_star2MouseClicked
 
     /**
@@ -393,7 +391,7 @@ public class Ratting extends javax.swing.JFrame {
          this.lblEmot.setIcon(Settings.getThemeIcons(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-lumayan.png")), 
                                                      new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-lumayan-darkmode.png"))
          ));
-         this.lblEmot.setText(Settings.getLanguageActived("Not bad", "Lumayan",  "悪くない", "Warukunai", "나쁘지 않다", "nappeuji anhda"));
+         this.lblEmot.setText(Settings.getLanguageActived("Not bad", "Lumayan", "Ora elek", "悪くない", "Warukunai", "나쁘지 않다", "nappeuji anhda"));
     }//GEN-LAST:event_star3MouseClicked
 
     /**
@@ -411,7 +409,7 @@ public class Ratting extends javax.swing.JFrame {
          this.lblEmot.setIcon(Settings.getThemeIcons(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-suka.png")), 
                                                      new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-suka-darkmode.png"))
          ));
-         this.lblEmot.setText(Settings.getLanguageActived("Like", "Suka", "いいね", "Ī ne", "그 것처럼", "geu geoscheoleom"));
+         this.lblEmot.setText(Settings.getLanguageActived("Like", "Suka", "Seneng", "いいね", "Ī ne", "그 것처럼", "geu geoscheoleom"));
     }//GEN-LAST:event_star4MouseClicked
 
     /**
@@ -429,7 +427,7 @@ public class Ratting extends javax.swing.JFrame {
          this.lblEmot.setIcon(Settings.getThemeIcons(new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-cinta.png")), 
                                                      new javax.swing.ImageIcon(getClass().getResource("/com/media/icons/app-windowratting-emot-cinta-darkmode.png"))
          ));
-         this.lblEmot.setText(Settings.getLanguageActived("Love", "Cinta", "愛", "Ai", "사랑", "salang"));
+         this.lblEmot.setText(Settings.getLanguageActived("Love", "Cinta", "Katresnan", "愛", "Ai", "사랑", "salang"));
     }//GEN-LAST:event_star5MouseClicked
 
     /**
