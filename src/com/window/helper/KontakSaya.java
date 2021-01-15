@@ -18,13 +18,18 @@ import javax.swing.WindowConstants;
  */
 public class KontakSaya extends javax.swing.JFrame {
 
+    /**
+     * Untuk membuka link
+     */
+    private final Desktop desktop = Desktop.getDesktop();
+
     public KontakSaya() {
         initComponents();
         this.setResizable(false);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // agar tidak menutup window utama
-        this.setTitle(Settings.getLanguageActived("Contact Developer", "Kontak Developer", "開発者に連絡する", "Kaihatsu-sha ni renraku suru", "개발자에게 문의", "gaebalja-ege mun-ui"));
+        this.setTitle(Settings.getLanguageActived("Contact Developer", "Kontak Developer", "Kontak Pengembang", "開発者に連絡する", "Kaihatsu-sha ni renraku suru", "개발자에게 문의", "gaebalja-ege mun-ui"));
         this.setIconImage(Apps.getWindowIcon());
-        this.lblKontaksaya.setText(Settings.getLanguageActived("Contact Developer", "Kontak Developer", "開発者に連絡する", "Kaihatsu-sha ni renraku suru", "개발자에게 문의", "gaebalja-ege mun-ui"));
+        this.lblKontaksaya.setText(Settings.getLanguageActived("Contact Developer", "Kontak Developer", "Kontak Pengembang", "開発者に連絡する", "Kaihatsu-sha ni renraku suru", "개발자에게 문의", "gaebalja-ege mun-ui"));
         
         setThemes();
     }
@@ -55,7 +60,7 @@ public class KontakSaya extends javax.swing.JFrame {
         txtYoutube = new javax.swing.JLabel();
         kontakYoutube = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
