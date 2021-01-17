@@ -244,6 +244,19 @@ public class Files {
 
         return "-1 Gb";
     }
+
+    public static String countSize(final long size){
+        if(size > 0 && size <= 999){
+            return  size + " bytes";
+        }else if(size >= 1000 && size <= 999999){
+            return (size/1024) + " Kb";
+        }else if(size >= 1000000 && size <= 999999999){
+            return (size/(1024*1024)) + " Mb";
+        }else if(size >= 1000000000){
+            return (size/(1024*1024*1024)) + " Gb";
+        }
+        return "-1 Gb";
+    }
     
     /**
      * Method ini digunakan untuk menghapus file
