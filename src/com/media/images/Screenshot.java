@@ -1,5 +1,6 @@
 package com.media.images;
 
+import com.database.Database;
 import com.media.sounds.PlaySounds;
 import com.system.Apps;
 import com.system.Files;
@@ -48,7 +49,7 @@ public class Screenshot {
             Rectangle rectangle = new Rectangle(Apps.getLebarScreen(), Apps.getTinggiScreen()); // mengatur lebar dan tinggi screenshot
             BufferedImage capture = new Robot().createScreenCapture(rectangle); // menangkap screenshot layar
             
-                /*
+                /**
                  * Mengecek apakah direktori penyimpanan screenshot yang diatur user exist atau tidak
                  * Jika exist maka screenshot akan secara otaomatis tersimpan
                  * Jika tidak maka screenshot akan disimpan di desktop
@@ -73,6 +74,40 @@ public class Screenshot {
             Apps.showException("Gagal membuat screenshot!", Screenshot.class.getName(), ex.toString());
                 
         }
+    }
+    
+    public static void createSample(){
+       
+        new Thread(new Runnable(){
+
+            @Override
+            public void run(){
+                try {
+                    Thread.sleep(1000);
+                    String penyimpanan = Database.getDirectoryDB() +"temp\\", // mendapatkan penyimpanan screenshot
+                           createScreenshot = penyimpanan + "sample "+Apps.getUsername()+".png"; // untuk membuat file screenshot
+
+                    Rectangle rectangle = new Rectangle(Apps.getLebarScreen(), Apps.getTinggiScreen()); // mengatur lebar dan tinggi screenshot
+                    BufferedImage capture = new Robot().createScreenCapture(rectangle); // menangkap screenshot layar
+                    /**
+                     * Mengecek apakah direktori penyimpanan screenshot yang diatur user exist atau tidak
+                     * Jika exist maka screenshot akan secara otaomatis tersimpan
+                     */
+                    if(Files.isExistFolder(penyimpanan)){
+                        ImageIO.write(capture, "png", new File(createScreenshot)); // menyimpan hasil screenshot     
+                        System.out.println("sample dibuat");
+                    }else{
+                        System.out.println("Gagal membuat sample");
+                    }                        
+                } catch (InterruptedException e) {
+                    System.out.println("Error : " + e.getMessage());
+                }catch (IOException ex){
+                    Apps.showException("Terjadi kesalahan saat mengambil screenshot!!", Screenshot.class.getName(), ex.toString());
+                }catch (AWTException ex) {
+                    Apps.showException("Gagal membuat screenshot!", Screenshot.class.getName(), ex.toString());
+                }
+            }
+        }).start();
     }
     
     /**
