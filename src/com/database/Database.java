@@ -13,12 +13,12 @@ import java.io.IOException;
  * 
  * @author Achmad Baihaqi
  * @version 1.3
- * @since Take screenshot 1.4
+ * @since Take screenshot 1.4 
  */
 public class Database {
 
-    private static final String FOLDER_DB = "C:\\ProgramData\\Punya Haqi\\Take Screenshots 1.6\\database\\",
-                                FOLDER_DB_TEMP = "C:\\ProgramData\\Punya Haqi\\Take Screenshots 1.6\\database\\temp\\";
+    private static final String FOLDER_DB = "C:\\ProgramData\\Punya Haqi\\Take Screenshots 1.7.0\\database\\", 
+                                FOLDER_DB_TEMP = "C:\\ProgramData\\Punya Haqi\\Take Screenshots 1.7.0\\database\\temp\\";
     
     /**
      * file yang ada didalam database
@@ -32,7 +32,7 @@ public class Database {
     /**
      * Digunakan untuk mengecek file/folder yang ada didatabase ada atau tidak.
      * Jika file tidak ada maka akan dibuatkan
-     *
+     * 
      * @throws IOException menangkap exception saat mereset setting
      */
     public static void createNotExistDatabase() throws IOException{
