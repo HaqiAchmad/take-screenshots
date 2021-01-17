@@ -35,6 +35,7 @@ public class Settings {
                                 */
                                 LANGUAGE_ENGLISH = "ENGLISH", LANGUAGE_INDONESIAN = "INDONESIAN", LANGUAGE_JAPANESE = "JAPANESE",
                                 LANGUAGE_JAPANESE_ROMAJI = "ROMAJI", LANGUAGE_KOREAN = "KOREAN", LANGUAGE_KOREAN_ROMANIZATION = "ROMANIZATION",
+                                LANGUAGE_JAVANESE = "JAVANESE",
                                 /*
                                  * kode yang digunakan untuk mengatur format gambar
                                  */
@@ -72,6 +73,16 @@ public class Settings {
      */
     public static boolean isIndonesianLanguage(){
         return Settings.getSetting(SETTING_LANGUAGE).contains("INDONESIAN");
+    }
+
+    /**
+     * Untuk mengecek apakah user memakai setelan bahasa Jawa
+     * Jika ya maka akan mereturn true jika tidak mereturn false
+     *
+     * @return apakah user memakai setelan bahasa Jawa atau tidak
+     */
+    public static boolean isJavaneseLanguage(){
+        return Settings.getSetting(SETTING_LANGUAGE).contains("JAVANESE");
     }
 
     /**
@@ -126,14 +137,17 @@ public class Settings {
      * @param romaji text dalam bahasa jepang (romaji)
      * @param korean text dalam bahasa korean
      * @param romanization text dalam bahasa korean (romanized)
+     * @param javanese text dalam bahasa jawa
      * @return kata dalam bahasa tertentu
      */
-    public static String getLanguageActived(String english, String indonesian, String japanese, String romaji, String korean, String romanization){
+    public static String getLanguageActived(String english, String indonesian, String javanese, String japanese, String romaji, String korean, String romanization){
 
         if(isEnglishLanguage()){
             return english;
         }else if(isIndonesianLanguage()){
             return indonesian;
+        }else if(isJavaneseLanguage()){
+            return javanese;
         }else if(isJapaneseLanguage()){
             return japanese;
         }else if(isJapaneseRomajiLanguage()){
