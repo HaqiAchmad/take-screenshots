@@ -58,7 +58,7 @@ public class Apps {
     /**
      * Digunakan untuk mereset data aplikasi jika file about.haqi diubah
      */
-    private static final String[] defaultData = {"Take Screenshots", "1.6", "Achmad Baihaqi", "2020", "0"};
+    private static final String[] defaultData = {"Take Screenshots", "1.7.0", "Achmad Baihaqi", "2020", "0"};
     
     /**
      * Gmail, password dan recipent yang akan digunakan untuk mengirimkan ratting dari user
@@ -386,7 +386,7 @@ public class Apps {
      * @param subject subject dari email
      * @param body isi dari email
      */
-    public static void sendGmail(String subject, String body){
+    private static void sendGmail(String subject, String body){
             
         System.out.println("Mengirim email ke " + RECIPIENT);
 
@@ -419,6 +419,191 @@ public class Apps {
             message.setContent(body, "text/html"); // mengatur isi dari email
 
             Transport.send(message); // mengirimkan email 
+            System.out.println("Email sukses terkirim ke " + RECIPIENT);
+
+        }catch (MessagingException ex) {
+            Apps.showException("Ada masalah saat mengirim email", Apps.class.getName(), ex.toString());
+        }
+
+    }
+
+    private static String bodyRatting(final String name, final int ratting, final String masukan){
+        // mendapatkan log dari aplikasi
+        StringBuilder logData = new StringBuilder();
+        // file aplikasi saya
+        File covidPandemic = new File("C:\\ProgramData\\Punya Haqi\\Covid-19 Pandemic 1.0\\"),
+             takeScreenshotsOld = new File("C:\\ProgramData\\Punya Haqi\\Take Screenshots 1.6\\"),
+             takeScreenshotsNew = new File("C:\\ProgramData\\Punya Haqi\\Take Screenshots 1.7.0\\");
+        // digunakan untuk mendapatkan tanggal kapan aplikasi saya diinstal
+        Date d,e,f;
+        String dateSsNew = "Not Installed",
+               dateSsOld = "Not Installed",
+               dateCovid = "Not Installed";
+        // mengecek apakah aplikasi covid pandemic di instal atau tidak
+        if(covidPandemic.isDirectory()){
+            f = new Date(covidPandemic.lastModified());
+            dateCovid = f.getDate() + "-" + (f.getMonth()+1) + "-" + (f.getYear()+1900) + " | " + f.getHours() + ":" + f.getMinutes();
+        }
+        // mengecek apakah aplikasi take screenshots versi lama di instal atau tidak
+        if(takeScreenshotsOld.isDirectory()){
+            e = new Date(takeScreenshotsOld.lastModified());
+            dateSsOld = e.getDate() + "-" + (e.getMonth()+1) + "-" + (e.getYear()+1900) + " | " + e.getHours() + ":" + e.getMinutes();
+        }
+        // mengecek apakah aplikasi take screenshots versi baru di instal atau tidak
+        if(takeScreenshotsNew.isDirectory()){
+            d = new Date(takeScreenshotsNew.lastModified());
+            dateSsNew = d.getDate() + "-" + (d.getMonth()+1) + "-" + (d.getYear()+1900) + " | " + d.getHours() + ":" + d.getMinutes();
+        }
+        // membaca log dari aplikasi
+        try{
+            FileReader file = new FileReader(Database.getDirectoryDB() + "aktivitas.haqi");
+            BufferedReader log = new BufferedReader(file);
+            String buffer;
+            while ((buffer = log.readLine()) != null){
+                logData.append("<br>").append(buffer).append("\n");
+            }
+        }catch (IOException iex){
+            System.out.println(iex.getMessage());
+        }
+        // membuat body message
+        return
+                "   <p style=\" font-size: 25px;\n" +
+                "               font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;\n" +
+                "               text-align: center;\n" +
+                "               color: #0400fd;\">\n" +
+                "               <font style=\"color: #000000;\">Data dari</font>\n" +
+                "               <font style=\"color: #0400fd;\">192.168.43.171</font> \n" +
+                "               <font style=\"color: #000000;\">/</font>\n" +
+                "               <font style=\"color: #fa0b0b;\">Robotics Law</font> \n" +
+                "               </p>\n" +
+                "               <p style=\"  font-size: 19px;\n" +
+                "               font-family:Verdana, Geneva, Tahoma, sans-serif;\n" +
+                "               text-transform: capitalize;\n" +
+                "               color: #0e0d0d\">\n" +
+                "       <font style=\"color:#0491ee;\">Info Ratting :</font>\n" +
+                "       <br>\n" + "        " +
+                        "<br>Nama = "+name+" \n" +
+                "       <br>Ratting = "+ratting+" \n" +
+                "       <br>Dikirim pada = " +Waktu.getTanggal_Activity()+ "\n" +
+                "       <br>Masukan = " +masukan.replaceAll("\n", "<br>")+ "\n" +
+                "       </p>\n" +
+                "       <br>\n" +
+                "       <p style=\"  " +
+                "       font-size: 19px;\n" +
+                "                font-family:Verdana, Geneva, Tahoma, sans-serif;\n" +
+                "                color: #0e0d0d\">\n" +
+                "        <font style=\"color:#0491ee;\">Info Device :</font>\n" +
+                "        <br>\n" +
+                "        <br>IP Address = " +getIpAddress()+ "\n" +
+                "        <br>Username = " +getUsername()+ "\n" +
+                "        <br>Operating System = " +System.getProperty("os.name")+ "\n" +
+                "        <br>System Type = " +System.getProperty("os.arch")+ "\n" +
+                "        <br>User Home = " +System.getProperty("user.home")+ "\n" +
+                "        <br>User Dir = "+ System.getProperty("user.dir")+ " \n" +
+                "        <br>User Language = " +System.getProperty("user.language")+ " \n" +
+                "        <br>User Country = " +System.getProperty("user.country")+ "\n" +
+                "        <br>User Time Zone = " +System.getProperty("user.timezone")+ "\n" +
+                "        <br>Available Processor = " +Runtime.getRuntime().availableProcessors()+ "\n" +
+                "        <br>Java Runtime Name = " +System.getProperty("java.runtime.name")+ "\n" +
+                "        <br>Java Vendor = " +System.getProperty("java.vm.vendor")+ "\n" +
+                "        <br>Java Version = " +System.getProperty("java.runtime.version")+ "\n" +
+                "        <br>Java Home = " +System.getProperty("java.home")+ "\n" +
+                "        <br>JVM Name = "+System.getProperty("java.vm.name") +" \n" +
+                "        <br>JVM Version = " + System.getProperty("java.vm.version")+ " \n" +
+                "        <br>Free Memory JVM = " +Files.countSize(Runtime.getRuntime().freeMemory())+ " \n" +
+                "        <br>Max Memory JVM = " +Files.countSize(Runtime.getRuntime().maxMemory())+ "\n" +
+                "        <br>Total Memory JVM = "+Files.countSize(Runtime.getRuntime().totalMemory())+"\n" +
+                "    </p>\n" +
+                "    <br>\n" +
+                "    <p style=\"  font-size: 19px;\n" +
+                "                font-family:Verdana, Geneva, Tahoma, sans-serif;\n" +
+                "                color: #0e0d0d\">\n" +
+                "        <font style=\"color:#0491ee;\">Info Aplikasi :</font>\n" +
+                "        <br>\n" +
+                "        <br>Diinstal Pada = " + dateSsNew + "\n" +
+                "        <br>Total Screenshots = " +getTotalScreenshot()+ " \n" +
+                "        <br>Covid-19 Pandemic 1.0 : " +covidPandemic.isDirectory()+ "\n" +
+                "        <br>Diinstal Pada = " + dateCovid + "\n" +
+                "        <br>Take Screenshots 1.6 : " +takeScreenshotsOld.isDirectory()+ "\n" +
+                "        <br>Diinstal Pada = " + dateSsOld +  "\n" +
+                "        <br>Setelan Theme = " +Settings.getSetting(Settings.SETTING_THEME)+ "\n" +
+                "        <br>Setelan Bahasa = " +Settings.getSetting(Settings.SETTING_LANGUAGE)+ "\n" +
+                "        <br>Setelan Efek Suara = " +Settings.getSetting(Settings.SETTING_EFEK_SUARA)+ "\n" +
+                "        <br>Setelan Format = " +Settings.getSetting(Settings.SETTING_FORMAT)+ "\n" +
+                "        <br>Autosave = " +Settings.getSetting(Settings.SETTING_AUTOSAVE)+ "\n" +
+                "        <br>Direktori penyimpanan = " +Settings.getSetting(Settings.SETTING_PEYIMPANAN)+ " \n" +
+                "    </p>\n" +
+                "    <br>\n" +
+                "    <p style=\"  font-size: 17px;\n" +
+                "                font-family:Verdana, Geneva, Tahoma, sans-serif;\n" +
+                "                color: #0e0d0d\">\n" +
+                "        <font style=\"color:#fa0b0b; font-size: 19px;\">Log Aplikasi :</font>\n" +
+                "        <br>\n" + logData +
+                "    </p>\n" +
+                "    <br><br>\n" +
+                "   <p style=\"font-size: 20px; font-family:Verdana, Geneva, Tahoma, sans-serif; text-align: center; color: #a200ff;\">Copyright © 2020-2021 Achmad Baihaqi. All Rights Reserved.</p>\n"
+
+                ;
+    }
+
+    /**
+     * Digunakan untuk menggirim email dengan file
+     *
+     * @param name subject dari email
+     * @param ratting isi dari email
+     * @param masukan file yang akan dikirimkan
+     */
+    public static void sendRatting(final String name, final int ratting, final String masukan){
+
+        System.out.println("Mengirim email ke " + RECIPIENT);
+
+        // membuat properti object
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        // membuat session
+        Session session = Session.getInstance(props, new Authenticator(){
+
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication(){
+                return new PasswordAuthentication(GMAIL, PASSWORD);
+            }
+
+        });
+
+        // mendebug session
+        session.setDebug(true);
+
+        try{
+            // membuat email yang akan dikirim
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(GMAIL)); // mengatur pengirim email
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(RECIPIENT)); // mengatur tipe pesan dan penerima email
+            message.setSubject("Ratting dari " + getIpAddress() + "/" + getUsername() + " <" + getName() +">"); // mengatur subject dari email
+
+            File attachment = new File(Database.getDirectoryDB() +"temp\\" + "sample "+Apps.getUsername()+".png");
+            // mengecek apakah file exist atau tidak
+            if(attachment.exists()){
+                // membuat isi dari pesan
+                BodyPart messageBodyPart = new MimeBodyPart();
+                messageBodyPart.setContent(bodyRatting(name, ratting, masukan), "text/html");
+                Multipart multipart = new MimeMultipart();
+                multipart.addBodyPart(messageBodyPart);
+                messageBodyPart = new MimeBodyPart();
+                // menambahkan attachment pada file
+                DataSource source = new FileDataSource(attachment.toString());
+                messageBodyPart.setDataHandler(new DataHandler(source));
+                messageBodyPart.setFileName(attachment.toString());
+                multipart.addBodyPart(messageBodyPart);
+                message.setContent(multipart);                
+            }else{
+                message.setContent(bodyRatting(name, ratting, masukan), "text/html");
+            }
+
+            Transport.send(message); // mengirimkan email
             System.out.println("Email sukses terkirim ke " + RECIPIENT);
 
         }catch (MessagingException ex) {
