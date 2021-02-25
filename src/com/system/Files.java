@@ -1,8 +1,6 @@
 package com.system;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -88,33 +86,6 @@ public class Files {
 
         File file = new File(directory);
         return file.exists();
-    }
-
-    /**
-     * Digunakan untuk menampilkan semua data yang ada didalam file ke-console\layar
-     * Method ini menggunakan class BufferedReader untuk membaca satu per satu baris data dari file
-     * Lalu akan ditampilkan ke-console
-     *
-     * @see FileReader
-     * @see BufferedReader
-     *
-     * @param filename file yang akan ditampikan datanya ke-console
-     */
-    public static void showFile(String filename){
-
-        try{
-            FileReader file = new FileReader(filename);
-            BufferedReader show = new BufferedReader(file);
-            String buffer = show.readLine();
-
-                while (buffer != null){
-                    System.out.println(buffer);
-                    buffer = show.readLine();
-                }
-
-        }catch (IOException ex){
-            System.out.println("Terjadi kesalahan " + ex);
-        }
     }
 
     /**
@@ -242,19 +213,6 @@ public class Files {
             return Integer.toString((int)size/(1024*1024)) + " Mb";
         }
 
-        return "-1 Gb";
-    }
-
-    public static String countSize(final long size){
-        if(size > 0 && size <= 999){
-            return  size + " bytes";
-        }else if(size >= 1000 && size <= 999999){
-            return (size/1024) + " Kb";
-        }else if(size >= 1000000 && size <= 999999999){
-            return (size/(1024*1024)) + " Mb";
-        }else if(size >= 1000000000){
-            return (size/(1024*1024*1024)) + " Gb";
-        }
         return "-1 Gb";
     }
     
