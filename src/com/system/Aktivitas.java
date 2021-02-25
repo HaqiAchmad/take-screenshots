@@ -4,7 +4,7 @@ import com.database.Database;
 import java.io.File;
 
 /**
- * Class ini digunakan untuk  merekam aktivitas yang dilakukan user, dan menuliskan datanya ke database
+ * Class ini digunakan untuk merekam aktivitas yang dilakukan user, dan menuliskan datanya ke database
  * Contoh aktivitas seperti : user melakukan screenshot, user mengubah setelan applikasi, user membuka sebuah window, dll
  *  
  * 
@@ -42,23 +42,5 @@ public class Aktivitas {
      */
     public static void addScreenshot(String screenshot){
         Files.writeFile(fileScreenshots.toString(), screenshot, true);
-    }
-    
-    /**
-     * Berfungsi untuk menampilakan semua aktivitas yang dilakukan user ke konsol/screen
-     * 
-     */
-    private static void showAktivitas(){
-        Files.showFile(fileAktivitas.toString());
-    }
-    
-    /**
-     * Menampilkan semua data yang ada didalam file sceeenshots.haqi ke console/layar
-     * Data tersebut berisi direktori dari screenshot yang diambil user
-     * 
-     */
-    public static void showScreenshots(){
-        Files.showFile(fileScreenshots.toString());
-    }
-    
+    } 
 }
