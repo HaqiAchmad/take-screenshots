@@ -1,75 +1,64 @@
 ﻿Root.java
-Take Screenshot,Ambil Screenshot,Njupuk Gambar,スクリーンショット,Sukurīnshotto,스크린 샷,seukeulin syas
-Save to,Simpan ke,Panggon,に保存,Ni hozon,에 저장,e jeojang
-autosave,simpan otomatis,otomatis,自動保存,Jidō hozon,자동 저장,jadong jeojang
-screenshot taken,screenshot diambil,gambar dijupuk,取りました,Torimashita,촬영,chwal-yeong
+
+
+
+
 
 SimpanGambar.java
-Successfully screenshot!!,Screenshot sukses diambil!!,Gambar sukses dijupuk!!,正常にスクリーンショット,Seijō ni sukurīnshotto,성공적으로 스크린 샷,seong-gongjeog-eulo seukeulin syas
-Filename,Nama file,Jeneng file,ファイル名,Fairu-mei,파일 이름,pail ileum
-Format,Format,Format,フォーマット,Fōmatto,체재,chejae
-Size,Ukuran,Ukuran,サイズ,Saizu,크기,keugi
-Save,Simpan,Simpen,セーブ,Sēbu,저장,jeojang
-Rename,Ubah nama,Ganti Jeneng,リネーム,Rinēmu,이름 바꾸기,ileum bakkugi
-Open,Buka,Mbukak,開いた,Aita,열다,yeolda
-Folder,Folder,Folder,フォルダ,Foruda,폴더,poldeo
-Delete,Hapus,Mbusek,削除する,Sakujo suru,지우다,jiuda
+
+
+
+
+
+
+
+
+
 
 Rename.java
-Rename image!,Ubah nama gambar!,Ganti jeneng gambar!,画像の名前を変更,Gazō no namae o henkō,이미지 이름 바꾸기,imiji ileum bakkugi
-New name,Nama baru,Jeneng gambar,新しい名前,Atarashī namae,새로운 이름,saeloun ileum
-Save,Simpan,Simpen,Simpen,セーブ,Sēbu,저장,jeojang
-Cancel,Batal,Gak sido,キャンセル,Kyanseru,취소,chwiso
+
+
+
+
 
 WindowSetting.java
-Setting,Pengaturan,Setelan,設定,Settei,환경,hwangyeong
-Application,Aplikasi,Aplikasi,応用,Ōyō,신청,sincheong
-Choose the theme as you wish,Pilih tema yang kamu suka,Pilih tema sing sampeyan senengi,好きなテーマを選んでください,Sukina tēma o erande kudasai,테마를 선택하십시오,temaleul seontaeghasibsio
-Choose the language you understand,Pilih bahasa yang anda mengerti,Pilih basa sing sampeyan pahami,言語を選んでください,Gengo o erande kudasai,당신의 언어를 고르시 오,dangsin-ui eon-eoleul goleusi o
-Choose screenshot effect,Pilih efek saat screenshot,Pilih efek nalika gambar dijupuk,スクリーンショット効果を選択,Sukurīnshotto kōka o sentaku,스크린 샷 효과 선택,seukeulin syas hyogwa seontaeg
-Choose sound effect,Pilih efek suara saat screenshot,Pilih efek swara nalika gambar dijupuk,効果音を選択,Kōka-on o sentaku,음향 효과를 선택하십시오,eumhyang hyogwaleul seontaeghasibsio
-Select image format,Pilih format pada gambar,Pilih format ing gambar,画像形式を選択,Gazō keishiki o sentaku,이미지 형식 선택,imiji hyeongsig seontaeg,
-Auto save image when screenshot,Simpan otomatis gambar saat screenshot,Simpen gambar kanthi otomatis,スクリーンショット時に画像を自動保存,Sukurīnshotto-ji ni gazō o jidō hozon,스크린 샷시 이미지 자동 저장,seukeulin syas-si imiji jadong jeojang
-Default screenshot storage,Default penyimpanan screenshot,Panggon kanggo nyimpen gambar,スクリーンショットストレージ,Sukurīnshottosutorēji,스크린 샷 저장,seukeulin syas jeojang
-Daymode,Terang,Padang,デイモード,Deimōdo,주간 모드,jugan modeu
-Darkmode,Gelap,Peteng,ダークモード,Dākumōdo,다크 모드,dakeu modeu
-Deactivated,Dinonaktifkan,Dipatèni,非アクティブ化,Hiakutibu-ka,비활성화,bihwalseonghwa
-English,Indonesian,Javanese,日本 (Japan),日本（ローマ字）(Romaji), 한국어(Korea), 한국 (로맨틱 화) (romanized)
-Black flash,Kilat hitam,Bledhek ireng,ブラックフラッシュ,Burakkufurasshu,검은 플래시,geom-eun peullaesi
-White flash,Kilat putih,Bledhek putih,白いフラッシュ,Shiroi furasshu,화이트 플래시,hwaiteu peullaesi
-Coming soon,Segera hadir,Enggal teka,近日公開,Kinjitsu kōkai,출시 예정,chulsi yejeong
-Deactivated,Dinonaktifkan,Dipateni,非アクティブ化,Hiakutibu-ka,비활성화,bihwalseonghwa
-Voice 1,Suara 1,Swara 1,ボイス1,Boisu 1,음성 1,eumseong 1
-Voice 2,Suara 2,Swara 2,ボイス2,Boisu 2,음성 2,eumseong 2
-Voice 3,Suara 3,Swara 3,ボイス3,Boisu 3,음성 3,eumseong 3
-Voice 4,Suara 4,Swara 4,ボイス4,Boisu 4,음성 4,eumseong 4
-Voice 5,Suara 5,Swara 5,ボイス4,Boisu 5,음성 5,eumseong 5
-Activated,Diakfikan,Diaktifake,活性化,Kassei-ka,활성화,hwalseonghwa
-Deactivated,Dinonaktifkan,Dipatèni,非アクティブ化,Hiakutibu-ka,비활성화,bihwalseonghwa
-Reset settings,Reset pengaturan,Reset setelan,設定をリセットする,Settei o risettosuru,설정 재설정,seoljeong jaeseoljeong
-Ratting application,Ratting aplikasi,Rating aplikasi,評価アプリケーション,Hyōka apurikēshon,평가 신청,pyeong-ga sincheong
-Save,Simpan,Simpen,セーブ,Sēbu,저장,jeojang
-Cancel,Batal,Gak sido,キャンセル,Kyanseru,취소,chwiso
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Ratting.java
-Your name,Nama kamu,Jenengmu,あなたの名前,Anata no namae,당신의 이름,dangsin-ui ileum
-Feedback,Masukan,Masukan,フィードバック,Fīdobakku,피드백,pideubaeg
-Ratting,Ratting,Rating,ラッティング,Rattingu,라팅,lating
-Send,Kirim,Ngirim,それを送る,Sore o okuru,보내,bonae
-Later,Nanti,Mengko,後で,Atode,나중,Najung
-Hate,Benci,Sengit,嫌い,Kirai,미움,Mium
-Dislike,Tidak suka,Ora seneng,好きではない,Sukide wanai,싫어,silh-eo
-Not bad,Lumayan,Ora elek,悪くない,Warukunai,나쁘지 않다,nappeuji anhda
-Like,Suka,Seneng,いいね,Ī ne,그 것처럼,geu geoscheoleom
-Love,Cinta,Katresnan,愛,Ai,사랑,salang
-Contact Developer,Kontak Developer,Kontak pangembang,開発者に連絡する,Kaihatsu-sha ni renraku suru,개발자에게 문의,gaebalja-ege mun-ui
-Name cannot be empty, Nama tidak boleh kosong,Jeneng ora bisa kosong,名前は空にできません,Namae wa sora ni dekimasen,이름은 비워 둘 수 없습니다,ileum-eun biwo dul su eobs-seubnida
-Ratings cannot be empty,Ratting tidak boleh kosong,Rating ora bisa kosong,ラッティングは空にできません,Rattingu wa sora ni dekimasen,평가는 비워 둘 수 없습니다,pyeong-ganeun biwo dul su eobs-seubnida
-No internet connection, Tidak terhubung ke internet,Ora nyambung karo internet,インターネットに接続されていません,Intānetto ni setsuzoku sa rete imasen,인터넷에 연결되지 않음,inteones-e yeongyeoldoeji anh-eum
+
+
+
+
+
+
+
+
+
+
+
 
 KontakSaya.java
-Contact Developer,Kontak Developer,Kontak pangembang,開発者に連絡する,Kaihatsu-sha ni renraku suru,개발자에게 문의,gaebalja-ege mun-ui
-Whatsapp,Whatsapp,Whatsapp,Whatsapp,Whatsapp,Whatsapp,Whatsapp
-Instagram,Instagram,Instagram,Instagram,Instagram,Instagram,Instagram
-Twitter,Twitter,Twitter,Twitter,Twitter,Twitter,Twitter
-Youtube,Youtube,Youtube,Youtube,Youtube,Youtube,Youtube
+
+
+
+
