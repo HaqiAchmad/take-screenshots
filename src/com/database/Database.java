@@ -9,7 +9,7 @@ import java.io.IOException;
 
 
 /**
- * Digunakan untuk pengolahan file pada dbase
+ * Digunakan untuk mengelola file pada dbase
  * 
  * @author Achmad Baihaqi
  * @version 1.3
@@ -37,6 +37,11 @@ public class Database {
      */
     public static void createNotExistDatabase() throws IOException{
         
+        // untuk mereset setting jika file setting.haqi tidak ditemukan
+        Settings setting = new Settings();
+        // untuk mereset data aplikasi jika file about.haqi tidak ditemukan
+        Apps apps = new Apps();
+        
         // mencegek apakah folder database ada atau tidak
         if(!Files.isExistFolder(FOLDER_DB)){
             // membuat folder / file yang tidak ditemukan
@@ -47,8 +52,8 @@ public class Database {
             Files.createFile(fileScreenshots.toString());
             Files.createFile(fileSettings.toString());
             // mereset data aplikasi
-            Apps.resetDataApp();
-            Settings.resetSetting();
+            apps.resetDataApp();
+            setting.resetSetting();
         }else{
             // mencegek apakah folder temp ada atau tidaks
             if(!Files.isExistFolder(FOLDER_DB_TEMP)){
@@ -66,7 +71,7 @@ public class Database {
             if(!Files.isExistFile(fileAbout.toString())){
                 Files.createFile(fileAbout.toString());
                 Apps.showException(fileAbout.toString()+" Tidak dapat ditemukan", Database.class.getName(), IOException.class.getName());
-                Apps.resetDataApp();
+                apps.resetDataApp();
             }
 
             // mengecek apakah file screenshots.haqi ada atau tidak
@@ -79,7 +84,7 @@ public class Database {
             if(!Files.isExistFile(fileSettings.toString())){
                 Files.createFile(fileSettings.toString());
                 Apps.showException(fileSettings.toString()+" Tidak dapat ditemukan", Database.class.getName(), IOException.class.getName());
-                Settings.resetSetting();
+                setting.resetSetting();
             }
             
         }
