@@ -39,7 +39,7 @@ public class PlaySounds {
      * 
      * @param filename file audio yang akan diputar
      */
-    public static synchronized void play(final String filename){
+    public static void play(final String filename){
 
         // mengambil input audio dari user
         try{
@@ -68,11 +68,9 @@ public class PlaySounds {
     /**
      * Method ini digunakan untuk menonaktifkan audio/suara
      */
-    public static synchronized void stop(){
+    public static void stop(){
         if(players != null){
             players.close();
         }
     }
-    
-   
 }
