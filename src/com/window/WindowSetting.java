@@ -5,7 +5,6 @@ import com.system.Settings;
 import com.system.Aktivitas;
 import com.system.Apps;
 import com.system.Waktu;
-import com.window.helper.Ratting;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -25,20 +24,28 @@ import javax.swing.JOptionPane;
  */
 public class WindowSetting extends javax.swing.JFrame {
 
-
+    /**
+     * untuk mendapatkan data-data aplikasi
+     */
+    private final Apps app = new Apps();
+    /**
+     * Digunakan untuk mendapatkan pengaturan aplikasi
+     */
+    private final Settings setting = new Settings();
+    
     public WindowSetting() {
         initComponents();
         
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setIconImage(Apps.getWindowIcon());
-        this.setTitle(Settings.getLanguageActived("Setting","Pengaturan", "Setelan","設定","Settei","환경","hwangyeong"));
+        this.setTitle(setting.getLanguageActived("Setting","Pengaturan", "Setelan","設定","Settei","환경","hwangyeong"));
 
-        this.lblCopyright.setText("Copyright © " + Apps.getReleased() + " "+Apps.getAuthor()+".");
+        this.lblCopyright.setText("Copyright © " + app.getReleased() + " "+app.getAuthor()+".");
         this.btnChooseStorage.setUI(new javax.swing.plaf.basic.BasicButtonUI());
         this.btnSimpan.setUI(new javax.swing.plaf.basic.BasicButtonUI());
         this.btnBatal.setUI(new javax.swing.plaf.basic.BasicButtonUI());
-        this.txtPenyimpanan.setText(Settings.getSetting(Settings.SETTING_PEYIMPANAN));
+        this.txtPenyimpanan.setText(setting.getSetting(Settings.SETTING_PEYIMPANAN));
         this.txtPenyimpanan.setEditable(false);
 
         this.setLangugage();
@@ -48,37 +55,37 @@ public class WindowSetting extends javax.swing.JFrame {
         /**
          * Mengatur combo box pada theme, language, format, autosave dan efek screenshot sesuai seting yang dipilih usser
          */
-        if(Settings.isEnglishLanguage()){
+        if(setting.isEnglishLanguage()){
             this.inputLanguage.setSelectedIndex(0);
             this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Daymode", "Darkmode" }));
             this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Deactivated", "Voice 1", "Voice 2", "Voice 3", "Voice 4", "Voice 5"}));
             this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Activated", "Deactivated"}));
-        }else if(Settings.isIndonesianLanguage()){
+        }else if(setting.isIndonesianLanguage()){
             this.inputLanguage.setSelectedIndex(1);
             this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Terang", "Gelap" }));
             this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Dinonaktifkan", "Suara 1", "Suara 2", "Suara 3", "Suara 4", "Suara 5"}));
             this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Aktif", "Dinonaktifkan"}));
-        }else if(Settings.isJavaneseLanguage()){
+        }else if(setting.isJavaneseLanguage()){
             this.inputLanguage.setSelectedIndex(2);
             this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Padang", "Peteng"}));
             this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Dipatèni", "Swara 1", "Swara 2", "Swara 3", "Swara 4", "Swara 5"}));
             this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Diaktifake", "Dipatèni"}));
-        }else if(Settings.isJapaneseLanguage()){
+        }else if(setting.isJapaneseLanguage()){
             this.inputLanguage.setSelectedIndex(3);
             this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"デイモード", "ダークモード"}));
             this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"非アクティブ化", "ボイス1", "ボイス2", "ボイス3", "ボイス4", "ボイス5"}));
             this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"活性化", "非アクティブ化"}));
-        }else if(Settings.isJapaneseRomajiLanguage()){
+        }else if(setting.isJapaneseRomajiLanguage()){
             this.inputLanguage.setSelectedIndex(4);
             this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Deimōdo", "Dākumōdo"}));
             this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Hiakutibu-ka", "Boisu 1", "Boisu 2", "Boisu 3", "Boisu 4", "Boisu 5"}));
             this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Kassei-ka", "Hiakutibu-ka"}));
-        }else if(Settings.isKoreanLanguage()){
+        }else if(setting.isKoreanLanguage()){
             this.inputLanguage.setSelectedIndex(5);
             this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"주간 모드", "다크 모드"}));
             this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"비활성화", "음성 1", "음성 2", "음성 3", "음성 4", "음성 5"}));
             this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"활성화", "비활성화"}));
-        }else if(Settings.isKoreanRomanizationLanguage()){
+        }else if(setting.isKoreanRomanizationLanguage()){
             this.inputLanguage.setSelectedIndex(6);
             this.inputTheme.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"jugan modeu", "dakeu modeu"}));
             this.inputEfekSuara.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"bihwalseonghwa", "eumsoeng 1", "eumsoeng 2", "eumsoeng 3", "eumsoeng 4", "eumsoeng 5"}));
@@ -90,39 +97,39 @@ public class WindowSetting extends javax.swing.JFrame {
             this.inputAutosave.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Activated", "Deactivated"}));
         }
 
-        if(Settings.isDaymode()){
+        if(setting.isDaymode()){
             this.inputTheme.setSelectedIndex(0);
         }else{
             this.inputTheme.setSelectedIndex(1);
         }
 
-        if(Settings.isPngFormat()){
+        if(setting.isPngFormat()){
             this.inputFormat.setSelectedIndex(0);
-        }else if(Settings.isJpgFormat()){
+        }else if(setting.isJpgFormat()){
             this.inputFormat.setSelectedIndex(1);
-        }else if(Settings.isBmpFormat()){
+        }else if(setting.isBmpFormat()){
             this.inputFormat.setSelectedIndex(2);
         }else{
             this.inputFormat.setSelectedIndex(0);
         }
 
-        if(Settings.isEfekSuara_Nonaktif()){
+        if(setting.isEfekSuara_Nonaktif()){
             this.inputEfekSuara.setSelectedIndex(0);
-        }else if(Settings.isEfekSuara_1()){
+        }else if(setting.isEfekSuara_1()){
             this.inputEfekSuara.setSelectedIndex(1);
-        }else if(Settings.isEfekSuara_2()){
+        }else if(setting.isEfekSuara_2()){
             this.inputEfekSuara.setSelectedIndex(2);
-        }else if(Settings.isEfekSuara_3()){
+        }else if(setting.isEfekSuara_3()){
             this.inputEfekSuara.setSelectedIndex(3);
-        }else if(Settings.isEfekSuara_4()){
+        }else if(setting.isEfekSuara_4()){
             this.inputEfekSuara.setSelectedIndex(4);
-        }else if(Settings.isEfekSuara_5()){
+        }else if(setting.isEfekSuara_5()){
             this.inputEfekSuara.setSelectedIndex(5);
         }else{
             this.inputEfekSuara.setSelectedIndex(0);
         }
 
-        if(Settings.isAutoSave()){
+        if(setting.isAutoSave()){
             this.inputAutosave.setSelectedIndex(0);
         }else{
             this.inputAutosave.setSelectedIndex(1);
@@ -134,67 +141,67 @@ public class WindowSetting extends javax.swing.JFrame {
         JLabel[] lbls = new JLabel[]{this.lblTheme, this.lblLanguage, this.lblFormat, this.lblEfekSuara, lblAutosave, this.lblPeyimpanan};
         JComboBox[] combs = new JComboBox[]{this.inputTheme, this.inputLanguage, this.inputFormat, this.inputEfekSuara, this.inputAutosave, this.inputEfekSuara};
         
-        this.topPanel.setBackground(Settings.getThemeColors(new Color(180,185,184), new Color(57,60,64)));
-        this.mainPanel.setBackground(Settings.getThemeColors(new Color(255,255,255), new Color(35,35,37)));
-        this.btnSimpan.setBackground(Settings.getThemeColors(new Color(223,224,224), new Color(57,60,64)));
-        this.btnBatal.setBackground(Settings.getThemeColors(new Color(223,224,224), new Color(57,60,64)));
-        this.btnChooseStorage.setBackground(Settings.getThemeColors(new Color(240,240,240), new Color(14,14,14)));
-        this.txtPenyimpanan.setBackground(Settings.getThemeColors(new Color(255,255,255), new Color(35,35,37)));
-        this.lineApplications.setBackground(Settings.getThemeColors(new Color(8,8,8), new Color(77,79,81)));
+        this.topPanel.setBackground(setting.getThemeColors(new Color(180,185,184), new Color(57,60,64)));
+        this.mainPanel.setBackground(setting.getThemeColors(new Color(255,255,255), new Color(35,35,37)));
+        this.btnSimpan.setBackground(setting.getThemeColors(new Color(223,224,224), new Color(57,60,64)));
+        this.btnBatal.setBackground(setting.getThemeColors(new Color(223,224,224), new Color(57,60,64)));
+        this.btnChooseStorage.setBackground(setting.getThemeColors(new Color(240,240,240), new Color(14,14,14)));
+        this.txtPenyimpanan.setBackground(setting.getThemeColors(new Color(255,255,255), new Color(35,35,37)));
+        this.lineApplications.setBackground(setting.getThemeColors(new Color(8,8,8), new Color(77,79,81)));
         for (JComboBox comb : combs) {
-            comb.setBackground(Settings.getThemeColors(new Color(222,222,222), new Color(35,35,37)));
-            comb.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(239,239,239)));
+            comb.setBackground(setting.getThemeColors(new Color(222,222,222), new Color(35,35,37)));
+            comb.setForeground(setting.getThemeColors(new Color(0,0,0), new Color(239,239,239)));
         }
         
-        this.lblPengaturan.setForeground(Settings.getThemeColors(new Color(0,16,26), new Color(255,255,255)));
-        this.lblApplications.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(245,242,242)));
-        this.btnSimpan.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(224,224,224)));
-        this.btnBatal.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(224,224,224)));
-        this.btnChooseStorage.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(255,250,250)));
-        this.txtPenyimpanan.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(228,228,228)));
-        this.lblCopyright.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(221,221,221)));
-        this.lblRatting.setForeground(Settings.getThemeColors(new Color(0,0,0), new Color(221,221,221)));
-        this.lblResetPengaturan.setForeground(Settings.getThemeColors(new Color(255,0,0), new Color(224,45,45)));
+        this.lblPengaturan.setForeground(setting.getThemeColors(new Color(0,16,26), new Color(255,255,255)));
+        this.lblApplications.setForeground(setting.getThemeColors(new Color(0,0,0), new Color(245,242,242)));
+        this.btnSimpan.setForeground(setting.getThemeColors(new Color(0,0,0), new Color(224,224,224)));
+        this.btnBatal.setForeground(setting.getThemeColors(new Color(0,0,0), new Color(224,224,224)));
+        this.btnChooseStorage.setForeground(setting.getThemeColors(new Color(0,0,0), new Color(255,250,250)));
+        this.txtPenyimpanan.setForeground(setting.getThemeColors(new Color(0,0,0), new Color(228,228,228)));
+        this.lblCopyright.setForeground(setting.getThemeColors(new Color(0,0,0), new Color(221,221,221)));
+        this.lblRatting.setForeground(setting.getThemeColors(new Color(0,0,0), new Color(221,221,221)));
+        this.lblResetPengaturan.setForeground(setting.getThemeColors(new Color(255,0,0), new Color(224,45,45)));
         for (JLabel lbl : lbls) {
-            lbl.setForeground(Settings.getThemeColors(new Color(18,14,14), new Color(246,245,245)));
+            lbl.setForeground(setting.getThemeColors(new Color(18,14,14), new Color(246,245,245)));
         }
     }
     
     private void setLangugage(){
-        this.lblPengaturan.setText("  "+Settings.getLanguageActived(
+        this.lblPengaturan.setText("  "+setting.getLanguageActived(
             "Setting","Pengaturan", "Setelan", "設定","Settei","환경","hwangyeong"
         ));
-        this.lblApplications.setText("   "+Settings.getLanguageActived(
+        this.lblApplications.setText("   "+setting.getLanguageActived(
             "Applications","Aplikasi", "Aplikasi", "応用","Ōyō","신청","sincheong"
         ));
-        this.lblTheme.setText("   "+Settings.getLanguageActived( 
+        this.lblTheme.setText("   "+setting.getLanguageActived( 
             "Choose the theme as you wish","Pilih tema yang kamu suka", "Pilih tema sing sampeyan senengi", "好きなテーマを選んでください","Sukina tēma o erande kudasai","테마를 선택하십시오","temaleul seontaeghasibsio"
         ));
-        this.lblLanguage.setText("   "+Settings.getLanguageActived(
+        this.lblLanguage.setText("   "+setting.getLanguageActived(
              "Choose the language you understand", "Pilih bahasa yang anda mengerti", "Pilih basa sing sampeyan pahami", "言語を選んでください ", "Gengo o erande kudasai", "당신의 언어를 고르시 오" ,"dangsin-ui eon-eoleul goleusi o"
         ));
-        this.lblFormat.setText("   "+Settings.getLanguageActived(
+        this.lblFormat.setText("   "+setting.getLanguageActived(
              "Select image format", "Pilih format pada gambar", "Pilih format ing gambar", "画像形式を選択", "Gazō keishiki o sentaku", "이미지 형식 선택" ,"imiji hyeongsig seontaeg"
         ));
-        this.lblEfekSuara.setText("   "+Settings.getLanguageActived(
+        this.lblEfekSuara.setText("   "+setting.getLanguageActived(
              "Choose sound effect", "Pilih efek suara saat screenshot", "Pilih efek swara nalika gambar dijupuk", "効果音を選択", "Kōka-on o sentaku","음향 효과를 선택하십시오", "eumhyang hyogwaleul seontaeghasibsio"
         ));
-        this.lblAutosave.setText("   "+Settings.getLanguageActived(
+        this.lblAutosave.setText("   "+setting.getLanguageActived(
              "Auto save image when screenshot", "Simpan otomatis gambar saat screenshot", "Simpen gambar kanthi otomatis", "スクリーンショット時に画像を自動保存" ,"Sukurīnshotto-ji ni gazō o jidō hozon", "스크린 샷시 이미지 자동 저장", "seukeulin syas-si imiji jadong jeojang"
         ));
-        this.lblPeyimpanan.setText("   "+Settings.getLanguageActived(
+        this.lblPeyimpanan.setText("   "+setting.getLanguageActived(
              "Default screenshot storage", "Default penyimpanan screenshot", "Panggon kanggo nyimpen gambar", "スクリーンショットストレージ", "Sukurīnshottosutorēji", "스크린 샷 저장", "seukeulin syas jeojang"
         ));
-        this.lblRatting.setText(" "+Settings.getLanguageActived(
+        this.lblRatting.setText(" "+setting.getLanguageActived(
                 "Retting application","Ratting aplikasi", "Ratting aplikasi", "評価アプリケーション","Hyōka apurikēshon","평가 신청","pyeong-ga sincheong"
         ));
-        this.lblResetPengaturan.setText(Settings.getLanguageActived(
+        this.lblResetPengaturan.setText(setting.getLanguageActived(
                 "Reset settings", "Reset pengaturan", "Reset setelan", "設定をリセットする", "Settei o risettosuru", "설정 재설정 ", "seoljeong jaeseoljeong"
         )+"???");
-        this.btnSimpan.setText(Settings.getLanguageActived(
+        this.btnSimpan.setText(setting.getLanguageActived(
                 "Save","Simpan", "Simpen", "セーブ","Sēbu","저장","jeojang"
         ));
-        this.btnBatal.setText(Settings.getLanguageActived(
+        this.btnBatal.setText(setting.getLanguageActived(
                 "Cancel","Batal", "Batal", "キャンセル","Kyanseru","취소","chwiso"
         ));
 
@@ -522,56 +529,56 @@ public class WindowSetting extends javax.swing.JFrame {
         try{
             // set theme
             switch(this.inputTheme.getSelectedIndex()){
-                case 0: Settings.setSettings(Settings.SETTING_THEME, Settings.THEME_DAYMODE) ;break;
-                case 1: Settings.setSettings(Settings.SETTING_THEME, Settings.THEME_DARKMODE) ;break;
-                default: Settings.setSettings(Settings.SETTING_THEME, Settings.THEME_DAYMODE) ;break;
+                case 0: setting.setSettings(Settings.SETTING_THEME, Settings.THEME_DAYMODE) ;break;
+                case 1: setting.setSettings(Settings.SETTING_THEME, Settings.THEME_DARKMODE) ;break;
+                default: setting.setSettings(Settings.SETTING_THEME, Settings.THEME_DAYMODE) ;break;
             }
             
             // set language
             switch(this.inputLanguage.getSelectedIndex()){
-                case 0: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_ENGLISH) ; break;
-                case 1: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_INDONESIAN) ; break;
-                case 2: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_JAVANESE); break;
-                case 3: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_JAPANESE) ; break;
-                case 4: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_JAPANESE_ROMAJI) ; break;
-                case 5: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_KOREAN) ; break;
-                case 6: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_KOREAN_ROMANIZATION) ; break;
-                default: Settings.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_ENGLISH) ; break;
+                case 0: setting.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_ENGLISH) ; break;
+                case 1: setting.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_INDONESIAN) ; break;
+                case 2: setting.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_JAVANESE); break;
+                case 3: setting.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_JAPANESE) ; break;
+                case 4: setting.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_JAPANESE_ROMAJI) ; break;
+                case 5: setting.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_KOREAN) ; break;
+                case 6: setting.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_KOREAN_ROMANIZATION) ; break;
+                default: setting.setSettings(Settings.SETTING_LANGUAGE, Settings.LANGUAGE_ENGLISH) ; break;
             }
             
             // set format
             switch(this.inputFormat.getSelectedIndex()){
-                case 0: Settings.setSettings(Settings.SETTING_FORMAT, Settings.FORMAT_PNG) ; break;
-                case 1: Settings.setSettings(Settings.SETTING_FORMAT, Settings.FORMAT_JPG) ; break;
-                case 2: Settings.setSettings(Settings.SETTING_FORMAT, Settings.FORMAT_BMP) ; break;
-                default: Settings.setSettings(Settings.SETTING_FORMAT, Settings.FORMAT_PNG) ; break;
+                case 0: setting.setSettings(Settings.SETTING_FORMAT, Settings.FORMAT_PNG) ; break;
+                case 1: setting.setSettings(Settings.SETTING_FORMAT, Settings.FORMAT_JPG) ; break;
+                case 2: setting.setSettings(Settings.SETTING_FORMAT, Settings.FORMAT_BMP) ; break;
+                default: setting.setSettings(Settings.SETTING_FORMAT, Settings.FORMAT_PNG) ; break;
             }
             
             // set efek suara
             switch(this.inputEfekSuara.getSelectedIndex()){
-                case 0: Settings.setSettings(Settings.SETTING_EFEK_SUARA, Settings.EFEK_SUARA_DEACTIVATED); break;
-                case 1: Settings.setSettings(Settings.SETTING_EFEK_SUARA, Settings.EFEK_SUARA_1);break;
-                case 2: Settings.setSettings(Settings.SETTING_EFEK_SUARA, Settings.EFEK_SUARA_2);break;
-                case 3: Settings.setSettings(Settings.SETTING_EFEK_SUARA, Settings.EFEK_SUARA_3);break;
-                case 4: Settings.setSettings(Settings.SETTING_EFEK_SUARA, Settings.EFEK_SUARA_4);break;
-                case 5: Settings.setSettings(Settings.SETTING_EFEK_SUARA, Settings.EFEK_SUARA_5);break;
-                default: Settings.setSettings(Settings.SETTING_EFEK_SUARA, Settings.EFEK_SUARA_1); break;
+                case 0: setting.setSettings(Settings.SETTING_EFEK_SUARA, Settings.EFEK_SUARA_DEACTIVATED); break;
+                case 1: setting.setSettings(Settings.SETTING_EFEK_SUARA, Settings.EFEK_SUARA_1);break;
+                case 2: setting.setSettings(Settings.SETTING_EFEK_SUARA, Settings.EFEK_SUARA_2);break;
+                case 3: setting.setSettings(Settings.SETTING_EFEK_SUARA, Settings.EFEK_SUARA_3);break;
+                case 4: setting.setSettings(Settings.SETTING_EFEK_SUARA, Settings.EFEK_SUARA_4);break;
+                case 5: setting.setSettings(Settings.SETTING_EFEK_SUARA, Settings.EFEK_SUARA_5);break;
+                default: setting.setSettings(Settings.SETTING_EFEK_SUARA, Settings.EFEK_SUARA_1); break;
             }
             
             // set autosave
             switch(this.inputAutosave.getSelectedIndex()){
-                case 0: Settings.setSettings(Settings.SETTING_AUTOSAVE, Settings.AUTOSAVE_ACTIVATED); break;
-                case 1:  Settings.setSettings(Settings.SETTING_AUTOSAVE, Settings.AUTOSAVE_DEACTIVATED); break;
-                default:  Settings.setSettings(Settings.SETTING_AUTOSAVE, Settings.AUTOSAVE_ACTIVATED); break;
+                case 0: setting.setSettings(Settings.SETTING_AUTOSAVE, Settings.AUTOSAVE_ACTIVATED); break;
+                case 1:  setting.setSettings(Settings.SETTING_AUTOSAVE, Settings.AUTOSAVE_DEACTIVATED); break;
+                default:  setting.setSettings(Settings.SETTING_AUTOSAVE, Settings.AUTOSAVE_ACTIVATED); break;
             }
             
             // set penyimpanan
             // akan menambahkan '\' jika pada directory belum terdapat '\'
             String penyimpanan = txtPenyimpanan.getText();
             if (penyimpanan.lastIndexOf('\\') != penyimpanan.length()-1){
-                Settings.setSettings(Settings.SETTING_PEYIMPANAN, txtPenyimpanan.getText()+"\\");
+                setting.setSettings(Settings.SETTING_PEYIMPANAN, txtPenyimpanan.getText()+"\\");
             }else{
-                Settings.setSettings(Settings.SETTING_PEYIMPANAN, txtPenyimpanan.getText());
+                setting.setSettings(Settings.SETTING_PEYIMPANAN, txtPenyimpanan.getText());
             }
             
         }catch(java.io.IOException ex){
@@ -585,9 +592,9 @@ public class WindowSetting extends javax.swing.JFrame {
 
             @Override
             public void run(){
-                Root rootWindow = new Root();
-                rootWindow.setLocation(getX(), getY());
-                rootWindow.setVisible(true);
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.setLocation(getX(), getY());
+                mainWindow.setVisible(true);
             }
         
         });
@@ -599,9 +606,9 @@ public class WindowSetting extends javax.swing.JFrame {
 
             @Override
             public void run(){
-                Root rootWindow = new Root();
-                rootWindow.setLocation(getX(), getY());
-                rootWindow.setVisible(true);
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.setLocation(getX(), getY());
+                mainWindow.setVisible(true);
             }
         
         });
@@ -611,7 +618,7 @@ public class WindowSetting extends javax.swing.JFrame {
     private void btnChooseStorageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseStorageActionPerformed
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         javax.swing.JFileChooser jfc = new javax.swing.JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        jfc.setDialogTitle(Settings.getLanguageActived("Save to","Simpan ke", "Simpen nandi", "に保存","Ni hozon","에 저장","e jeojang"));
+        jfc.setDialogTitle(setting.getLanguageActived("Save to","Simpan ke", "Simpen nandi", "に保存","Ni hozon","에 저장","e jeojang"));
         jfc.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
         jfc.setAcceptAllFileFilterUsed(false);
         int returnNilai = jfc.showSaveDialog(null);
@@ -619,7 +626,7 @@ public class WindowSetting extends javax.swing.JFrame {
             if(returnNilai == javax.swing.JFileChooser.APPROVE_OPTION){
                 if(jfc.getSelectedFile().isDirectory()){
                     this.txtPenyimpanan.setText(jfc.getSelectedFile().getPath());
-                    Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t-> " + Apps.getUsername() + " mengubah direktori penyimpanan ke " + jfc.getSelectedFile().getPath());
+                    Aktivitas.addAktivitas(Waktu.getTanggal_Aktivitas() +"\t-> " + Apps.getUsername() + " mengubah direktori penyimpanan ke " + jfc.getSelectedFile().getPath());
                     System.out.println("Screenshots akan disimpan ke -> " + jfc.getSelectedFile().getPath());
                 }
             }
@@ -632,46 +639,46 @@ public class WindowSetting extends javax.swing.JFrame {
 
             @Override
             public void run(){
-                Root rootWindow = new Root();
-                rootWindow.setLocation(getX(), getY());
-                rootWindow.setVisible(true);
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.setLocation(getX(), getY());
+                mainWindow.setVisible(true);
             }
         
         });
     }//GEN-LAST:event_btnBackMouseClicked
 
     private void btnSimpanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSimpanMouseEntered
-        this.btnSimpan.setBackground(Settings.getThemeColors(new Color(138,143,143), new Color(22,23,24)));
+        this.btnSimpan.setBackground(setting.getThemeColors(new Color(138,143,143), new Color(22,23,24)));
     }//GEN-LAST:event_btnSimpanMouseEntered
 
     private void btnSimpanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSimpanMouseExited
-        this.btnSimpan.setBackground(Settings.getThemeColors(new Color(223,224,224), new Color(57,60,64)));
+        this.btnSimpan.setBackground(setting.getThemeColors(new Color(223,224,224), new Color(57,60,64)));
     }//GEN-LAST:event_btnSimpanMouseExited
 
     private void btnBatalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseEntered
-        this.btnBatal.setBackground(Settings.getThemeColors(new Color(138,143,143), new Color(22,23,24)));
+        this.btnBatal.setBackground(setting.getThemeColors(new Color(138,143,143), new Color(22,23,24)));
     }//GEN-LAST:event_btnBatalMouseEntered
 
     private void btnBatalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatalMouseExited
-        this.btnBatal.setBackground(Settings.getThemeColors(new Color(223,224,224), new Color(57,60,64)));
+        this.btnBatal.setBackground(setting.getThemeColors(new Color(223,224,224), new Color(57,60,64)));
     }//GEN-LAST:event_btnBatalMouseExited
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
-        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " membuka window WindowSetting()"); 
+        Aktivitas.addAktivitas(Waktu.getTanggal_Aktivitas() +"\t->"+ Apps.getUsername() + " membuka window WindowSetting()"); 
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " keluar dari window WindowSetting()"); 
+        Aktivitas.addAktivitas(Waktu.getTanggal_Aktivitas() +"\t->"+ Apps.getUsername() + " keluar dari window WindowSetting()"); 
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() +"\t->"+ Apps.getUsername() + " menutup aplikasi"); 
+        Aktivitas.addAktivitas(Waktu.getTanggal_Aktivitas() +"\t->"+ Apps.getUsername() + " menutup aplikasi"); 
     }//GEN-LAST:event_formWindowClosing
 
     private void lblResetPengaturanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblResetPengaturanMouseClicked
         try{
-            Settings.resetSetting();
+            setting.resetSetting();
             JOptionPane.showMessageDialog(null, "Pengaturan berhasil direset!!");
             dispose();
        
@@ -679,9 +686,9 @@ public class WindowSetting extends javax.swing.JFrame {
 
                     @Override
                     public void run(){
-                        Root rootWindow = new Root();
-                        rootWindow.setLocation(getX(), getY());
-                        rootWindow.setVisible(true);
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.setLocation(getX(), getY());
+                        mainWindow.setVisible(true);
                     }
 
                 });
@@ -692,7 +699,7 @@ public class WindowSetting extends javax.swing.JFrame {
 
     private void lblCopyrightMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCopyrightMouseClicked
         PlaySounds.play(PlaySounds.SUARA_NOTIF);
-        JOptionPane.showMessageDialog(null, "Copyright © " + Apps.getReleased() + " "+Apps.getAuthor()+". All Rights Reserved.");
+        JOptionPane.showMessageDialog(null, "Copyright © " + app.getReleased() + " "+app.getAuthor()+". All Rights Reserved.");
     }//GEN-LAST:event_lblCopyrightMouseClicked
 
     private void lblRattingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRattingMouseClicked
