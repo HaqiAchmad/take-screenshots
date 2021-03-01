@@ -1,13 +1,11 @@
 package com.window;
 
-import com.media.images.Gambar;
 import com.media.images.Screenshot;
 import com.system.Aktivitas;
 import com.system.Apps;
 import com.system.Files;
 import com.system.Settings;
 import com.system.Waktu;
-import com.window.helper.Rename;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -25,16 +23,21 @@ import javax.swing.JButton;
  */
 public class SimpanGambar extends javax.swing.JFrame {
 
-    private final File screenshot;
+    private final Screenshot screenshot = new Screenshot();
+    /**
+     * untuk mendapatkan pengaturan aplikasi
+     */
+    private final Settings setting = new Settings();
+    private final File lastScreenshot;
     private final String gambar;
     private final int widthGbr, heightGbr; 
     private int xx, yy;
 
     public SimpanGambar() {
-        this.screenshot = new File(Screenshot.getLastScreenshot());
-        this.gambar = Screenshot.getLastScreenshot();
-        this.widthGbr = Gambar.lebarGambar(this.screenshot);
-        this.heightGbr = Gambar.tinggiGambar(this.screenshot);
+        this.lastScreenshot = new File(screenshot.getLastScreenshot());
+        this.gambar = screenshot.getLastScreenshot();
+        this.widthGbr = Screenshot.lebarGambar(this.lastScreenshot);
+        this.heightGbr = Screenshot.tinggiGambar(this.lastScreenshot);
 
         initComponents();
         this.setSize(457, 165);
@@ -71,14 +74,14 @@ public class SimpanGambar extends javax.swing.JFrame {
 
                 @Override
                 public void mouseEntered(MouseEvent e) {
-                    btn.setBackground(Settings.getThemeColors(new Color(87, 117, 181), new Color(31, 83, 130)));
-                    btn.setForeground(Settings.getThemeColors(new Color(255, 255, 255), new Color(255, 255, 255)));
+                    btn.setBackground(setting.getThemeColors(new Color(87, 117, 181), new Color(31, 83, 130)));
+                    btn.setForeground(setting.getThemeColors(new Color(255, 255, 255), new Color(255, 255, 255)));
                 }
 
                 @Override
                 public void mouseExited(MouseEvent e) {
-                    btn.setBackground(Settings.getThemeColors(new Color(223, 224, 224), new Color(57, 60, 64)));
-                    btn.setForeground(Settings.getThemeColors(new Color(21, 18, 18), new Color(248, 244, 244)));
+                    btn.setBackground(setting.getThemeColors(new Color(223, 224, 224), new Color(57, 60, 64)));
+                    btn.setForeground(setting.getThemeColors(new Color(21, 18, 18), new Color(248, 244, 244)));
                 }
             });
 
@@ -90,53 +93,53 @@ public class SimpanGambar extends javax.swing.JFrame {
     private void setThemes() {
         JButton[] btns = new JButton[]{this.btnSave, this.btnRename, this.btnShow, btnFolder, this.btnDelete};
 
-        this.pnlTop.setBackground(Settings.getThemeColors(new Color(203, 206, 208), new Color(57, 60, 64)));
-        this.pnlBottom.setBackground(Settings.getThemeColors(new Color(203, 206, 208), new Color(57, 60, 64)));
-        this.pnlMain.setBackground(Settings.getThemeColors(new Color(255, 255, 255), new Color(35, 35, 37)));
+        this.pnlTop.setBackground(setting.getThemeColors(new Color(203, 206, 208), new Color(57, 60, 64)));
+        this.pnlBottom.setBackground(setting.getThemeColors(new Color(203, 206, 208), new Color(57, 60, 64)));
+        this.pnlMain.setBackground(setting.getThemeColors(new Color(255, 255, 255), new Color(35, 35, 37)));
         for (JButton btn : btns) {
             btn.setUI(new javax.swing.plaf.basic.BasicButtonUI());
-            btn.setBackground(Settings.getThemeColors(new Color(223, 224, 224), new Color(57, 60, 64)));
-            btn.setForeground(Settings.getThemeColors(new Color(21, 18, 18), new Color(248, 244, 244)));
+            btn.setBackground(setting.getThemeColors(new Color(223, 224, 224), new Color(57, 60, 64)));
+            btn.setForeground(setting.getThemeColors(new Color(21, 18, 18), new Color(248, 244, 244)));
         }
 
-        this.lblTop.setForeground(Settings.getThemeColors(new Color(0, 0, 0), new Color(255, 255, 255)));
-        this.lblFilename.setForeground(Settings.getThemeColors(new Color(20, 16, 18), new Color(237, 237, 237)));
-        this.lblFormat.setForeground(Settings.getThemeColors(new Color(20, 16, 18), new Color(237, 237, 237)));
-        this.lblUkuran.setForeground(Settings.getThemeColors(new Color(20, 16, 18), new Color(237, 237, 237)));
-        this.lblhelpFilename.setForeground(Settings.getThemeColors(new Color(0, 0, 0), new Color(242, 242, 242)));
-        this.lblhelpFormat.setForeground(Settings.getThemeColors(new Color(0, 0, 0), new Color(242, 242, 242)));
-        this.lblhelpUkuran.setForeground(Settings.getThemeColors(new Color(0, 0, 0), new Color(242, 242, 242)));
-        this.txtFilename.setForeground(Settings.getThemeColors(new Color(14, 12, 12), new Color(242, 242, 242)));
-        this.txtFormat.setForeground(Settings.getThemeColors(new Color(14, 12, 12), new Color(242, 242, 242)));
-        this.txtUkuran.setForeground(Settings.getThemeColors(new Color(14, 12, 12), new Color(242, 242, 242)));
+        this.lblTop.setForeground(setting.getThemeColors(new Color(0, 0, 0), new Color(255, 255, 255)));
+        this.lblFilename.setForeground(setting.getThemeColors(new Color(20, 16, 18), new Color(237, 237, 237)));
+        this.lblFormat.setForeground(setting.getThemeColors(new Color(20, 16, 18), new Color(237, 237, 237)));
+        this.lblUkuran.setForeground(setting.getThemeColors(new Color(20, 16, 18), new Color(237, 237, 237)));
+        this.lblhelpFilename.setForeground(setting.getThemeColors(new Color(0, 0, 0), new Color(242, 242, 242)));
+        this.lblhelpFormat.setForeground(setting.getThemeColors(new Color(0, 0, 0), new Color(242, 242, 242)));
+        this.lblhelpUkuran.setForeground(setting.getThemeColors(new Color(0, 0, 0), new Color(242, 242, 242)));
+        this.txtFilename.setForeground(setting.getThemeColors(new Color(14, 12, 12), new Color(242, 242, 242)));
+        this.txtFormat.setForeground(setting.getThemeColors(new Color(14, 12, 12), new Color(242, 242, 242)));
+        this.txtUkuran.setForeground(setting.getThemeColors(new Color(14, 12, 12), new Color(242, 242, 242)));
     }
 
     private void setLanguage() {
-        this.lblTop.setText(Settings.getLanguageActived(
+        this.lblTop.setText(setting.getLanguageActived(
                 "Successfully screenshot!!", "Screenshot sukses diambil!!", "Gambar sukses dijupuk!!", "正常にスクリーンショット", "Seijō ni sukurīnshotto", "성공적으로 스크린 샷", "seong-gongjeog-eulo seukeulin syas"
         ));
-        this.lblFilename.setText(Settings.getLanguageActived(
+        this.lblFilename.setText(setting.getLanguageActived(
                 "Filename", "Nama file", "Jeneng file", "ファイル名", "Fairu-mei", "파일 이름", "pail ileum"
         ));
-        this.lblFormat.setText(Settings.getLanguageActived(
+        this.lblFormat.setText(setting.getLanguageActived(
                 "Format", "Format", "Format", "フォーマット", "Fōmatto", "체재", "chejae"
         ));
-        this.lblUkuran.setText(Settings.getLanguageActived(
+        this.lblUkuran.setText(setting.getLanguageActived(
                 "Size", "Ukuran", "Ukuran", "サイズ", "Saizu", "크기", "keugi"
         ));
-        this.btnSave.setText(Settings.getLanguageActived(
+        this.btnSave.setText(setting.getLanguageActived(
                 "Save image", "Simpan", "Simpen", "セーブ", "Sēbu", "저장", "jeojang"
         ));
-        this.btnRename.setText(Settings.getLanguageActived(
+        this.btnRename.setText(setting.getLanguageActived(
                 "Rename", "Ubah nama", "Ganti Jeneng", "リネーム", "Rinēmu", "이름 바꾸기", "ileum bakkugi"
         ));
-        this.btnShow.setText(Settings.getLanguageActived(
+        this.btnShow.setText(setting.getLanguageActived(
                 "Open", "Buka", "Mbukak", "開いた", "Aita", "열다", "yeolda"
         ));
-        this.btnFolder.setText(Settings.getLanguageActived(
+        this.btnFolder.setText(setting.getLanguageActived(
                 "Folder", "Folder", "Folder", "フォルダ", "Foruda", "폴더", "poldeo"
         ));
-        this.btnDelete.setText(Settings.getLanguageActived(
+        this.btnDelete.setText(setting.getLanguageActived(
                 "Delete", "Hapus", "Mbusek", "削除する", "Sakujo suru", "지우다", "jiuda"
         ));
     }
@@ -146,9 +149,9 @@ public class SimpanGambar extends javax.swing.JFrame {
 
             @Override
             public void run() {
-                Root root = new Root();
-                root.setLocation(getX(), getY());
-                root.setVisible(true);
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.setLocation(getX(), getY());
+                mainWindow.setVisible(true);
             }
         });
     }
@@ -157,7 +160,6 @@ public class SimpanGambar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         pnlMain = new javax.swing.JPanel();
         lblUkuran = new javax.swing.JLabel();
         lblFilename = new javax.swing.JLabel();
@@ -177,8 +179,6 @@ public class SimpanGambar extends javax.swing.JFrame {
         btnShow = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnFolder = new javax.swing.JButton();
-
-        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -447,15 +447,15 @@ public class SimpanGambar extends javax.swing.JFrame {
 
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() + "\t->" + Apps.getUsername() + " membuka window SimpanGambar()");
+        Aktivitas.addAktivitas(Waktu.getTanggal_Aktivitas() + "\t->" + Apps.getUsername() + " membuka window SimpanGambar()");
     }//GEN-LAST:event_formWindowOpened
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() + "\t->" + Apps.getUsername() + " keluar dari window SimpanGambar().");
+        Aktivitas.addAktivitas(Waktu.getTanggal_Aktivitas() + "\t->" + Apps.getUsername() + " keluar dari window SimpanGambar().");
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() + "\t->" + Apps.getUsername() + " menutup aplikasi.");
+        Aktivitas.addAktivitas(Waktu.getTanggal_Aktivitas() + "\t->" + Apps.getUsername() + " menutup aplikasi.");
     }//GEN-LAST:event_formWindowClosing
 
     private void pnlTopMousePressed(MouseEvent evt) {//GEN-FIRST:event_pnlTopMousePressed
@@ -480,11 +480,13 @@ public class SimpanGambar extends javax.swing.JFrame {
         this.setLocation(x - xx, y - yy);
     }//GEN-LAST:event_pnlMainMouseDragged
 
+    @Deprecated
     private void pnlBottomMousePressed(MouseEvent evt) {//GEN-FIRST:event_pnlBottomMousePressed
 //        xx = evt.getX();
 //        yy = evt.getY();
     }//GEN-LAST:event_pnlBottomMousePressed
 
+    @Deprecated
     private void pnlBottomMouseDragged(MouseEvent evt) {//GEN-FIRST:event_pnlBottomMouseDragged
 //        int x = evt.getXOnScreen(),
 //            y = evt.getYOnScreen();
@@ -494,20 +496,20 @@ public class SimpanGambar extends javax.swing.JFrame {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         this.btnSave.setSelected(true);
         String filenameSebelumnya = txtFilename.getText();
-        if (Files.isExistFile(screenshot.getParent() + "\\" + txtFilename.getText() + Settings.getSetting(Settings.SETTING_FORMAT))) {
+        if (Files.isExistFile(lastScreenshot.getParent() + "\\" + txtFilename.getText() + setting.getSetting(setting.SETTING_FORMAT))) {
             if (txtFilename.getText().equalsIgnoreCase(filenameSebelumnya)) {
                 dispose();
                 this.back();
-                Aktivitas.addAktivitas(Waktu.getTanggal_Activity() + "\t->" + Apps.getUsername() + " menyimpan hasil screenshot.");
-                Aktivitas.addScreenshot(screenshot.getPath() + "|" + Waktu.getTanggal_Activity());
+                Aktivitas.addAktivitas(Waktu.getTanggal_Aktivitas() + "\t->" + Apps.getUsername() + " menyimpan hasil screenshot.");
+                Aktivitas.addScreenshot(lastScreenshot.getPath() + "|" + Waktu.getTanggal_Aktivitas());
             } else {
-                javax.swing.JOptionPane.showMessageDialog(null, txtFilename.getText() + " sudah ada di direktori " + screenshot.getParent());
+                javax.swing.JOptionPane.showMessageDialog(null, txtFilename.getText() + " sudah ada di direktori " + lastScreenshot.getParent());
             }
         } else {
             dispose();
             this.back();
-            Aktivitas.addAktivitas(Waktu.getTanggal_Activity() + "\t->" + Apps.getUsername() + " menyimpan hasil screenshot.");
-            Aktivitas.addScreenshot(screenshot.getPath() + "|" + Waktu.getTanggal_Activity());
+            Aktivitas.addAktivitas(Waktu.getTanggal_Aktivitas() + "\t->" + Apps.getUsername() + " menyimpan hasil screenshot.");
+            Aktivitas.addScreenshot(lastScreenshot.getPath() + "|" + Waktu.getTanggal_Aktivitas());
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -521,8 +523,8 @@ public class SimpanGambar extends javax.swing.JFrame {
     private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
 
         try {
-            Aktivitas.addAktivitas(Waktu.getTanggal_Activity() + "\t->" + Apps.getUsername() + " menampilakan hasil screenshot.");
-            File file = new File(Screenshot.getLastScreenshot());
+            Aktivitas.addAktivitas(Waktu.getTanggal_Aktivitas() + "\t->" + Apps.getUsername() + " menampilakan hasil screenshot.");
+            File file = new File(screenshot.getLastScreenshot());
             java.awt.Desktop.getDesktop().open(file);
 
         } catch (IOException ex) {
@@ -532,8 +534,8 @@ public class SimpanGambar extends javax.swing.JFrame {
 
     private void btnFolderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFolderActionPerformed
 
-        File file = new File(Screenshot.getLastScreenshot().substring(0, Screenshot.getLastScreenshot().lastIndexOf("\\")));
-        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() + "\t->" + Apps.getUsername() + " membuka folder hasil screenshot.");
+        File file = new File(screenshot.getLastScreenshot().substring(0, screenshot.getLastScreenshot().lastIndexOf("\\")));
+        Aktivitas.addAktivitas(Waktu.getTanggal_Aktivitas() + "\t->" + Apps.getUsername() + " membuka folder hasil screenshot.");
         try {
             java.awt.Desktop.getDesktop().open(file);
         } catch (IOException ex) {
@@ -543,10 +545,10 @@ public class SimpanGambar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFolderActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        System.out.println(Screenshot.getLastScreenshot());
-        File hapus = new File(Screenshot.getLastScreenshot());
+        System.out.println(screenshot.getLastScreenshot());
+        File hapus = new File(screenshot.getLastScreenshot());
         Files.deleteFile(hapus.toString());
-        Aktivitas.addAktivitas(Waktu.getTanggal_Activity() + "\t->" + Apps.getUsername() + " menghapus hasil screenshot.");
+        Aktivitas.addAktivitas(Waktu.getTanggal_Aktivitas() + "\t->" + Apps.getUsername() + " menghapus hasil screenshot.");
         dispose();
         this.back();
     }//GEN-LAST:event_btnDeleteActionPerformed
@@ -571,7 +573,6 @@ public class SimpanGambar extends javax.swing.JFrame {
     private javax.swing.JButton btnRename;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnShow;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblFilename;
     private javax.swing.JLabel lblFormat;
     private javax.swing.JLabel lblMinimize;
