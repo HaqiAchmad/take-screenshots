@@ -1,6 +1,5 @@
 package com.media.images;
 
-import com.database.Database;
 import com.media.sounds.PlaySounds;
 import com.system.Apps;
 import com.system.Files;
@@ -25,6 +24,11 @@ import javax.imageio.ImageIO;
 public class Screenshot {
     
     /**
+     * untuk mendapatkan settingan aplikasi
+     */
+    private final Settings setting = new Settings();
+    
+    /**
      * Digunakan untuk menyimpan directory dari file screenshot terakhir
      */
     private static String lastScreenshot;
@@ -37,13 +41,13 @@ public class Screenshot {
      * 
      * @param filename input yang akan digunakan untuk memberi nama pada gambar hasil screeshot
      */
-    public static void ambilScreenshot(final String filename){
+    public void ambilScreenshot(final String filename){
         
         try{
-            String formatType = Settings.getSetting(Settings.SETTING_FORMAT).substring(1), // mendapatkan tipe format gambar example png
-                   penyimpanan = Settings.getSetting(Settings.SETTING_PEYIMPANAN), // mendapatkan penyimpanan screenshot
+            String formatType = setting.getSetting(Settings.SETTING_FORMAT).substring(1), // mendapatkan tipe format gambar example png
+                   penyimpanan = setting.getSetting(Settings.SETTING_PEYIMPANAN), // mendapatkan penyimpanan screenshot
                    // untuk membuat file screenshot
-                   createScreenshot = penyimpanan + filename +" [haqi]" + Settings.getSetting(Settings.SETTING_FORMAT)
+                   createScreenshot = penyimpanan + filename +" [haqi]" + setting.getSetting(Settings.SETTING_FORMAT)
             ;
             
             Rectangle rectangle = new Rectangle(Apps.getLebarScreen(), Apps.getTinggiScreen()); // mengatur lebar dan tinggi screenshot
@@ -56,15 +60,15 @@ public class Screenshot {
                  */
                 if(Files.isExistFolder(penyimpanan)){
                     ImageIO.write(capture, formatType, new File(createScreenshot)); // menyimpan hasil screenshot
-                    Screenshot.setLastScreenshot(createScreenshot);                    
+                    this.setLastScreenshot(createScreenshot);
                 }else{
                     Apps.showNotification("Direktori penyimpanan screenshot tidak ditemukan\n"
                                         + "Screenshot akan disimpan di desktop dan format pada gambar diatur ke .png\n"
                                         + "Atau mungkin OS anda tidak mengizinkan membuat file di direktori yang anda atur!", Screenshot.class.getName(), "Silahkan untuk reset pengaturan anda untuk memperbaiki error ini!!");
                     // screenshot akan disimpan ke desktop
                     ImageIO.write(capture, "png", new File("C:\\Users\\" + Apps.getUsername() + "\\Desktop\\"+filename+".png")); // menyimpan screenshot ke desktop
-                    Screenshot.setLastScreenshot(createScreenshot);
-                    Settings.setSettings(Settings.SETTING_PEYIMPANAN, "C:\\Users\\" + Apps.getUsername() + "\\Desktop\\");
+                    this.setLastScreenshot(createScreenshot);
+                    setting.resetSetting();
                 }
 
             
@@ -76,46 +80,12 @@ public class Screenshot {
         }
     }
     
-    public static void createSample(){
-       
-        new Thread(new Runnable(){
-
-            @Override
-            public void run(){
-                try {
-                    Thread.sleep(1000);
-                    String penyimpanan = Database.getDirectoryDB() +"temp\\", // mendapatkan penyimpanan screenshot
-                           createScreenshot = penyimpanan + "sample "+Apps.getUsername()+".png"; // untuk membuat file screenshot
-
-                    Rectangle rectangle = new Rectangle(Apps.getLebarScreen(), Apps.getTinggiScreen()); // mengatur lebar dan tinggi screenshot
-                    BufferedImage capture = new Robot().createScreenCapture(rectangle); // menangkap screenshot layar
-                    /**
-                     * Mengecek apakah direktori penyimpanan screenshot yang diatur user exist atau tidak
-                     * Jika exist maka screenshot akan secara otaomatis tersimpan
-                     */
-                    if(Files.isExistFolder(penyimpanan)){
-                        ImageIO.write(capture, "png", new File(createScreenshot)); // menyimpan hasil screenshot     
-                        System.out.println("sample dibuat");
-                    }else{
-                        System.out.println("Gagal membuat sample");
-                    }                        
-                } catch (InterruptedException e) {
-                    System.out.println("Error : " + e.getMessage());
-                }catch (IOException ex){
-                    Apps.showException("Terjadi kesalahan saat mengambil screenshot!!", Screenshot.class.getName(), ex.toString());
-                }catch (AWTException ex) {
-                    Apps.showException("Gagal membuat screenshot!", Screenshot.class.getName(), ex.toString());
-                }
-            }
-        }).start();
-    }
-    
     /**
      * Digunakan untuk mengatur screenshot terakhir
      * 
      * @param last direktori screenshot terakhir
      */
-    public static void setLastScreenshot(String last){
+    public void setLastScreenshot(String last){
         lastScreenshot = last;
     }
     
@@ -126,7 +96,7 @@ public class Screenshot {
      * 
      * @return screenshot terakhir
      */
-    public static String getLastScreenshot(){
+    public String getLastScreenshot(){
         if(lastScreenshot != null){
             return lastScreenshot;
         }else{
@@ -138,8 +108,8 @@ public class Screenshot {
      * Digunakan untuk memutar efek suara saat user melakukan screenshot
      * 
      */
-    public static void playSoundEffect(){
-        String sound = Settings.getSetting(Settings.SETTING_EFEK_SUARA); // mendapatkan efek suara yang diatur user di setting
+    public void playSoundEffect(){
+        String sound = setting.getSetting(Settings.SETTING_EFEK_SUARA); // mendapatkan efek suara yang diatur user di setting
         
             switch(sound){
                 case "suara 1.mp3":
@@ -156,5 +126,39 @@ public class Screenshot {
             }
     }
     
+    /**
+     * Method ini digunakan untuk mengambil lebar dari gambar
+     * Jika terjadi error maka method akan mereturn nilai -1000
+     * 
+     * 
+     * @param inputGambar input direktori gambar
+     * @return lebar dari gambar
+     */
+    public static int lebarGambar(File inputGambar){ // mendapatkan lebar di gbr
+        try {
+           BufferedImage gbr = ImageIO.read(new File(inputGambar.getPath()));
+                return gbr.getWidth();
+        }catch (IOException ex){
+            Apps.showException("Tidak dapat menghitung lebar dari gambar!!\nMungkin file screenshot telah dihapus!!", Screenshot.class.getName(), ex.toString());
+        }
+       return -1000;
+    }
 
+    /**
+     * Method ini digunakan untuk mengambil tinggi dari gambar
+     * Jika terjadi error maka method akan mereturn nilai -1000
+     * 
+     * 
+     * @param inputGambar input direktori gambar
+     * @return tinggi dari gambar
+     */
+    public static int tinggiGambar(File inputGambar){ // mendapatkan tinggi dari gbr
+        try {
+            BufferedImage gbr = ImageIO.read(new File(inputGambar.getPath()));
+            return gbr.getHeight();
+        }catch (IOException ex){
+            Apps.showException("Tidak dapat menghitung tinggi dari gambar!!\nMungkin file screenshot telah dihapus!!", Screenshot.class.getName(), ex.toString()); 
+        }
+        return -1000;
+    }
 }
