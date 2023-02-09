@@ -67,9 +67,9 @@ public class Apps {
     /**
      * Gmail, password dan recipent yang akan digunakan untuk mengirimkan ratting dari user
      */
-    private final String GMAIL       = "baihaqi.myapps@gmail.com",
+    private final String GMAIL       = "your_email@gmail.com",
                                 RECIPIENT   = "hakiahmad756@gmail.com",
-                                PASSWORD    = "$->myapps.java(2020);";
+                                PASSWORD    = "your_pw_gmail";
     
     /**
      * Method ini digunakan untuk mengetahui nama dari device user
